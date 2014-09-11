@@ -2,12 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>DietCake <?php eh($title) ?></title>
+    <title>DietCakeTanada</title>
 
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
       body {
-        padding-top: 60px;
+        padding-top: 120px;
       }
     </style>
   </head>
@@ -17,11 +17,10 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="#">DietCake Hello</a>
+          <a class="brand" href="#">DietCake Board Exercise M.Tanada</a>
         </div>
       </div>
     </div>
-
     <div class="container">
 
       <?php echo $_content_ ?>
