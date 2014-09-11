@@ -28,7 +28,6 @@
       <?php eh($user->validation['password']['length'][2]) ?> characters in length.
       </div>
 <?php endif ?>
-
 <?php endif ?>
       </div>
 
@@ -42,8 +41,8 @@ p.sansserif {
 body {
     background-color: #b0c4de;
 }
-
 </style>
+
   <h1> Registration
 	<form class="well" method="post" action="<?php eh(url('')) ?>" onSubmit = "register()">
 	<a name = "login" href="<?php eh(url('login/index'));?>">
