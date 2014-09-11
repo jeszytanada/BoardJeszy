@@ -49,23 +49,22 @@ public function register(){
     $user->name     = Param::get('name');
     $user->email    = Param::get('email');
     $no_value=NULL;
-
-    if($_POST) {
-       foreach ($user_info as $key => $value) 
-      { if (!$value){
-            $no_value++;
-        } 
-        else{
-            $user_info['$key'] = $value;
-        }
+    if($_POST){
+      foreach ($user_info as $key => $value){ 
+          if (!$value){
+              $no_value++;
+          } 
+          else{
+              $user_info['$key'] = $value;
+          }
       }
-      if (!$no_value) {
+      if (!$no_value){
         try {
               $pass = $user->register($user_info);
               $pos=notify("Registration Successful");
             }catch (UserAlreadyExistsException $e) {
                 $pos=notify($e->getMessage(), "error");
-            } catch (ValidationException $e) {
+            }catch (ValidationException $e) {
                 $pos=notify($e->getMessage(), "error");
             }  
       }  
