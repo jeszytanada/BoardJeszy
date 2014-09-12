@@ -1,21 +1,25 @@
 <?php
 class User extends AppModel{   
+    const MIN_VAL=1;
+    const MAX_VAL=15;
+    const MIN_PASSWORD_VAL=6;
+
     public $validation = array(
         'username' => array(
             'length' => array(
-                'validate_between', 1,15,
+                'validate_between', self::MIN_VAL,self::MAX_VAL,
             ),
         ),
 
         'password'=> array(
             'length' => array(
-                'validate_between', 6,15,
+                'validate_between', self::MIN_PASSWORD_VAL,self::MAX_VAL,
             ),
         ),
 
          'name' => array(
             'length' => array(
-                'validate_between', 1,15,
+                'validate_between', self::MIN_VAL,self::MAX_VAL,
             ),
         ),
 

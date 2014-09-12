@@ -1,6 +1,6 @@
 <?php
 
-function is_In_Session(){	
+function is_session(){	
    
     if (isset($_SESSION['username'])){
         return true;

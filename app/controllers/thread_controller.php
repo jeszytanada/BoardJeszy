@@ -5,7 +5,7 @@ class ThreadController extends AppController{
 *** -Count all threads
 **/
 public function index(){	
-    if (!is_In_Session()){
+    if (!is_session()){
             redirect('../');
     }   
 	$thread_count = Thread::threadCounter();

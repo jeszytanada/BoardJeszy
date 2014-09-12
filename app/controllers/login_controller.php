@@ -17,7 +17,7 @@ public function index(){
         	 $user_info = $user->authorize($user->username, $user->password);
             $_SESSION['username'] = $user_info->username;
             $_SESSION['password'] = $user_info->password;
-				    header("Location:thread/index");
+				    redirect(url('thread/index'));
 		        }catch (ValidationException $e) {
                 $pos = notify($e->getMessage(),"error");
             }catch (RecordNotFoundException $e) {
