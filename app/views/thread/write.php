@@ -30,14 +30,14 @@
 <!--FORM to add Comments-->
 <div id = "box">
     <form class = "well" method = "post" action = "<?php entities(url('thread/write')) ?>">
-	    <div style = "color:#0080FF"><?php echo $_SESSION['username'] ?>
+        <div style = "color:#0080FF"><?php echo $_SESSION['username'] ?>
         </div><br />
-	    
-	    <label> Comment: </label>
-	    <textarea name = "body" class = "span8"><?php entities(Param::get('body')) ?></textarea><br />
-	
-	    <input type = "hidden" name = "thread_id" value = "<?php entities($thread->id) ?>">
-	    <input type = "hidden" name = "page_next" value = "write_end">
-	    <button type = "submit" class = "btn btn-primary"> Submit </button> 
+        
+        <label> Comment: </label>
+        <textarea name = "body" class = "span8"><?php entities(Param::get('body')) ?></textarea><br />
+    
+        <input type = "hidden" name = "thread_id" value = "<?php entities($thread->id) ?>">
+        <input type = "hidden" name = "page_next" value = "write_end">
+        <button type = "submit" class = "btn btn-primary"> Submit </button> 
     </form>
 </div>

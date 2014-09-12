@@ -15,18 +15,18 @@ class LoginController extends AppController
 
         if ($_POST) {
             try {
-        	      $user_info = $user->authorize($user->username, $user->password);
+                $user_info = $user->authorize($user->username, $user->password);
                 $_SESSION['username'] = $user_info->username;
                 $_SESSION['password'] = $user_info->password;
-				        redirect(url('thread/index'));
-		        } catch (ValidationException $e) {
+                redirect(url('thread/index'));
+            } catch (ValidationException $e) {
                 $pos = notify($e->getMessage(),"error");
             } catch (RecordNotFoundException $e) {
                 $pos = notify($e->getMessage(),"error");
             }
         } 
         $this->set(get_defined_vars());
-    }	
+    } 
 
     /* Register Function.
     ** $novalue = no value inputted.

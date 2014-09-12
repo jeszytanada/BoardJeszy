@@ -3,7 +3,7 @@
        width:800px;
     }
     #center {
-	   text-align: center;
+       text-align: center;
     }
     #box {
         background-color: #b0c4de;
@@ -18,8 +18,8 @@
 
 <div id = "container">
         <h1>
-    	    <div style = "color:#0080FF"> Hi! <?php entities($_SESSION['username']);?>
-    	    </div><br /> Threads 
+            <div style = "color:#0080FF"> Hi! <?php entities($_SESSION['username']);?>
+            </div><br /> Threads 
         </h1>
     </div><br />
 
@@ -39,6 +39,6 @@
 
     <!--Call out or display pagination (page numbers)-->
     <div id = "center" >
-    	<?php echo $pagination['paginationCtrls'];?>
-    </div>	
+        <?php echo $pagination['paginationCtrls'];?>
+    </div>  
 </div>

@@ -6,8 +6,8 @@ function entities($string) {
 }
 function readable_text($s) {
     $s = htmlspecialchars($s, ENT_QUOTES);
-	$s = nl2br($s);
-	return $s;
+    $s = nl2br($s);
+    return $s;
 }
 
 function notify($text, $notify_type = NULL) {
@@ -15,5 +15,5 @@ function notify($text, $notify_type = NULL) {
         $reply = "";
         return $reply = "<center><font size=4 face=Arial color=green>" . $text . "</font></center>";
     }
-  		return $reply = "<center> <font size=4 face=Arial color=blue>" . $text . "</font></center>";
+        return $reply = "<center> <font size=4 face=Arial color=blue>" . $text . "</font></center>";
 }

@@ -42,8 +42,8 @@
     </style>
 
   <h1> Registration
-	    <form class = "well" method = "post" action = "<?php entities(url('')) ?>" onSubmit = "register()">
-	        <a name = "login" href = "<?php entities(url('login/index'));?>">
+      <form class = "well" method = "post" action = "<?php entities(url('')) ?>" onSubmit = "register()">
+          <a name = "login" href = "<?php entities(url('login/index'));?>">
               <font size = "2"> Already Registered? Log in </font>
           </a>
 
@@ -55,7 +55,7 @@
           <input type ="Password" class = "span3" name = "password" id = "password" placeholder = "Password (6-15 length)" required>
           <span class="icon-asterisk"></span>
 
- 	        <label> Nam e</label>
+          <label> Nam e</label>
           <input type = "text" class = "span3" name = "name" id = "name" placeholder = "Name" required>
           <span class = "icon-asterisk"></span>
 

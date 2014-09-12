@@ -1,5 +1,5 @@
 <h2>
-	<?php entities($thread->title) ?>
+    <?php entities($thread->title) ?>
 </h2>
 
 <p class = "alert alert-success"> Comment Succcess!
