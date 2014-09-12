@@ -35,7 +35,7 @@ class ThreadController extends AppController
         $page = Param::get('page_next','write');
         switch($page) {
 	        case 'write':
-	        break;
+	            break;
 
 		    case 'write_end':
 			    $comment->username = $_SESSION['username'];
@@ -45,11 +45,11 @@ class ThreadController extends AppController
 				    } catch (ValidationException $e) {
 				        $page = 'write';
 				    }
-		    break;
+		        break;
 		
 		    default:
 		    throw new PageNotFoundException("{$page} is not found");
-		    break;
+		        break;
 	    }
 	    $this->set(get_defined_vars());
 	    $this->render($page);
@@ -66,7 +66,7 @@ class ThreadController extends AppController
 
 	    switch($page) {
 		    case 'create':
-		    break;
+		        break;
 
 		    case 'create_end':
 			    $thread->title = Param::get('title');
@@ -77,11 +77,11 @@ class ThreadController extends AppController
 			    } catch (ValidationException $e) {
 			 	    $page = 'create';
 			    }
-		    break;
+		        break;
 
 		    default:
 		    throw new PageNotFoundException("{$page} is not found");
-		    break;
+		        break;
 	    }
 
 	    $this->set(get_defined_vars());

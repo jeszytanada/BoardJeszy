@@ -50,10 +50,10 @@ class User extends AppModel
     public function register(array $user_info) {       
         extract($user_info);
         $params = array(
-                'username' => $username,
-                'password' => $password,
-                'name'     => $name,
-                'email'    => $email
+                      'username' => $username,
+                      'password' => $password,
+                      'name'     => $name,
+                      'email'    => $email
                   );
         $this->username=$username;
         $this->password=$password;
