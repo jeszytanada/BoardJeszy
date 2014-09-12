@@ -39,11 +39,11 @@ class LoginController extends AppController
         $add_name     = Param::get('name');
         $add_email    = Param::get('email');
         $user_info    = array(
-        'username' => $add_username,
-        'password' => $add_password,
-        'name'     => $add_name,
-        'email'    => $add_email
-      );
+                            'username' => $add_username,
+                            'password' => $add_password,
+                            'name'     => $add_name,
+                            'email'    => $add_email
+                        );
         $user = new User();
         $user->username = Param::get('username');
         $user->password = Param::get('password');
