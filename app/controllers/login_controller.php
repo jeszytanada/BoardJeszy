@@ -19,9 +19,9 @@ class LoginController extends AppController
                   $_SESSION['username'] = $user_info->username;
                   $_SESSION['password'] = $user_info->password;
 				          redirect(url('thread/index'));
-		              } catch (ValidationException $e) {
+		        } catch (ValidationException $e) {
                     $pos = notify($e->getMessage(),"error");
-                  } catch (RecordNotFoundException $e) {
+            } catch (RecordNotFoundException $e) {
                     $pos = notify($e->getMessage(),"error");
                   }
         } 
@@ -62,9 +62,9 @@ class LoginController extends AppController
               try {
                   $pass = $user->register($user_info);
                   $pos = notify("Registration Successful");
-                } catch (UserAlreadyExistsException $e) {
+              } catch (UserAlreadyExistsException $e) {
                     $pos = notify($e->getMessage(), "error");
-                } catch (ValidationException $e) {
+              } catch (ValidationException $e) {
                     $pos = notify($e->getMessage(), "error");
                 }  
           }  
