@@ -12,8 +12,7 @@ class LoginController extends AppController
         $user = new User();
         $user->username = Param::get('username');
         $user->password = Param::get('password');
-
-        if ($_POST) {
+        if (Param::get('username') && Param::get('password')) {
             try {
                 $user_info = $user->authorize($user->username, $user->password);
                 $_SESSION['username'] = $user_info->username;
