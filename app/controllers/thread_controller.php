@@ -37,7 +37,7 @@ public function write(){
 		break;
 
 		case 'write_end':
-			$comment->username = Param::get('username');
+			$comment->username = $_SESSION['username'];
 			$comment->body = Param::get('body');
 			try{
 				$thread->write($comment);
@@ -70,7 +70,7 @@ public function create(){
 
 		case 'create_end':
 			$thread->title = Param::get('title');
-			$comment->username = Param::get('username');
+			$comment->username = $_SESSION['username'];
 			$comment->body = Param::get('body');
 			try{
 			 	$thread->create($comment);

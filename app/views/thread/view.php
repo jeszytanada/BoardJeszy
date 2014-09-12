@@ -13,7 +13,7 @@
 <?php foreach ($comments as $k => $v): ?>
 <div class="comment">
     <div class="meta">
-    <h4><?php eh($v->username) ?> <?php eh($v->created) ?></h4></div>
+    <h4><?php eh($v->username) ?><br/> <?php eh($v->created) ?></h4></div>
     <div class="well" id="box"><?php echo "Comment: "; eh($v->body) ?></div>
 </div>
 <?php endforeach ?>
@@ -23,9 +23,9 @@
 <hr>
 <div id="box">
     <form class="well" method="post" action="<?php eh(url('thread/write')) ?>">
-	    <label>Your name </label>
-	    <input type="text" class="span4" name="username" value="<?php eh(Param::get('username')) ?>" >
-	    <label>Comment</label>
+	    <div style="color:#0080FF"><?php echo $_SESSION['username'] ?></div><br />
+	    <!--<input name="username" value="<?php echo $_SESSION['username'] ?>" disabled>-->
+	    <label>Comment:</label>
 	    <textarea name="body" class="span8"><?php eh(Param::get('body')) ?></textarea>
 	    <br />
 	    <input type="hidden" name="thread_id" value="<?php eh($thread->id) ?>">
@@ -35,7 +35,7 @@
 
 <!--To display or echo out the recent / latest comment inside the thread-->
 <div class="well" id="box">
-    <?php eh($v->username) ?><?php echo ": "; echo readable_text($v->body) ?>
+    <?php eh($v->username) ?><?php echo ": <br> ";  echo readable_text($v->body) ?>
 </div>
 
 <div id="center">

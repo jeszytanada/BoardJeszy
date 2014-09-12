@@ -33,13 +33,6 @@
 	</div>
 <?php endif ?>
 
-<!--VALIDATION ERROR ON NAME-->
-<?php if(!empty($comment->validation_errors['username']['length'])): ?>
-	<div><em> Your name </em> must be between
-		<?php eh($comment->validation['username']['length'][1]) ?> and
-		<?php eh($comment->validation['username']['length'][2]) ?> characters in length.
-	</div>
-<?php endif ?>
 
 <!--VALIDATION ERROR ON COMMENT-->
 <?php if(!empty($comment->validation_errors['body']['length'])): ?>
@@ -58,7 +51,7 @@
 	<label>Title</label>
 	<input type="text" class="span8" name="title" value="<?php eh(Param::get('title')) ?>">
 	<label>Your name</label>
-	<input type="text" class="span4" name="username" value="<?php eh(Param::get('username')) ?>">
+	<input type="text" class="span4" name="username" value="<?php echo $_SESSION['username'] ?>" disabled>
 	<label>Comment</label>
 	<textarea name="body" class="span8"><?php eh(Param::get('body')) ?></textarea><br />
 	<input type="hidden" name="page_next" value="create_end">
