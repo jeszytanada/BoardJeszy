@@ -1,5 +1,6 @@
 <?php
-class User extends AppModel{   
+class User extends AppModel
+{   
     const MIN_USER_VAL=1;
     const MAX_USER_VAL=15;
     const MAX_PASSWORD=16;
