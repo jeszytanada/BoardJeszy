@@ -4,10 +4,11 @@ class ThreadController extends AppController{
 *** -Call Pagination
 *** -Count all threads
 **/
-public function index(){	
-    if (!is_session()){
-            redirect('../');
+public function index() {	
+    if (!is_session()) {
+        redirect('../');
     }   
+	
 	$thread_count = Thread::threadCounter();
 	$pagination = Pagination($thread_count);
     $threads = Thread::getAll($pagination['max']);
@@ -17,9 +18,9 @@ public function index(){
 /** View Function:
 *** -View all Threads as well as Comments
 **/
-public function view(){	
+public function view() {	
     $thread = Thread::get(Param::get('thread_id'));
-	$comments=$thread->getComments();
+	$comments = $thread->getComments();
 	$this->set(get_defined_vars());
 }
 
@@ -27,21 +28,21 @@ public function view(){
 *** -Get Thread thru id
 *** -Write comment to existing Thread
 **/
-public function write(){
-    $thread=Thread::get(Param::get('thread_id'));
+public function write() {
+    $thread = Thread::get(Param::get('thread_id'));
     $comment = new Comment;
     $page = Param::get('page_next','write');
-    switch($page){
-		
-		case 'write':
-		break;
+    switch($page) {
+
+	    case 'write':
+	    break;
 
 		case 'write_end':
 			$comment->username = $_SESSION['username'];
 			$comment->body = Param::get('body');
-			try{
+			try {
 				$thread->write($comment);
-				}catch (ValidationException $e){
+				} catch (ValidationException $e) {
 				    $page = 'write';
 				}
 		break;
@@ -49,21 +50,21 @@ public function write(){
 		default:
 		throw new PageNotFoundException("{$page} is not found");
 		break;
-		}
-		$this->set(get_defined_vars());
-		$this->render($page);
+	}
+	$this->set(get_defined_vars());
+	$this->render($page);
 }
 
 
 /** Create Function:
 *** -Create new Thread with Comment
 **/
-public function create(){	
+public function create() {	
     $thread = new Thread;
     $comment = new Comment;
     $page = Param::get('page_next','create');
 
-	switch($page){
+	switch($page) {
 		
 		case 'create':
 		break;
@@ -72,24 +73,24 @@ public function create(){
 			$thread->title = Param::get('title');
 			$comment->username = $_SESSION['username'];
 			$comment->body = Param::get('body');
-			try{
+			try {
 			 	$thread->create($comment);
-			 }catch (ValidationException $e){
+			}catch (ValidationException $e) {
 			 	$page = 'create';
-			 }
+			}
 		break;
 
 		default:
 		throw new PageNotFoundException("{$page} is not found");
 		break;
-		}
+	}
 
-		$this->set(get_defined_vars());
-		$this->render($page);
+	$this->set(get_defined_vars());
+	$this->render($page);
 }
 
 /**Destroyinng session as to log out.**/
-function logout(){	
+function logout() {	
     session_destroy();
     redirect('../');
 }

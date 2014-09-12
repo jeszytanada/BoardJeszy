@@ -1,8 +1,7 @@
 <?php
 
-function is_session(){	
-   
-    if (isset($_SESSION['username'])){
-        return true;
+function is_session() {	
+    if ($_SESSION['username']) {
+       return true;
     }
 }

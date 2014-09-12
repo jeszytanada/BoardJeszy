@@ -1,22 +1,19 @@
 <?php
-class AppException extends Exception
-{
-}
-
-class ValidationException extends AppException
-{
+class AppException extends Exception{
 
 }
 
-class UserNotFoundException extends AppException
-{
+class ValidationException extends AppException{
 
 }
-class UserAlreadyExistsException extends AppException
-{
+
+class UserNotFoundException extends AppException{
 
 }
-class PageNotFoundException extends AppException
-{
+
+class UserAlreadyExistsException extends AppException{
+
+}
+class PageNotFoundException extends AppException{
 
 }

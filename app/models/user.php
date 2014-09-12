@@ -31,12 +31,12 @@ class User extends AppModel{
     );
 
 /** Authorize username and password if registered or matched. **/
-public function authorize($username, $password){	
-    if (!$this->validate()){
+public function authorize($username, $password) {	
+    if (!$this->validate()) {
         throw new ValidationException("Invalid Username/Password");
     }
-    $db=DB::conn();
-    $row =$db->row('SELECT * FROM userinfo WHERE username = ? AND password = ?',array($username, $password));
+    $db = DB::conn();
+    $row = $db->row('SELECT * FROM userinfo WHERE username = ? AND password = ?',array($username, $password));
     if (!$row){
         throw new UserNotFoundException("User not found");
     }  
@@ -48,7 +48,7 @@ public function authorize($username, $password){
 ** Upon registering,checks if Username and Email is not yet used.
 ** Else will be inserted to the database.
 */
-public function register(array $user_info){       
+public function register(array $user_info) {       
     extract($user_info);
     $params = array(
                     'username' => $username,
@@ -61,7 +61,7 @@ public function register(array $user_info){
     $this->name=$name;
     $this->email=$email;
                           
-    if (!$this->validate()){
+    if (!$this->validate()) {
         throw new ValidationException(notify('Error Found!', "error"));
     }
 
@@ -69,7 +69,7 @@ public function register(array $user_info){
     $query  = 'SELECT username, email FROM userinfo WHERE username=? OR email=?';
     $unique = array($username,$email);
     $search = $db->row($query,$unique);
-    if($search){
+    if ($search) {
         throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
     }
     $row = $db->insert('userinfo',$params);    
