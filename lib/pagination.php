@@ -9,7 +9,7 @@ function Pagination ($rows, array $current_page = array()) {
     if (!(isset($pagenum))) {
         $pagenum = 1; 
     }
-    if (isset($_GET['pn'])){
+    if (isset($_GET['pn'])) {
         $pagenum = preg_replace('#[^0-9]#', '', $_GET['pn']);   
     }
     $last_page = ceil($rows/MAX_ROWS);
@@ -19,7 +19,7 @@ function Pagination ($rows, array $current_page = array()) {
     }
     if ($pagenum < 1) {
         $pagenum = 1;
-    } elseif ($pagenum > $last_page){
+    } elseif ($pagenum > $last_page) {
         $pagenum = $last_page;
     }
     
@@ -53,10 +53,10 @@ function Pagination ($rows, array $current_page = array()) {
         }
     }
     $pagination = array(
-        'max'             => $max,
-        'last_page'       => $last_page,
-        'pagenum'         => $pagenum,
-        'paginationCtrls' => $paginationCtrls,
+                      'max'             => $max,
+                      'last_page'       => $last_page,
+                      'pagenum'         => $pagenum,
+                      'paginationCtrls' => $paginationCtrls,
                   );
     return $pagination;
 }
