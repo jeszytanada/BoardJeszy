@@ -1,14 +1,15 @@
-<style>
-    #center {
-        text-align: center;
-    }
-    #box {
-        background-color: #b0c4de;
-        padding: 25px;
-        border: 25px white;
-    }
-</style>
- 
+<head>
+    <style> 
+        #center {
+            text-align: center;
+        }
+        #box {
+            background-color: #b0c4de;
+            padding: 25px;
+            border: 25px white;
+        }
+    </style>
+</head>
 <h1>
     <?php entities($thread->title) ?>
 </h1>

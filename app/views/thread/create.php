@@ -1,20 +1,22 @@
-<style>
-    #container {
-       width:800px;
-    }
-   #leftcolumn { 
-        width: 870px; 
-        float: left;
-        margin: 5px;
-        padding: 10px;
-        background: #b0c4de;
-        font-size: 11px;
-    }
-    #pad {
-        padding: 10px;
-        width: 800px;
-    }
-</style>
+<head>
+    <style>
+        #container {
+            width:800px;
+        }
+        #leftcolumn { 
+            width: 870px; 
+            float: left;
+            margin: 5px;
+            padding: 10px;
+            background: #b0c4de;
+            font-size: 11px;
+        }
+        #pad {
+            padding: 10px;
+            width: 800px;
+        }
+    </style>
+</head>
 
 <div id="container">
     <h2> Create Thread </h2>

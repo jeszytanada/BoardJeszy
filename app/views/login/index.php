@@ -1,4 +1,4 @@
-<div class="register-form">
+<head>
     <style>
         p.sansserif {
             font-family: Arial, Helvetica, sans-serif;
@@ -7,7 +7,9 @@
             background-color: #b0c4de;
         }
     </style>
+</head>
 
+<div class="register-form">
 <!--Form Log In-->
 <br /><br /> 
     <h1>  Login  <?php echo $position;?> 

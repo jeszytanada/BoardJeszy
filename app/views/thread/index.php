@@ -1,16 +1,18 @@
-<style>
-    #container {
-       width:800px;
-    }
-    #center {
-       text-align: center;
-    }
-    #box {
-        background-color: #b0c4de;
-        padding: 25px;
-        border: 25px white;
-    }
-</style>
+<head>
+    <style>
+        #container {
+           width:800px;
+        }
+        #center {
+           text-align: center;
+        }
+        #box {
+            background-color: #b0c4de;
+            padding: 25px;
+            border: 25px white;
+        }
+    </style>
+</head>
 
 <div style = "float: right; width: 185px; height: 10px; margin: -70px" >
     <a class = "btn btn-primary pull-right" href = "<?php entities(url('thread/logout'))?>" name = "logout"> Logout </a>
