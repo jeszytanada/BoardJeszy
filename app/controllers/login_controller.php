@@ -49,7 +49,6 @@ class LoginController extends AppController
         $user->name     = Param::get('name');
         $user->email    = Param::get('email');
         $no_value = NULL;
-        if ($_POST) {
           foreach ($user_info as $key => $value) { 
               if (!$value) {
                   $no_value++;
@@ -67,7 +66,6 @@ class LoginController extends AppController
                   $position = notify($e->getMessage(), "error");
               } 
           }  
-        }
         $this->set(get_defined_vars());
     }
 }
