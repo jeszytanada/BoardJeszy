@@ -4,7 +4,7 @@ class LoginController extends AppController
     /** 
     * Username and password are
     * taken from View and is pass to
-    * function AUTHORIZE to validate.
+    * authenticate and to validate the username & password.
     * $position = holds the position of the page.
     */
     public function index() 
@@ -52,12 +52,12 @@ class LoginController extends AppController
                 $no_value++;
                 } else {
                     $user_info['$key'] = $value;
-                  }
+                }
             }
         if (!$no_value) {
             try {
                 $pass = $user->register($user_info);
-                    $position = notify("Registration Successful");
+                $position = notify("Registration Successful");
                 } catch (AppException $e) {
                     $position = notify($e->getMessage(), "error");
                 }

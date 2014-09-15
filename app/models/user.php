@@ -37,8 +37,6 @@ class User extends AppModel
     */
     public function authenticate($username, $password)
     {   
-        $this->username = $username;
-        $this->password = $password;
         if (!$this->validate()) {
             throw new ValidationException("Invalid Username/Password");
         }
