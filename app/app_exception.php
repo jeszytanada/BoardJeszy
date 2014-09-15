@@ -22,3 +22,7 @@ class PageNotFoundException extends AppException
 {
 
 }
+class RecordNotFoundException extends AppException
+{
+
+}

@@ -1,6 +1,6 @@
 <?php
 class User extends AppModel
-{   
+{
     const MIN_USER_VAL=1;
     const MAX_USER_VAL=15;
     const MAX_PASSWORD=16;
@@ -10,6 +10,9 @@ class User extends AppModel
         'username' => array(
             'length' => array(
                 'validate_between', self::MIN_USER_VAL,self::MAX_USER_VAL,
+            ),
+            'format' => array(
+                'check_username_format'
             ),
         ),
         'password'=> array(
@@ -29,49 +32,47 @@ class User extends AppModel
         ),
     );
 
-    /** Authorize username and password if registered or matched. **/
-    public function authorize($username, $password) {   
+    /** 
+    *Check if username and password is registered or matched in the database.
+    */
+    public function authenticate($username, $password)
+    {   
+        $this->username = $username;
+        $this->password = $password;
         if (!$this->validate()) {
             throw new ValidationException("Invalid Username/Password");
         }
         $db = DB::conn();
-        $row = $db->row('SELECT * FROM userinfo WHERE username = ? AND password = ?',array($username, $password));
+        $row = $db->row('SELECT * FROM userinfo WHERE username = ? AND password = ?', array($username, $password));
         if (!$row){
             throw new UserNotFoundException("User not found");
         }  
         return new self($row);
     }
 
-    /* Function for Registration.
-    ** Extract all values from array $user_info.
-    ** Upon registering,checks if Username and Email is not yet used.
-    ** Else will be inserted to the database.
+    /**
+    * Extract all values from array $user_info.
+    * Upon registering,checks if Username and Email is not yet used.
+    * Else will be inserted to the database.
     */
-    public function register(array $user_info) {       
-        extract($user_info);
+    public function register(array $user_info)
+    {   extract($user_info);
         $params = array(
                       'username' => $username,
                       'password' => $password,
                       'name'     => $name,
                       'email'    => $email
                   );
-        $this->username=$username;
-        $this->password=$password;
-        $this->name=$name;
-        $this->email=$email;
-                          
         if (!$this->validate()) {
             throw new ValidationException(notify('Error Found!', "error"));
         }
 
         $db = DB::conn();
-        $query  = 'SELECT username, email FROM userinfo WHERE username=? OR email=?';
-        $unique = array($username,$email);
-        $search = $db->row($query,$unique);
+        $search =$db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', array($username,$email));
         if ($search) {
             throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
         }
-        $row = $db->insert('userinfo',$params);    
+        $db->insert('userinfo',$params);    
     }  
 }
  

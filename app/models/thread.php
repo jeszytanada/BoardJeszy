@@ -9,8 +9,11 @@ class Thread extends AppModel
         ),
     );
     
-    /** Get all the Threads from Database **/
-    public static function getAll($all_threads) {   
+    /** 
+    * Get all the Threads from Database 
+    */
+    public static function getAll($all_threads) 
+    {   
         $threads = array();
         $db = DB::conn();
         $rows = $db->rows("SELECT * FROM thread $all_threads");
@@ -20,9 +23,12 @@ class Thread extends AppModel
         return $threads;    
     }
 
-    /** After selecting thread,checks the ID in the Database then return.
-    *** If ID is not found -> @throw exception **/
-    public static function get($id) {
+    /** 
+    * After selecting thread,checks the ID in the Database then return.
+    * If ID is not found -> @throw exception 
+    */
+    public static function get($id) 
+    {
         $db = DB::conn();
         $row = $db->row('SELECT * FROM thread WHERE id = ?',array($id));
         if (!$row) {
@@ -31,12 +37,14 @@ class Thread extends AppModel
         return new self($row);
     }
 
-    /** -Validate first the Thread & Comment.
-    *** -If both hasError() -> throw Exception
-    *** -Get title of Thread, Get Comment
-    *** -Insert to the Database.
-    **/
-    public function create(Comment $comment) {
+    /** 
+    * Validate first the Thread & Comment.
+    * If both hasError() -> throw Exception
+    * Get title of Thread, Get Comment
+    * Insert to the Database.
+    */
+    public function create(Comment $comment) 
+    {
         $this->validate();
         $comment->validate();
             if ($this->hasError() || $comment->hasError()) {
@@ -58,11 +66,13 @@ class Thread extends AppModel
               }
     }
 
-    /** -Validate first the Comment.
-    *** -Write comment in an existing Thread. 
-    *** -Insert to the Database.
-    **/
-    public function write(Comment $comment) {
+    /** 
+    * Validate first the Comment.
+    * Write comment in an existing Thread. 
+    * Insert to the Database.
+    */
+    public function write(Comment $comment) 
+    {
         if (!$comment->validate()) {
             throw new ValidationException('invalid comment');
         }
@@ -71,12 +81,14 @@ class Thread extends AppModel
         array($this->id,$comment->username,$comment->body));
     }   
 
-    /** -Function used for Pagination
-    *** -Counts thread ID 
-    **/
-    public static function threadCounter() {
+    /**
+    * Function used for Pagination
+    * Returns the total count of thread ID 
+    */
+    public static function count() 
+    {
         $db = DB::conn();
-        $total = $db->value("SELECT COUNT(id) FROM thread");
-        return $total;
+        $total_thread = $db->value("SELECT COUNT(id) FROM thread");
+        return $total_thread;
     }   
 }

@@ -2,25 +2,27 @@
 class ThreadController extends AppController
 {
     /** 
-    *** -Call class Pagination to show number of pages
-    *** -Count all existing threads
-    **/
-    public function index() {   
-        if (!is_session()) {
-            redirect('../');
+    * Call class Pagination to show number of pages
+    * Count all existing threads
+    */
+    public function index() 
+    {   
+        if (!is_logged()) {
+            redirect(url('login/index'));
         }   
     
-        $thread_count = Thread::threadCounter();
+        $thread_count = Thread::count();
         $pagination = Pagination($thread_count);
         $threads = Thread::getAll($pagination['max']);
         $this->set(get_defined_vars());
     }
 
-    /** Write Function:
-    *** -Get Thread thru id
-    *** -Write comment to existing Thread
-    **/
-    public function write() {
+    /**
+    * Get Thread thru id
+    * Write comment to existing Thread
+    */
+    public function write() 
+    {
         $thread = Thread::get(Param::get('thread_id'));
         $comment = new Comment;
         $page = Param::get('page_next','write');
@@ -47,10 +49,10 @@ class ThreadController extends AppController
     }
 
     /** 
-    *** -Create new Thread along with Comment/s
-    *** - 
-    **/
-    public function create() {  
+    * Create new Thread and should be with Comment/s
+    */
+    public function create() 
+    {  
         $thread = new Thread;
         $comment = new Comment;
         $page = Param::get('page_next','create');
@@ -79,8 +81,11 @@ class ThreadController extends AppController
         $this->render($page);
     }
 
-    /**Destroying session and logging out.**/
-    function logout() { 
+    /**
+    * Destroying session and logging out.
+    */
+    function logout() 
+    { 
         session_destroy();
         redirect('../');
     }
