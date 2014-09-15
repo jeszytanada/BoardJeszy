@@ -41,11 +41,11 @@ class LoginController extends AppController
         $user->name     = Param::get('name');
         $user->email    = Param::get('email');
         $user_info = array(
-                         'username' => $user->username,
-                         'password' => $user->password,
-                         'name'     => $user->name,
-                         'email'    => $user->email
-                     );
+            'username' => $user->username,
+            'password' => $user->password,
+            'name'     => $user->name,
+            'email'    => $user->email
+        );
         $no_value = 0;
         foreach ($user_info as $key => $value) { 
             if (!$value) {
