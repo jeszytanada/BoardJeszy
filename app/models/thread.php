@@ -47,23 +47,23 @@ class Thread extends AppModel
     {
         $this->validate();
         $comment->validate();
-            if ($this->hasError() || $comment->hasError()) {
-                throw new ValidationException('Invalid thread or comment');
-            }
-            $db = DB::conn();
-            try{    
-                $db->begin();
-                $params = array(
-                    'title' => $this->title,
-                );
-                $db->insert('thread',$params);
-                $this->id = $db->lastInsertId();
-                $this->write($comment);
-                $db->commit();
-            } catch (ValidationException $e) {
-                $db->rollback();
-                throw $e;
-              }
+        if ($this->hasError() || $comment->hasError()) {
+            throw new ValidationException('Invalid thread or comment');
+        }
+        $db = DB::conn();
+        try{    
+            $db->begin();
+            $params = array(
+                'title' => $this->title,
+            );
+            $db->insert('thread',$params);
+            $this->id = $db->lastInsertId();
+            $this->write($comment);
+            $db->commit();
+        } catch (ValidationException $e) {
+            $db->rollback();
+            throw $e;
+        }
     }
 
     /** 

@@ -3,10 +3,9 @@
 const MAX_ROWS = 5;
  
 /** Pagination (Page Manipulation) **/
-function Pagination ($rows, array $current_page = array()) {
-    $pagination = array();
-
-    if (!(isset($pagenum))) {
+function Pagination ($rows, array $current_page = array()) 
+{
+    if (!isset($pagenum)) {
         $pagenum = 1; 
     }
     if (isset($_GET['pn'])) {
@@ -37,7 +36,6 @@ function Pagination ($rows, array $current_page = array()) {
                 }
             }
         }
-
         $paginationCtrls .= ''.$pagenum.' &nbsp; ';
         for ($i = $pagenum + 1; $i <= $last_page; $i++) {
             $link_page = $i;
@@ -46,17 +44,16 @@ function Pagination ($rows, array $current_page = array()) {
                 break;
             }
         }
-
         if ($pagenum != $last_page) {
             $page_link = $pagenum + 1;
             $paginationCtrls .= " &nbsp; &nbsp; <a href='".url('', $current_page)."'> Next </a>";
         }
     }
     $pagination = array(
-                      'max'             => $max,
-                      'last_page'       => $last_page,
-                      'pagenum'         => $pagenum,
-                      'paginationCtrls' => $paginationCtrls,
-                  );
+        'max'             => $max,
+        'last_page'       => $last_page,
+        'pagenum'         => $pagenum,
+        'paginationCtrls' => $paginationCtrls,
+    );
     return $pagination;
 }
