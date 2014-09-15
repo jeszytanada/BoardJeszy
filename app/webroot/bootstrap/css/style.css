@@ -1,0 +1,30 @@
+<head>
+    <style>
+        #box {
+            background-color: #b0c4de;
+            padding: 25px;
+            border: 25px white;
+        }
+        p.sansserif {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body {
+            background-color: #b0c4de;
+        }
+        #container {
+            width:800px;
+        }
+        #leftcolumn { 
+            width: 870px; 
+            float: left;
+            margin: 5px;
+            padding: 10px;
+            background: #b0c4de;
+            font-size: 11px;
+        }
+        #pad {
+            padding: 10px;
+            width: 800px;
+        }
+    </style>
+</head>
