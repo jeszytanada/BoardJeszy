@@ -5,6 +5,7 @@
     <title>DietCakeTanada</title>
 
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap/css/style.css" rel="stylesheet">
     <style>
       body {
         padding-top: 120px;

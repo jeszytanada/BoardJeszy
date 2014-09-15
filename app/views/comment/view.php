@@ -1,15 +1,3 @@
-<head>
-    <style> 
-        #center {
-            text-align: center;
-        }
-        #box {
-            background-color: #b0c4de;
-            padding: 25px;
-            border: 25px white;
-        }
-    </style>
-</head>
 <h1>
     <?php entities($thread->title) ?>
 </h1>
@@ -45,6 +33,6 @@
     <?php entities($v->username) ?><?php echo ": <br> ";  echo readable_text($v->body) ?>
 </div>
 
-<div id = "center">
+<div style = "text-align: center">
     <a class = "btn btn-primary" href = "<?php entities(url('thread/index'))?>"> Back to Threads </a>
 </div> 

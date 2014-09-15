@@ -1,15 +1,3 @@
-<head>
-    <style> 
-        #center {
-            text-align: center;
-        }
-        #box {
-            background-color: #b0c4de;
-            padding: 25px;
-            border: 25px white;
-        }
-    </style>
-</head>
 <h2>
     <?php entities($thread->title) ?>
 </h2>    

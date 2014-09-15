@@ -1,15 +1,4 @@
-<head>
-    <style>
-        p.sansserif {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        body {
-            background-color: #b0c4de;
-        }
-    </style>
-</head>
-
-<div class="register-form">
+<div id = "box" class = "body">
 <!--Form Log In-->
 <br /><br /> 
     <h1>  Login  <?php echo $position;?> 

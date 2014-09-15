@@ -41,7 +41,7 @@ class User extends AppModel
             throw new ValidationException("Invalid Username/Password");
         }
         $db = DB::conn();
-        $row = $db->row('SELECT * FROM userinfo WHERE username = ? AND password = ?', array($username, $password));
+        $row = $db->row('SELECT * FROM userinfo WHERE username = ? AND password = ?', array($this->username, $this->password));
         if (!$row){
             throw new UserNotFoundException("User not found");
         }  

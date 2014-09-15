@@ -1,14 +1,3 @@
-<head>
-    <style>
-        p.sansserif {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        body {
-            background-color: #b0c4de;
-        }
-    </style>
-</head>
-
 <?php if ($user->hasError()): ?>
     <div class = "alert alert-block">
         <h4 class = "alert-heading"> Validation error! Please Try again..
@@ -42,9 +31,9 @@
 <?php endif ?>
 
 <!-- Registration Form-->
-<div class = "register-form">
+<div id = "box" class = "register-form">
   <h1> Registration
-      <form class = "well" method = "post" action = "<?php entities(url('')) ?>" onSubmit = "register()">
+      <form class = "body" method = "post" action = "<?php entities(url('')) ?>" onSubmit = "register()">
           <a name = "login" href = "<?php entities(url('login/index'));?>">
               <font size = "2"> Already Registered? Log in </font>
           </a>

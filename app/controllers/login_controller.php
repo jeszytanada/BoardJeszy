@@ -61,7 +61,7 @@ class LoginController extends AppController
                 } catch (AppException $e) {
                     $position = notify($e->getMessage(), "error");
                 }
-        }  
+        } 
         $this->set(get_defined_vars());
     }
 }

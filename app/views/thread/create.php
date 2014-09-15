@@ -1,23 +1,3 @@
-<head>
-    <style>
-        #container {
-            width:800px;
-        }
-        #leftcolumn { 
-            width: 870px; 
-            float: left;
-            margin: 5px;
-            padding: 10px;
-            background: #b0c4de;
-            font-size: 11px;
-        }
-        #pad {
-            padding: 10px;
-            width: 800px;
-        }
-    </style>
-</head>
-
 <div id="container">
     <h2> Create Thread </h2>
 </div>
@@ -47,7 +27,7 @@
 <?php endif ?>
 
 <!--FORM to create new Thread and Comments -->
-<form class = "well" method = "post" action = "<?php entities(url(''))?>">
+<form class = "body" method = "post" action = "<?php entities(url(''))?>">
     <div id ="leftcolumn" style="min-height: 50px;"><br />
         <label> Title </label>
         <input type = "text" class = "span8" name = "title" value = "<?php entities(Param::get('title')) ?>">
