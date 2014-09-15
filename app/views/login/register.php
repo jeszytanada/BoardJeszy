@@ -55,7 +55,7 @@
           <input type ="Password" class = "span3" name = "password" id = "password" placeholder = "Password (6-15 length)" required>
           <span class="icon-asterisk"></span>
 
-          <label> Nam e</label>
+          <label> Name</label>
           <input type = "text" class = "span3" name = "name" id = "name" placeholder = "Name" required>
           <span class = "icon-asterisk"></span>
 

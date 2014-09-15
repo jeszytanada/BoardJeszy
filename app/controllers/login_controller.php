@@ -63,9 +63,9 @@ class LoginController extends AppController
                   $position = notify("Registration Successful");
               } catch (UserAlreadyExistsException $e) {
                   $position = notify($e->getMessage(), "error");
-              } catch (ValidationException $e) {
+              } catch(ValidationException $e) {
                   $position = notify($e->getMessage(), "error");
-                }  
+              } 
           }  
         }
         $this->set(get_defined_vars());
