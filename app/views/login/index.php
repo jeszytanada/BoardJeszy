@@ -10,7 +10,7 @@
 
 <!--Form Log In-->
 <br /><br /> 
-    <h1>  Login  <?php echo $pos;?> 
+    <h1>  Login  <?php echo $position;?> 
         <form class = "form-signin" action = "<?php entities(url(''));?>" method = "POST"><br />
             <h4>
                 <p class = "sansserif"> Username <br /> 

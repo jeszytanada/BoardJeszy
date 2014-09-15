@@ -5,5 +5,5 @@
 <p class = "alert alert-success"> Comment Succcess!
 </p>
 
-<a href = "<?php entities(url('thread/view', array('thread_id' => $thread->id))) ?>">
+<a href = "<?php entities(url('comment/view', array('thread_id' => $thread->id))) ?>">
 &larr; Back to Thread </a>

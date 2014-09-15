@@ -65,5 +65,5 @@
           <input type = "submit" name = "submit" id = "submit" value = "Submit" class = "btn-large btn-primary">
       </form>
   </h1>    
-  <?php echo $pos; ?>
+  <?php echo $position; ?>
 </div>

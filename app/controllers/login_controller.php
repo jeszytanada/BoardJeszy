@@ -5,10 +5,10 @@ class LoginController extends AppController
     ** Username and password are
     ** taken from View and is pass to
     ** function AUTHORIZE to validate.
-    ** $pos = holds the position.
+    ** $position = holds the position of the page.
     */
     public function index() {    
-        $pos = NULL;
+        $position = NULL;
         $user = new User();
         $user->username = Param::get('username');
         $user->password = Param::get('password');
@@ -19,9 +19,9 @@ class LoginController extends AppController
                 $_SESSION['password'] = $user_info->password;
                 redirect(url('thread/index'));
             } catch (ValidationException $e) {
-                $pos = notify($e->getMessage(),"error");
+                $position = notify($e->getMessage(),"error");
             } catch (RecordNotFoundException $e) {
-                $pos = notify($e->getMessage(),"error");
+                $position = notify($e->getMessage(),"error");
             }
         } 
         $this->set(get_defined_vars());
@@ -32,7 +32,7 @@ class LoginController extends AppController
     ** $pos   = holds the position.
     */
     public function register() {   
-        $pos = NULL;
+        $position = NULL;
         $add_username = Param::get('username');
         $add_password = Param::get('password');
         $add_name     = Param::get('name');
@@ -60,11 +60,11 @@ class LoginController extends AppController
           if (!$no_value) {
               try {
                   $pass = $user->register($user_info);
-                  $pos = notify("Registration Successful");
+                  $position = notify("Registration Successful");
               } catch (UserAlreadyExistsException $e) {
-                  $pos = notify($e->getMessage(), "error");
+                  $position = notify($e->getMessage(), "error");
               } catch (ValidationException $e) {
-                  $pos = notify($e->getMessage(), "error");
+                  $position = notify($e->getMessage(), "error");
                 }  
           }  
         }

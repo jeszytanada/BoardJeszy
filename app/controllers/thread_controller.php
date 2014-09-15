@@ -1,9 +1,9 @@
 <?php 
 class ThreadController extends AppController
 {
-    /** Index Function:
-    *** -Call Pagination
-    *** -Count all threads
+    /** 
+    *** -Call class Pagination to show number of pages
+    *** -Count all existing threads
     **/
     public function index() {   
         if (!is_session()) {
@@ -13,15 +13,6 @@ class ThreadController extends AppController
         $thread_count = Thread::threadCounter();
         $pagination = Pagination($thread_count);
         $threads = Thread::getAll($pagination['max']);
-        $this->set(get_defined_vars());
-    }
-
-    /** View Function:
-    *** -View all Threads as well as Comments
-    **/
-    public function view() {    
-        $thread = Thread::get(Param::get('thread_id'));
-        $comments = $thread->getComments();
         $this->set(get_defined_vars());
     }
 
@@ -55,9 +46,9 @@ class ThreadController extends AppController
         $this->render($page);
     }
 
-
-    /** Create Function:
-    *** -Create new Thread with Comment
+    /** 
+    *** -Create new Thread along with Comment/s
+    *** - 
     **/
     public function create() {  
         $thread = new Thread;
@@ -88,7 +79,7 @@ class ThreadController extends AppController
         $this->render($page);
     }
 
-    /**Destroyinng session as to log out.**/
+    /**Destroying session and logging out.**/
     function logout() { 
         session_destroy();
         redirect('../');

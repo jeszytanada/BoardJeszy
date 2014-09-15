@@ -29,7 +29,7 @@
 
 <!--FORM to add Comments-->
 <div id = "box">
-    <form class = "well" method = "post" action = "<?php entities(url('thread/write')) ?>">
+    <form class = "well" method = "post" action = "<?php entities(url('')) ?>">
         <div style = "color:#0080FF"><?php echo $_SESSION['username'] ?>
         </div><br />
         

@@ -31,30 +31,6 @@ class Thread extends AppModel
         return new self($row);
     }
 
-    /** Get all Comments inside a Thread displayed in Ascending order **/
-    public function getComments() {
-        $comments = array();
-        $db = DB::conn();
-        $rows = $db->rows('SELECT * FROM comment WHERE thread_id = ? ORDER BY created ASC',array($this->id));
-        foreach ($rows as $row) {
-            $comments[] = new Comment($row);
-        }
-        return $comments;
-    }
-
-    /** -Validate first the Comment.
-    *** -Write comment in an existing Thread. 
-    *** -Insert to the Database.
-    **/
-    public function write(Comment $comment) {
-        if (!$comment->validate()) {
-            throw new ValidationException('invalid comment');
-        }
-        $db = DB::conn();
-        $db->query('INSERT INTO comment SET thread_id = ?, username = ?, body = ?, created = NOW()',
-        array($this->id,$comment->username,$comment->body));
-    }
-
     /** -Validate first the Thread & Comment.
     *** -If both hasError() -> throw Exception
     *** -Get title of Thread, Get Comment
@@ -81,6 +57,19 @@ class Thread extends AppModel
                 throw $e;
               }
     }
+
+    /** -Validate first the Comment.
+    *** -Write comment in an existing Thread. 
+    *** -Insert to the Database.
+    **/
+    public function write(Comment $comment) {
+        if (!$comment->validate()) {
+            throw new ValidationException('invalid comment');
+        }
+        $db = DB::conn();
+        $db->query('INSERT INTO comment SET thread_id = ?, username = ?, body = ?, created = NOW()',
+        array($this->id,$comment->username,$comment->body));
+    }   
 
     /** -Function used for Pagination
     *** -Counts thread ID 

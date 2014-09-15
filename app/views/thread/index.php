@@ -26,7 +26,7 @@
 <!--Link of the threads-->
     <ul> 
         <?php foreach ($threads as $v): ?>
-            <li><div class = "well" id = "box"><a href = "<?php entities(url('thread/view',array('thread_id'=> $v->id))) ?>">
+            <li><div class = "well" id = "box"><a href = "<?php entities(url('comment/view',array('thread_id'=> $v->id))) ?>">
                 <?php entities($v->title) ?></a>
                 </div>
             </li>
