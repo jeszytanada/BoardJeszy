@@ -32,7 +32,6 @@ class CommentController extends AppController
                     } catch (ValidationException $e) {
                         $page = 'write';
                     }
-                break;
             default:
             throw new PageNotFoundException("{$page} is not found");
                 break;
