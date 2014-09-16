@@ -66,9 +66,9 @@ class User extends AppModel
         }
 
         $db = DB::conn();
-        $search =$db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', 
+        $search_results =$db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', 
             array($this->username,$this->email));
-        if ($search) {
+        if ($search_results) {
             throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
         }
         $db->insert('userinfo',$params);    
