@@ -40,28 +40,14 @@ class LoginController extends AppController
         $user->password = Param::get('password');
         $user->name     = Param::get('name');
         $user->email    = Param::get('email');
-        $user_info = array(
-            'username' => $user->username,
-            'password' => $user->password,
-            'name'     => $user->name,
-            'email'    => $user->email
-        );
-        $no_value = 0;
-        foreach ($user_info as $key => $value) { 
-            if (!$value) {
-                $no_value++;
-                } else {
-                    $user_info['$key'] = $value;
-                }
-            }
-        if (!$no_value) {
+        if($user->username) {
             try {
-                $pass = $user->register($user_info);
+                $user->register();
                 $position = notify("Registration Successful");
                 } catch (AppException $e) {
                     $position = notify($e->getMessage(), "error");
-                }
-        } 
+                }      
+        }
         $this->set(get_defined_vars());
     }
 }

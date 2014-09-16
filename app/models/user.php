@@ -53,20 +53,21 @@ class User extends AppModel
     * Upon registering,checks if Username and Email is not yet used.
     * Else will be inserted to the database.
     */
-    public function register(array $user_info)
-    {   extract($user_info);
+    public function register()
+    {   
         $params = array(
-            'username' => $username,
-            'password' => $password,
-            'name'     => $name,
-            'email'    => $email
+            'username' => $this->username,
+            'password' => $this->password,
+            'name'     => $this->name,
+            'email'    => $this->email
         );
         if (!$this->validate()) {
             throw new ValidationException(notify('Error Found!', "error"));
         }
 
         $db = DB::conn();
-        $search =$db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', array($username,$email));
+        $search =$db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', 
+            array($this->username,$this->email));
         if ($search) {
             throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
         }

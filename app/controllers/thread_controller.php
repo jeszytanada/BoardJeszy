@@ -10,41 +10,11 @@ class ThreadController extends AppController
         if (!is_logged()) {
             redirect(url('login/index'));
         }   
-    
+        
         $thread_count = Thread::count();
         $pagination = Pagination($thread_count);
         $threads = Thread::getAll($pagination['max']);
         $this->set(get_defined_vars());
-    }
-
-    /**
-    * Get Thread thru id
-    * Write comment to existing Thread
-    */
-    public function write() 
-    {
-        $thread = Thread::get(Param::get('thread_id'));
-        $comment = new Comment;
-        $page = Param::get('page_next','write');
-        switch($page) {
-            case 'write':
-                break;
-
-            case 'write_end':
-                $comment->username = $_SESSION['username'];
-                $comment->body = Param::get('body');
-                try {
-                    $thread->write($comment);
-                    } catch (ValidationException $e) {
-                        $page = 'write';
-                    }
-                break;
-            default:
-            throw new PageNotFoundException("{$page} is not found");
-                break;
-        }
-        $this->set(get_defined_vars());
-        $this->render($page);
     }
 
     /** 

@@ -23,7 +23,7 @@
         </div><br />
         
         <label> Comment: </label>
-        <textarea name = "body" class = "span8"><?php entities(Param::get('body')) ?></textarea><br />
+        <textarea name = "body" class = "span10" style = "height: 300px"><?php entities(Param::get('body')) ?></textarea><br />
     
         <input type = "hidden" name = "thread_id" value = "<?php entities($thread->id) ?>">
         <input type = "hidden" name = "page_next" value = "write_end">
