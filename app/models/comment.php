@@ -16,11 +16,11 @@ class Comment extends Appmodel
     /** 
     * Get all Comments inside a Thread displayed in Ascending order 
     */
-    public static function getComments($thread_id) 
+    public function getComments() 
     {
         $comments = array();
         $db = DB::conn();
-        $rows = $db->rows('SELECT * FROM comment WHERE thread_id = ? ORDER BY created ASC', array($thread_id));
+        $rows = $db->rows('SELECT * FROM comment WHERE thread_id = ? ORDER BY created ASC', array($this->id));
         foreach ($rows as $row) {
             $comments[] = new Comment($row);
         }

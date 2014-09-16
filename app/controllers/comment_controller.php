@@ -7,7 +7,7 @@ class CommentController extends AppController
     public function view() 
     {    
         $thread = Comment::get(Param::get('thread_id'));
-        $comments = Comment::getComments($thread->id);
+        $comments = $thread->getComments();
         $this->set(get_defined_vars());
     }
 
@@ -32,6 +32,7 @@ class CommentController extends AppController
                     } catch (ValidationException $e) {
                         $page = 'write';
                     }
+                break;
             default:
             throw new PageNotFoundException("{$page} is not found");
                 break;
