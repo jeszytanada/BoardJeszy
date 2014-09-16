@@ -17,7 +17,7 @@ class LoginController extends AppController
             try {
                 $user->username = $username;
                 $user->password = $password;
-                $user_info = $user->authenticate($username, $password);
+                $user_info = $user->authenticate();
                 $_SESSION['username'] = $user_info->username;
                 $_SESSION['password'] = $user_info->password;
                 redirect(url('thread/index'));
