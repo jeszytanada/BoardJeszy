@@ -2,7 +2,9 @@
 
 const MAX_ROWS = 5;
  
-/** Pagination (Page Manipulation) **/
+/** 
+ * Pagination (Page Manipulation) 
+ */
 function Pagination ($rows, array $current_page = array()) 
 {
     if (!isset($pagenum)) {

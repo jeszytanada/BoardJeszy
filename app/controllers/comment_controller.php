@@ -2,8 +2,8 @@
 class CommentController extends AppController
 {
     /** 
-    * Displays specific Thread and its containing Comments
-    */
+     * Displays specific Thread and its containing Comments
+     */
     public function view() 
     {    
         $thread = Thread::get(Param::get('thread_id'));
@@ -12,9 +12,9 @@ class CommentController extends AppController
     }
 
     /**
-    * Get Thread thru id
-    * Write comment to existing Thread
-    */
+     * Get Thread thru id
+     * Write comment to existing Thread
+     */
     public function write() 
     {
         $comment = new Comment;

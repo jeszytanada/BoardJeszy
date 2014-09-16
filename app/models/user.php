@@ -33,8 +33,8 @@ class User extends AppModel
     );
 
     /** 
-    *Check if username and password is registered or matched in the database.
-    */
+     *Check if username and password is registered or matched in the database.
+     */
     public function authenticate()
     {   
         if (!$this->validate()) {
@@ -49,10 +49,10 @@ class User extends AppModel
     }
 
     /**
-    * Extract all values from array $user_info.
-    * Upon registering,checks if Username and Email is not yet used.
-    * Else will be inserted to the database.
-    */
+     * Extract all values from array $user_info.
+     * Upon registering,checks if Username and Email is not yet used.
+     * Else will be inserted to the database.
+     */
     public function register()
     {   
         $params = array(

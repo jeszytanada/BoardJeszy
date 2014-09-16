@@ -2,11 +2,11 @@
 class LoginController extends AppController 
 { 
     /** 
-    * Username and password are
-    * taken from View and is pass to
-    * authenticate and to validate the username & password.
-    * $position = holds the position of the page.
-    */
+     * Username and password are
+     * taken from View and is pass to
+     * authenticate and to validate the username & password.
+     * $position = holds the position of the page.
+     */
     public function index() 
     {    
         $position = NULL;
@@ -29,9 +29,9 @@ class LoginController extends AppController
     } 
 
     /**
-    * $no_value = no value inputted.
-    * $position   = holds the position of the page.
-    */
+     * $no_value = no value inputted.
+     * $position   = holds the position of the page.
+     */
     public function register() 
     {   
         $position = NULL;

@@ -10,8 +10,8 @@ class Thread extends AppModel
     );
     
     /** 
-    * Get all the Threads from Database 
-    */
+     * Get all the Threads from Database 
+     */
     public static function getAll($all_threads) 
     {   
         $threads = array();
@@ -23,15 +23,10 @@ class Thread extends AppModel
         return $threads;    
     }
 
-     public function getComments()
-    {
-        return Comment::getAllByThread($this->id);
-    }
-
     /** 
-    * After selecting thread,checks the ID in the Database then return.
-    * If ID is not found -> @throw exception 
-    */
+     * After selecting thread,checks the ID in the Database then return.
+     * If ID is not found -> @throw exception 
+     */
     public static function get($thread_id) 
     {
         $db = DB::conn();
@@ -42,12 +37,20 @@ class Thread extends AppModel
         return new self($row);
     }
 
+    /**
+     * Gets all comments using thread ID
+     */ 
+    public function getComments()
+    {
+        return Comment::getAllByThread($this->id);
+    }
+
     /** 
-    * Validate first the Thread & Comment.
-    * If both hasError() -> throw Exception
-    * Get title of Thread, Get Comment
-    * Insert to the Database.
-    */
+     * Validate first the Thread & Comment.
+     * If both hasError() -> throw Exception
+     * Get title of Thread, Get Comment
+     * Insert to the Database.
+     */
     public function create(Comment $comment) 
     {   
         $this->validate();
@@ -72,9 +75,9 @@ class Thread extends AppModel
     }
 
     /**
-    * Function used for Pagination
-    * Returns the total count of thread ID 
-    */
+     * Function used for Pagination
+     * Returns the total count of thread ID 
+     */
     public static function count() 
     {
         $db = DB::conn();

@@ -14,8 +14,10 @@ class Comment extends Appmodel
     );
 
     /** 
-    * Get all Comments inside a Thread displayed in Ascending order 
-    */
+     * Get all Comments of a Thread in Ascending order
+     * Then extract the contents of the comment table
+     * And return the comments. 
+     */
     public static function getAllByThread($thread_id) 
     {
         $comments = array();
@@ -28,10 +30,10 @@ class Comment extends Appmodel
     }
 
     /** 
-    * Validate first the Comment.
-    * Write comment in an existing Thread. 
-    * Insert to the Database.
-    */
+     * Validate first the Comment.
+     * Write comment in an existing Thread. 
+     * Insert to the Database.
+     */
     public function write($thread_id) 
     {   
         if (!$this->validate()) {

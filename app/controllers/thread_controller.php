@@ -2,9 +2,9 @@
 class ThreadController extends AppController
 {
     /** 
-    * Call class Pagination to show number of pages
-    * Count all existing threads
-    */
+     * Call class Pagination to show number of pages
+     * Count all existing threads
+     */
     public function index() 
     {   
         if (!is_logged()) {
@@ -18,8 +18,8 @@ class ThreadController extends AppController
     }
 
     /** 
-    * Create new Thread and should be with Comment/s
-    */
+     * Create new Thread and should be with Comment/s
+     */
     public function create() 
     {  
         $thread = new Thread;
@@ -48,8 +48,8 @@ class ThreadController extends AppController
     }
 
     /**
-    * Destroying session and logging out.
-    */
+     * Destroying session and logging out.
+     */
     function logout() 
     { 
         session_destroy();
