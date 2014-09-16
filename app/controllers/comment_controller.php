@@ -6,7 +6,7 @@ class CommentController extends AppController
     */
     public function view() 
     {    
-        $thread = Comment::get(Param::get('thread_id'));
+        $thread = Thread::get(Param::get('thread_id'));
         $comments = $thread->getComments();
         $this->set(get_defined_vars());
     }
@@ -18,7 +18,7 @@ class CommentController extends AppController
     public function write() 
     {
         $comment = new Comment;
-        $thread = Comment::get(Param::get('thread_id'));
+        $thread = Thread::get(Param::get('thread_id'));
         $page = Param::get('page_next','write');
         switch($page) {
             case 'write':

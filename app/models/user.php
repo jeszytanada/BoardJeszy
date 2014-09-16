@@ -35,7 +35,7 @@ class User extends AppModel
     /** 
     *Check if username and password is registered or matched in the database.
     */
-    public function authenticate($username, $password)
+    public function authenticate()
     {   
         if (!$this->validate()) {
             throw new ValidationException("Invalid Username/Password");

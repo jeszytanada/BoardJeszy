@@ -23,6 +23,25 @@ class Thread extends AppModel
         return $threads;    
     }
 
+     public function getComments()
+    {
+        return Comment::getAllByThread($this->id);
+    }
+
+    /** 
+    * After selecting thread,checks the ID in the Database then return.
+    * If ID is not found -> @throw exception 
+    */
+    public static function get($thread_id) 
+    {
+        $db = DB::conn();
+        $row = $db->row('SELECT * FROM thread WHERE id = ?',array($thread_id));
+        if (!$row) {
+            throw new RecordNotFoundException('no record found');
+        }
+        return new self($row);
+    }
+
     /** 
     * Validate first the Thread & Comment.
     * If both hasError() -> throw Exception

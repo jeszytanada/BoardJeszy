@@ -16,29 +16,15 @@ class Comment extends Appmodel
     /** 
     * Get all Comments inside a Thread displayed in Ascending order 
     */
-    public function getComments() 
+    public static function getAllByThread($thread_id) 
     {
         $comments = array();
         $db = DB::conn();
-        $rows = $db->rows('SELECT * FROM comment WHERE thread_id = ? ORDER BY created ASC', array($this->id));
+        $rows = $db->rows('SELECT * FROM comment WHERE thread_id = ? ORDER BY created ASC', array($thread_id));
         foreach ($rows as $row) {
-            $comments[] = new Comment($row);
+            $comments[] = new self($row);
         }
         return $comments;
-    }
-
-    /** 
-    * After selecting thread,checks the ID in the Database then return.
-    * If ID is not found -> @throw exception 
-    */
-    public static function get($thread_id) 
-    {
-        $db = DB::conn();
-        $row = $db->row('SELECT * FROM thread WHERE id = ?',array($thread_id));
-        if (!$row) {
-            throw new RecordNotFoundException('no record found');
-        }
-        return new self($row);
     }
 
     /** 
