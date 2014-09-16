@@ -39,8 +39,6 @@ class ThreadController extends AppController
                 } catch (ValidationException $e) {
                     $page = 'create';
                 }
-                break;
-
             default:
             throw new PageNotFoundException("{$page} is not found");
                 break;
