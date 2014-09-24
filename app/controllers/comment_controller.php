@@ -31,7 +31,7 @@ class CommentController extends AppController
                     $comment->write($thread->id);
                     } catch (ValidationException $e) {
                         $page = 'write';
-                    }    
+                    }           
             default:
             throw new PageNotFoundException("{$page} is not found");
                 break;
