@@ -31,6 +31,6 @@
 
     <!--Call out or display pagination (page numbers)-->
     <div style = "text-align: center"> <br />
-        <?php echo $pagination['paginationCtrls'];?>
+        <?php echo $pagination_links['paginationCtrls'];?>
     </div>  
 </div>

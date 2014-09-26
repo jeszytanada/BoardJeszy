@@ -10,10 +10,11 @@ class ThreadController extends AppController
         if (!is_logged()) {
             redirect(url('login/index'));
         }   
-        
         $thread_count = Thread::count();
-        $pagination = Pagination($thread_count);
-        $threads = Thread::getAll($pagination['max']);
+        $paginate = new Pagination;
+        $page = $paginate->getPage($thread_count);
+        $pagination_links = $paginate->rangeRows($page['pagenum'], $page['last_page']);
+        $threads = Thread::getAll($pagination_links['max']);
         $this->set(get_defined_vars());
     }
 
