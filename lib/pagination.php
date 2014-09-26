@@ -18,11 +18,23 @@ class Pagination
             $pagenum = preg_replace('#[^0-9]#', '', $_GET['pn']);   
         }
     
+        /**
+         * Page number of the last page
+         */
         $last_page = ceil($rows/self::MAX_ROWS);
+    
+        /**
+         * Makes sure that the last page cannot
+         * be less than 1
+         */
         if ($last_page < 1) {
             $last_page = 1;
         }
 
+        /**
+         * Makes sure that $pagenum cannot
+         * be < 1 or $last_page > 1
+         */
         if ($pagenum < 1) {
             $pagenum = 1;
         } elseif ($pagenum > $last_page) {
@@ -33,8 +45,7 @@ class Pagination
             'last_page'       => $last_page
         );
         return $page;
-    }  
-
+    }    
     /**
      * Sets the range of rows (ex. Prev 1 2 Next) Only
      */
@@ -67,9 +78,9 @@ class Pagination
              */
             $paginationCtrls .= ''.$pagenum.' &nbsp; ';
         }
-        /**
-         * Page number on the right of the Current page
-         */
+    /**
+     * Page number on the right of the Current page
+     */
         for ($i = $pagenum + 1; $i <= $last_page; $i++) {
             $link_page = $i;
             $paginationCtrls .= "<a href='".url('', $current_page)."'> $i </a> &nbsp; ";

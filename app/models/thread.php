@@ -10,15 +10,17 @@ class Thread extends AppModel
     );
     
     /** 
-     * Get all the Threads from Database 
+     * Get all the Threads from Database
+     * Sort by Rating then if 0 = rating,
+     * by latest date created  
      */
     public static function getAll($all_threads) 
     {   
         $threads = array();
         $db = DB::conn();
-        $rows = $db->rows("SELECT * FROM thread $all_threads");
+        $rows = $db->rows("SELECT * FROM thread ORDER BY rating DESC, created DESC $all_threads");
         foreach ($rows as $row) { 
-            $threads[] = new self($row);
+            $threads[] = new self ($row);
         }
         return $threads;    
     }
@@ -76,9 +78,9 @@ class Thread extends AppModel
 
     public function getRate($star_count)
     {   
-        $this->rating += $star_count;
-        $db = DB::conn();
-        $db->update('thread', array('rating' => $this->rating), array('id' => $this->id));
+            $this->rating += $star_count;
+            $db = DB::conn();
+            $db->update('thread', array('rating' => $this->rating), array('id' => $this->id));
     }
 
     /**
