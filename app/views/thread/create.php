@@ -35,6 +35,10 @@
             <div style = "color: #0080FF"><font size="5"><?php echo entities($_SESSION['username']) ?></font>
             </div><br />
         <input type = "hidden" class = "span4" name = "user_id" value = "<?php entities($_SESSION['user_id']) ?>">
+        <img src = "/bootstrap/img/flag.png" height="30" width="30">
+        <font size="3">Flag User? <br />
+        <input type = "radio" name = "username" value = "<?php entities($_SESSION['username']) ?>" required> Yes
+        <input type = "radio" name = "username" value = "Anonymous" required> No </font>
         <label> Comment </label>
         <textarea name = "body" class = "span10" style = "height: 300px"><?php entities(Param::get('body')) ?></textarea><br />
         <input type = "hidden" name = "page_next" value = "create_end">

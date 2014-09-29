@@ -26,9 +26,10 @@ class ThreadController extends AppController
      */
     public function create() 
     {  
-        $thread = new Thread;
-        $comment = new Comment;
-        $page = Param::get('page_next','create');
+        $thread   = new Thread;
+        $comment  = new Comment;
+        $username = Param::get('username');
+        $page     = Param::get('page_next','create');
 
         switch($page) {
             case 'create':
@@ -38,7 +39,7 @@ class ThreadController extends AppController
                 $thread->id        = Param::get('thread_id');
                 $thread->user_id   = User::getUserId($_SESSION['username']);
                 $thread->title     = Param::get('title');
-                $comment->username = $_SESSION['username'];
+                $comment->username = $username;
                 $comment->body     = Param::get('body');
                 try {
                     $thread->create($comment);
