@@ -77,6 +77,10 @@ class Thread extends AppModel
         }
     }
 
+    /** 
+     * Will increase the current rating
+     * by adding the number of stars.
+     */
     public function getRate($star_count)
     {   
             $this->rating += $star_count;
@@ -95,7 +99,9 @@ class Thread extends AppModel
     }
 
     /**
-     * Deletion of Thread by the Owner
+     * Deletion of Thread by the Owner.
+     * Compares the user_id used to create a thread
+     * (from thread table) to the user_id from session
      */
     public function deleteThread($user_id, $reply)
     {   
@@ -115,6 +121,5 @@ class Thread extends AppModel
         } catch (ValidationException $e) {
             throw $e;
         }
-        
     }   
 }

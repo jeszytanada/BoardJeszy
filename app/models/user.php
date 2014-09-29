@@ -38,7 +38,7 @@ class User extends AppModel
     );
 
     /** 
-     *Check if username and password is registered or matched in the database.
+     * Check if username and password is registered or matched in the database.
      */
     public function authenticate()
     {   
@@ -80,6 +80,10 @@ class User extends AppModel
         $db->insert('userinfo',$params);    
     }  
 
+    /** 
+     * Get the User Id 
+     * @param username
+     */
     public static function getUserId($username)
     {
         $db = DB::conn();

@@ -10,15 +10,12 @@ class ThreadController extends AppController
         if (!is_logged()) {
             redirect(url('login/index'));
         }   
-        
         $thread_count = Thread::count();
         $paginate = new Pagination;
         $page = $paginate->getPage($thread_count);
         $pagination_links = $paginate->rangeRows($page['pagenum'], $page['last_page']);
         $threads = Thread::getAll($pagination_links['max']);
         $this->set(get_defined_vars());
-
-
     }
 
     /** 
@@ -30,11 +27,10 @@ class ThreadController extends AppController
         $comment  = new Comment;
         $username = Param::get('username');
         $page     = Param::get('page_next','create');
-
         switch($page) {
             case 'create':
                 break;
-
+                
             case 'create_end':
                 $thread->id        = Param::get('thread_id');
                 $thread->user_id   = User::getUserId($_SESSION['username']);
@@ -64,7 +60,6 @@ class ThreadController extends AppController
         $thread = new Thread;
         $thread = Thread::get(Param::get('thread_id'));
         $page = Param::get('page_next','rate');
-
         switch($page) {
             case 'rate':
                 break;
