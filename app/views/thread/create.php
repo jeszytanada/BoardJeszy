@@ -31,8 +31,10 @@
     <div id ="leftcolumn" style="min-height: 50px;"><br />
         <label> Title </label>
         <input type = "text" class = "span8" name = "title" value = "<?php entities(Param::get('title')) ?>">
-        <label> Your name </label>
-        <input type = "text" class = "span4" name = "username" value = "<?php echo $_SESSION['username'] ?>" disabled>
+            <br /><br />
+            <div style = "color: #0080FF"><font size="5"><?php echo entities($_SESSION['username']) ?></font>
+            </div><br />
+        <input type = "hidden" class = "span4" name = "user_id" value = "<?php entities($_SESSION['user_id']) ?>">
         <label> Comment </label>
         <textarea name = "body" class = "span10" style = "height: 300px"><?php entities(Param::get('body')) ?></textarea><br />
         <input type = "hidden" name = "page_next" value = "create_end">

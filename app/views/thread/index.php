@@ -16,9 +16,12 @@
                     <a href = "<?php entities(url('comment/view',array('thread_id'=> $v->id))) ?>">
                         <?php entities($v->title) ?></a>
                     </font>
-                    <div align = "right">
+                        <div align = "right">
+                        <a href="<?php entities(url('thread/delete', array('thread_id'=> $v->id)))?>">
+                            <i class = "icon-trash"></i></a>
+                        <a href="#"><i class="icon-pencil"></i></a><br />
                     <?php echo $v->rating; ?><img src = "/bootstrap/img/star.jpg" height="35" width="35">
-                    <a href = "<?php entities(url('thread/rate', array('thread_id'=> $v->id)))?>" class = "btn-primary"> Rate this!</a>
+                    <a href = "<?php entities(url('thread/rate', array('thread_id'=> $v->id)))?>" class = "btn-primary"> Rate this!</a>    
                     </div>
                 </div>
             </li>

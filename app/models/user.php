@@ -20,7 +20,12 @@ class User extends AppModel
                 'validate_between', self::MIN_PASSWORD,self::MAX_PASSWORD,
             ),
         ),
-         'name' => array(
+        'fname' => array(
+            'length' => array(
+                'validate_between', self::MIN_USER_VAL,self::MAX_USER_VAL,
+            ),
+        ),
+        'lname' => array(
             'length' => array(
                 'validate_between', self::MIN_USER_VAL,self::MAX_USER_VAL,
             ),
@@ -58,7 +63,8 @@ class User extends AppModel
         $params = array(
             'username' => $this->username,
             'password' => $this->password,
-            'name'     => $this->name,
+            'fname'    => $this->fname,
+            'lname'    => $this->lname,
             'email'    => $this->email
         );
         if (!$this->validate()) {
@@ -73,5 +79,12 @@ class User extends AppModel
         }
         $db->insert('userinfo',$params);    
     }  
+
+    public static function getUserId($username)
+    {
+        $db = DB::conn();
+        $user_id = $db->value('SELECT id FROM userinfo where username = ?', array($username));
+        return $user_id;
+    }
 }
  

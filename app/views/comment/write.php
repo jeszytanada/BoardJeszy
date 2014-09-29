@@ -24,7 +24,6 @@
         
         <label> Post a reply: </label>
         <textarea name = "body" class = "span10" style = "height: 300px"><?php entities(Param::get('body')) ?></textarea><br />
-    
         <input type = "hidden" name = "thread_id" value = "<?php entities($thread->id) ?>">
         <input type = "hidden" name = "page_next" value = "write_end">
         <button type = "submit" class = "btn btn-primary"> Submit </button> 

@@ -20,6 +20,7 @@ class LoginController extends AppController
                 $user_info = $user->authenticate();
                 $_SESSION['username'] = $user_info->username;
                 $_SESSION['password'] = $user_info->password;
+                $_SESSION['id'] = $user_info->id;
                 redirect(url('thread/index'));
             } catch (AppException $e) {
                 $position = notify($e->getMessage(),"error");
@@ -38,7 +39,8 @@ class LoginController extends AppController
         $user = new User();
         $user->username = Param::get('username');
         $user->password = Param::get('password');
-        $user->name     = Param::get('name');
+        $user->fname    = Param::get('fname');
+        $user->lname    = Param::get('lname');
         $user->email    = Param::get('email');
         if($user->username) {
             try {

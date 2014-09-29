@@ -64,7 +64,8 @@ class Thread extends AppModel
         try{    
             $db->begin();
             $params = array(
-                'title' => $this->title,
+                'user_id' => $this->user_id,
+                'title'   => $this->title
             );
             $db->insert('thread',$params);
             $this->id = $db->lastInsertId();
@@ -91,7 +92,29 @@ class Thread extends AppModel
     {
         $db = DB::conn();
         return $db->value("SELECT COUNT(id) FROM thread");
+    }
+
+    /**
+     * Deletion of Thread by the Owner
+     */
+    public function deleteThread($user_id, $reply)
+    {   
+        try {
+            if ($this->user_id == $user_id) {
+                $db = DB::conn();
+                $db->begin();
+                $db->query("DELETE FROM thread WHERE id = ? AND user_id = ?", 
+                    array($this->id, $this->user_id));
+                $db->query("DELETE FROM comment WHERE thread_id = ?", 
+                    array($this->id));
+                $db->commit();
+            }
+            elseif ($this->user_id != $user_id) {
+                throw new AppException('Restrict Deletion');
+            }
+        } catch (ValidationException $e) {
+            throw $e;
+        }
+        
     }   
 }
-
-
