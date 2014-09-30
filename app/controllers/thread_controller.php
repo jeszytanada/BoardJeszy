@@ -64,9 +64,7 @@ class ThreadController extends AppController
                 break;
 
             case 'rate_end':
-                $thread->title = Param::get('title');
-                $thread->id    = Param::get('thread_id');
-                $star_count    = Param::get('rating');
+                $star_count = Param::get('rating');
                 try {
                     $thread->increaseRate($star_count);
                 } catch (ValidationException $e) {
