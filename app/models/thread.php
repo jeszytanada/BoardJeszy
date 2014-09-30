@@ -10,27 +10,17 @@ class Thread extends AppModel
     );
     
     /** 
-<<<<<<< HEAD
-     * Get all the Threads from Database 
-=======
      * Get all the Threads from Database
      * Sort by Rating then if 0 = rating,
      * by latest date created  
->>>>>>> issue6
      */
     public static function getAll($all_threads) 
     {   
         $threads = array();
         $db = DB::conn();
-<<<<<<< HEAD
-        $rows = $db->rows("SELECT * FROM thread $all_threads");
-        foreach ($rows as $row) { 
-            $threads[] = new Thread($row);
-=======
         $rows = $db->rows("SELECT * FROM thread ORDER BY rating DESC, created DESC $all_threads");
         foreach ($rows as $row) { 
             $threads[] = new self ($row);
->>>>>>> issue6
         }
         return $threads;    
     }
@@ -74,12 +64,8 @@ class Thread extends AppModel
         try{    
             $db->begin();
             $params = array(
-<<<<<<< HEAD
-                'title' => $this->title,
-=======
                 'user_id' => $this->user_id,
                 'title'   => $this->title
->>>>>>> issue6
             );
             $db->insert('thread',$params);
             $this->id = $db->lastInsertId();
@@ -91,8 +77,6 @@ class Thread extends AppModel
         }
     }
 
-<<<<<<< HEAD
-=======
     /** 
      * Will increase the current rating
      * by adding the number of stars.
@@ -104,7 +88,6 @@ class Thread extends AppModel
             $db->update('thread', array('rating' => $this->rating), array('id' => $this->id));
     }
 
->>>>>>> issue6
     /**
      * Function used for Pagination
      * Returns the total count of thread ID 
@@ -113,8 +96,6 @@ class Thread extends AppModel
     {
         $db = DB::conn();
         return $db->value("SELECT COUNT(id) FROM thread");
-<<<<<<< HEAD
-=======
     }
 
     /**
@@ -140,6 +121,5 @@ class Thread extends AppModel
         } catch (ValidationException $e) {
             throw $e;
         }
->>>>>>> issue6
     }   
 }

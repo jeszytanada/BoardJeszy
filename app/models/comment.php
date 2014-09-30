@@ -30,8 +30,6 @@ class Comment extends Appmodel
     }
 
     /** 
-<<<<<<< HEAD
-=======
      * Function to get the Comment Id.
      */
     public static function get($comment_id) 
@@ -45,7 +43,6 @@ class Comment extends Appmodel
     }
 
     /** 
->>>>>>> issue6
      * Validate first the Comment.
      * Write comment in an existing Thread. 
      * Insert to the Database.
@@ -63,9 +60,6 @@ class Comment extends Appmodel
         );
         $db->insert('comment', $params);
         
-<<<<<<< HEAD
-    }   
-=======
     }
 
     /** 
@@ -89,5 +83,4 @@ class Comment extends Appmodel
             throw $e;
         }
     }      
->>>>>>> issue6
 }

@@ -19,13 +19,6 @@
             </div>
         <?php endif ?>
 
-<<<<<<< HEAD
-        <!-- Validation for NAME-->
-        <?php if ($user->validation_errors['name']['length']): ?>
-             <div><em>Name</em> must be between
-                 <?php entities($user->validation['name']['length'][1]) ?> and
-                 <?php entities($user->validation['name']['length'][2]) ?> characters in length.
-=======
         <!-- Validation for First Name-->
         <?php if ($user->validation_errors['fname']['length']): ?>
              <div><em>First Name</em> must be between
@@ -39,7 +32,6 @@
              <div><em>Last Name</em> must be between
                  <?php entities($user->validation['lname']['length'][1]) ?> and
                  <?php entities($user->validation['lname']['length'][2]) ?> characters in length.
->>>>>>> issue6
              </div>
         <?php endif ?>
 
@@ -62,17 +54,12 @@
           <input type ="Password" class = "span3" name = "password" id = "password" placeholder = "Password (6-15 length)" required>
           <span class="icon-asterisk"></span>
 
-<<<<<<< HEAD
-          <label> Name</label>
-          <input type = "text" class = "span3" name = "name" id = "name" placeholder = "Name" required>
-=======
           <label> First Name</label>
           <input type = "text" class = "span3" name = "fname" id = "fname" placeholder = "First Name" required>
           <span class = "icon-asterisk"></span>
 
           <label> Last Name</label>
           <input type = "text" class = "span3" name = "lname" id = "lname" placeholder = "Last Name" required>
->>>>>>> issue6
           <span class = "icon-asterisk"></span>
 
           <label> Email </label>

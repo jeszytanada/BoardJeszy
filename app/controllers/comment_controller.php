@@ -29,11 +29,6 @@ class CommentController extends AppController
                 $comment->body = Param::get('body');
                 try {
                     $comment->write($thread->id);
-<<<<<<< HEAD
-                    } catch (ValidationException $e) {
-                        $page = 'write';
-                    }    
-=======
                     } catch (ValidationException $a) {
                         $page = 'write';
                     }
@@ -78,7 +73,6 @@ class CommentController extends AppController
                     $page = 'delete';
                 }
                 break;
->>>>>>> issue6
             default:
             throw new PageNotFoundException("{$page} is not found");
                 break;

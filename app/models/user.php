@@ -12,11 +12,7 @@ class User extends AppModel
                 'validate_between', self::MIN_USER_VAL,self::MAX_USER_VAL,
             ),
             'format' => array(
-<<<<<<< HEAD
-                'check_username_format'
-=======
                 'check_username_format', "Invalid Username"
->>>>>>> issue6
             ),
         ),
         'password'=> array(
@@ -24,37 +20,25 @@ class User extends AppModel
                 'validate_between', self::MIN_PASSWORD,self::MAX_PASSWORD,
             ),
         ),
-<<<<<<< HEAD
-         'name' => array(
-=======
         'fname' => array(
             'length' => array(
                 'validate_between', self::MIN_USER_VAL,self::MAX_USER_VAL,
             ),
         ),
         'lname' => array(
->>>>>>> issue6
             'length' => array(
                 'validate_between', self::MIN_USER_VAL,self::MAX_USER_VAL,
             ),
         ),
         'email'=> array(
-<<<<<<< HEAD
-            "format" => array(
-=======
             'format' => array(
->>>>>>> issue6
                 'check_valid_email', "Invalid Email"
             ),
         ),
     );
 
     /** 
-<<<<<<< HEAD
-     *Check if username and password is registered or matched in the database.
-=======
      * Check if username and password is registered or matched in the database.
->>>>>>> issue6
      */
     public function authenticate()
     {   
@@ -79,12 +63,8 @@ class User extends AppModel
         $params = array(
             'username' => $this->username,
             'password' => $this->password,
-<<<<<<< HEAD
-            'name'     => $this->name,
-=======
             'fname'    => $this->fname,
             'lname'    => $this->lname,
->>>>>>> issue6
             'email'    => $this->email
         );
         if (!$this->validate()) {
@@ -92,21 +72,13 @@ class User extends AppModel
         }
 
         $db = DB::conn();
-<<<<<<< HEAD
-        $search_results =$db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', 
-=======
         $search_results = $db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', 
->>>>>>> issue6
             array($this->username,$this->email));
         if ($search_results) {
             throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
         }
         $db->insert('userinfo',$params);    
     }  
-<<<<<<< HEAD
-}
- 
-=======
 
     /** 
      * Get the User Id 
@@ -120,4 +92,3 @@ class User extends AppModel
     }
 }
  
->>>>>>> issue6
