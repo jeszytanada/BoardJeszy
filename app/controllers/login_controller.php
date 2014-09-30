@@ -35,7 +35,7 @@ class LoginController extends AppController
      */
     public function register() 
     {   
-        $position = NULL;
+        $position = null;
         $user = new User();
         $user->username = Param::get('username');
         $user->password = Param::get('password');
@@ -51,5 +51,14 @@ class LoginController extends AppController
                 }      
         }
         $this->set(get_defined_vars());
+    }
+
+    /**
+     * Destroying session and logging out.
+     */
+    function logout() 
+    { 
+        session_destroy();
+        redirect(url('login/index'));
     }
 }

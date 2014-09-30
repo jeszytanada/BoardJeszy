@@ -84,18 +84,11 @@ class Thread extends AppModel
      * Will increase the current rating
      * by adding the number of stars.
      */
-    public function getRate($star_count)
+    public function increaseRate($star_count)
     {   
         $this->rating += $star_count;
-        try {
-            $db = DB::conn();
-            $db->begin();
-            $db->update('thread', array('rating' => $this->rating), array('id' => $this->id));
-            $db_commit();
-        } catch (ValidationException $e) {
-            $db->rollback();
-            throw $e;
-        }
+        $db = DB::conn();
+        $db->update('thread', array('rating' => $this->rating), array('id' => $this->id));
     }
 
     /**

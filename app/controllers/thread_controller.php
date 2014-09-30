@@ -57,7 +57,6 @@ class ThreadController extends AppController
      */    
     public function rate()
     {
-        $thread = new Thread;
         $thread = Thread::get(Param::get('thread_id'));
         $page = Param::get('page_next','rate');
         switch($page) {
@@ -69,7 +68,7 @@ class ThreadController extends AppController
                 $thread->id    = Param::get('thread_id');
                 $star_count    = Param::get('rating');
                 try {
-                    $thread->getRate($star_count);
+                    $thread->increasRate($star_count);
                 } catch (ValidationException $e) {
                     $page = 'rate';
                 }
@@ -87,8 +86,6 @@ class ThreadController extends AppController
         if (!is_logged()) {
             redirect(url('login/index'));
         }
-
-        $thread  = new Thread;
         $thread  = Thread::get(Param::get('thread_id'));
         $user_id = User::getUserId($_SESSION['username']);
         $page    = Param::get('page_next','delete');
@@ -120,12 +117,4 @@ class ThreadController extends AppController
         $this->render($page);
     }
 
-    /**
-     * Destroying session and logging out.
-     */
-    function logout() 
-    { 
-        session_destroy();
-        redirect('../');
-    }
 }

@@ -1,5 +1,5 @@
 <div style = "float: right; width: 185px; height: 10px; margin: -70px" >
-    <a class = "btn btn-primary pull-right" href = "<?php entities(url('thread/logout'))?>" name = "logout"> Logout </a>
+    <a class = "btn btn-primary pull-right" href = "<?php entities(url('login/logout'))?>" name = "logout"> Logout </a>
 </div>
 
 <div id = "container">

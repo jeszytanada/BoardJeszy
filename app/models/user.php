@@ -86,8 +86,9 @@ class User extends AppModel
     }  
 
     /** 
-     * Get the User Id 
+     * Get User Id 
      * @param username
+     * @return user id
      */
     public static function getUserId($username)
     {

@@ -16,7 +16,9 @@ class Comment extends Appmodel
     /** 
      * Get all Comments of a Thread in Ascending order
      * Then extract the contents of the comment table
-     * And return the comments. 
+     * And return the comments.
+     * @param thread id
+     * @return array comment (contains all comments) 
      */
     public static function getAllByThread($thread_id) 
     {
@@ -31,6 +33,8 @@ class Comment extends Appmodel
 
     /** 
      * Function to get the Comment Id.
+     * @param comment id
+     * @return comment matched to id
      */
     public static function get($comment_id) 
     {
@@ -46,6 +50,7 @@ class Comment extends Appmodel
      * Validate first the Comment.
      * Write comment in an existing Thread. 
      * Insert to the Database.
+     * @param thread id
      */
     public function write($thread_id) 
     {   
@@ -72,6 +77,7 @@ class Comment extends Appmodel
     /** 
      * Deletion of Comment according to ID
      * and owner (username).
+     * @param username from Session and Confirm deletion
      */
     public function deleteComment($username, $reply)
     {   
