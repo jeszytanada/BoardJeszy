@@ -10,10 +10,18 @@ class ThreadController extends AppController
         if (!is_logged()) {
             redirect(url('login/index'));
         }   
+<<<<<<< HEAD
         
         $thread_count = Thread::count();
         $pagination = Pagination($thread_count);
         $threads = Thread::getAll($pagination['max']);
+=======
+        $thread_count = Thread::count();
+        $paginate = new Pagination;
+        $page = $paginate->getPage($thread_count);
+        $pagination_links = $paginate->rangeRows($page['pagenum'], $page['last_page']);
+        $threads = Thread::getAll($pagination_links['max']);
+>>>>>>> issue6
         $this->set(get_defined_vars());
     }
 
@@ -22,6 +30,7 @@ class ThreadController extends AppController
      */
     public function create() 
     {  
+<<<<<<< HEAD
         $thread = new Thread;
         $comment = new Comment;
         $page = Param::get('page_next','create');
@@ -34,11 +43,100 @@ class ThreadController extends AppController
                 $thread->title = Param::get('title');
                 $comment->username = $_SESSION['username'];
                 $comment->body = Param::get('body');
+=======
+        $thread   = new Thread;
+        $comment  = new Comment;
+        $username = Param::get('username');
+        $page     = Param::get('page_next','create');
+        switch($page) {
+            case 'create':
+                break;
+                
+            case 'create_end':
+                $thread->id        = Param::get('thread_id');
+                $thread->user_id   = User::getUserId($_SESSION['username']);
+                $thread->title     = Param::get('title');
+                $comment->username = $username;
+                $comment->body     = Param::get('body');
+>>>>>>> issue6
                 try {
                     $thread->create($comment);
                 } catch (ValidationException $e) {
                     $page = 'create';
                 }
+<<<<<<< HEAD
+=======
+                break;
+            default:
+            throw new PageNotFoundException("{$page} is not found");
+                break;
+        }
+        $this->set(get_defined_vars());
+        $this->render($page);
+    }
+
+    /**
+     * Rating a Thread, gets Thread id
+     * and rate it from 0, 1, or 2
+     */    
+    public function rate()
+    {
+        $thread = new Thread;
+        $thread = Thread::get(Param::get('thread_id'));
+        $page = Param::get('page_next','rate');
+        switch($page) {
+            case 'rate':
+                break;
+
+            case 'rate_end':
+                $thread->title = Param::get('title');
+                $thread->id    = Param::get('thread_id');
+                $star_count    = Param::get('rating');
+                try {
+                    $thread->getRate($star_count);
+                } catch (ValidationException $e) {
+                    $page = 'rate';
+                }
+                break;
+            default:
+            throw new PageNotFoundException("{$page} is not found");
+                break;
+        }
+        $this->set(get_defined_vars());
+        $this->render($page);
+    }
+
+    public function delete()
+    {
+        if (!is_logged()) {
+            redirect(url('login/index'));
+        }
+
+        $thread  = new Thread;
+        $thread  = Thread::get(Param::get('thread_id'));
+        $user_id = User::getUserId($_SESSION['username']);
+        $page    = Param::get('page_next','delete');
+
+        switch($page) {
+            case 'delete':
+                break;
+
+            case 'delete_end':
+                $thread->id      = Param::get('thread_id');
+                $thread->user_id = Param::get('user_id');
+                $thread->title   = Param::get('title');
+                $reply           = Param::get('reply');
+                try {
+                    if ($reply == 'yes') {
+                        $thread->deleteThread($user_id, $reply);
+                    } elseif ($reply == 'no') {
+                        redirect(url('thread/index'));
+                    }
+                } catch (ValidationException $e) {
+                    $page = 'delete';
+                }
+                break;
+>>>>>>> issue6
             default:
             throw new PageNotFoundException("{$page} is not found");
                 break;

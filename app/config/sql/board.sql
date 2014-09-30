@@ -8,9 +8,18 @@ USE board;
                     
 CREATE TABLE IF NOT EXISTS thread (
 id                      INT UNSIGNED NOT NULL AUTO_INCREMENT,
+<<<<<<< HEAD
 title                   VARCHAR(30) NOT NULL,
 created                 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (id)
+=======
+user_id                 INT UNSIGNED NOT NULL,
+title                   VARCHAR(30) NOT NULL,
+created                 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+rating                  SMALLINT NOT NULL,
+PRIMARY KEY (id),
+INDEX (user_id)
+>>>>>>> issue6
 )ENGINE=InnoDB;
 
                     
@@ -28,7 +37,12 @@ CREATE TABLE IF NOT EXISTS userinfo (
 id                      INT UNSIGNED NOT NULL AUTO_INCREMENT,
 username                VARCHAR(15) NOT NULL,
 password                VARCHAR(16) NOT NULL,
+<<<<<<< HEAD
 name                    VARCHAR(15) NOT NULL,
+=======
+fname                   VARCHAR(30) NOT NULL,
+lname                   VARCHAR(30) NOT NULL, 
+>>>>>>> issue6
 email                   VARCHAR(30) NOT NULL,
 PRIMARY KEY (id)
 )ENGINE=InnoDB;

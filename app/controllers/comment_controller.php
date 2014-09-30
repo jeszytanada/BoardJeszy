@@ -29,9 +29,56 @@ class CommentController extends AppController
                 $comment->body = Param::get('body');
                 try {
                     $comment->write($thread->id);
+<<<<<<< HEAD
                     } catch (ValidationException $e) {
                         $page = 'write';
                     }    
+=======
+                    } catch (ValidationException $a) {
+                        $page = 'write';
+                    }
+                    break;            
+            default:
+            throw new PageNotFoundException("{$page} is not found");
+                break;
+        }
+        $this->set(get_defined_vars());
+        $this->render($page);
+    }
+
+    /**
+     * Delete Comment via Username
+     */
+    public function delete()
+    {
+        if (!is_logged()) {
+            redirect(url('login/index'));
+        }
+        $comment  = new Comment;
+        $comment  = Comment::get(Param::get('comment_id'));
+        $username = $_SESSION['username'];
+        $page     = Param::get('page_next','delete');
+
+        switch($page) {
+            case 'delete':
+                break;
+
+            case 'delete_end':
+                $comment->id       = Param::get('comment_id');
+                $comment->username = Param::get('username');
+                $comment->body     = Param::get('body');
+                $reply             = Param::get('reply');
+                try {
+                    if ($reply == 'yes') {
+                        $comment->deleteComment($username, $reply);
+                    } elseif ($reply == 'no') {
+                        redirect(url('thread/index'));
+                    }
+                } catch (ValidationException $e) {
+                    $page = 'delete';
+                }
+                break;
+>>>>>>> issue6
             default:
             throw new PageNotFoundException("{$page} is not found");
                 break;

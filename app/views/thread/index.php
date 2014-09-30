@@ -3,6 +3,7 @@
 </div>
 
 <div id = "container">
+<<<<<<< HEAD
         <h1>
             <div style = "color:#0080FF"> Hi! <?php entities($_SESSION['username']);?>
             </div><br /> Threads 
@@ -28,3 +29,42 @@
         <?php echo $pagination['paginationCtrls'];?>
     </div>  
 </div>
+=======
+    <h1>
+        <div style = "color:#0080FF"> Hello <?php entities($_SESSION['username']);?> !
+        </div><br /> 
+        Freedom Board <br />      
+    </h1>
+</div>
+
+<!--Link of the threads-->
+<ul> 
+    <?php foreach ($threads as $v): ?>
+        <li>
+            <div class = "well" style="font-family:Sans Serif">
+                <a href = "<?php entities(url('comment/view',array('thread_id'=> $v->id))) ?>">
+                    <?php entities($v->title) ?>
+                </a>
+                <div align = "right">
+                    <a href="<?php entities(url('thread/delete', array('thread_id'=> $v->id)))?>">
+                        <i class = "icon-trash"></i>
+                    </a>
+                    <a href="#"><i class="icon-pencil"></i>
+                    </a><br />
+                    <?php echo $v->rating; ?><img src = "/bootstrap/img/star.jpg" height="35" width="35">
+                    <a href = "<?php entities(url('thread/rate', array('thread_id'=> $v->id)))?>" class = "btn-primary"> Rate this!</a>    
+                </div>
+            </div>
+        </li>
+    <?php endforeach ?>
+</ul>
+
+<div style = "text-align: center">
+    <a class = "btn btn-large btn-primary" href = "<?php entities(url('thread/create'))?>"> Create </a><br />
+</div>
+
+<!--Call out or display pagination (page numbers)-->
+<div style = "text-align: center"> <br />
+    <?php echo $pagination_links['paginationCtrls'];?>
+</div>  
+>>>>>>> issue6

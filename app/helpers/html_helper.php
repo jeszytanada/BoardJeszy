@@ -18,4 +18,8 @@ function notify($text, $notify_type = NULL)
         return $reply = "<center><font size=4 face=Arial color=green>" . $text . "</font></center>";
     }
     return $reply = "<center> <font size=4 face=Arial color=blue>" . $text . "</font></center>";
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> issue6
