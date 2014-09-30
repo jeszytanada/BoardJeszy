@@ -68,7 +68,7 @@ class ThreadController extends AppController
                 $thread->id    = Param::get('thread_id');
                 $star_count    = Param::get('rating');
                 try {
-                    $thread->increasRate($star_count);
+                    $thread->increaseRate($star_count);
                 } catch (ValidationException $e) {
                     $page = 'rate';
                 }
