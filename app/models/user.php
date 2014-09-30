@@ -1,15 +1,15 @@
 <?php
 class User extends AppModel
 {
-    const MIN_USER_VAL=1;
-    const MAX_USER_VAL=15;
-    const MAX_PASSWORD=16;
-    const MIN_PASSWORD=6;
+    const MIN_USER_VAL = 1;
+    const MAX_USER_VAL = 15;
+    const MAX_PASSWORD = 16;
+    const MIN_PASSWORD = 6;
 
     public $validation = array(
         'username' => array(
             'length' => array(
-                'validate_between', self::MIN_USER_VAL,self::MAX_USER_VAL,
+                'validate_between', self::MIN_USER_VAL, self::MAX_USER_VAL,
             ),
             'format' => array(
                 'check_username_format', "Invalid Username"
@@ -17,17 +17,17 @@ class User extends AppModel
         ),
         'password'=> array(
             'length' => array(
-                'validate_between', self::MIN_PASSWORD,self::MAX_PASSWORD,
+                'validate_between', self::MIN_PASSWORD, self::MAX_PASSWORD,
             ),
         ),
         'fname' => array(
             'length' => array(
-                'validate_between', self::MIN_USER_VAL,self::MAX_USER_VAL,
+                'validate_between', self::MIN_USER_VAL, self::MAX_USER_VAL,
             ),
         ),
         'lname' => array(
             'length' => array(
-                'validate_between', self::MIN_USER_VAL,self::MAX_USER_VAL,
+                'validate_between', self::MIN_USER_VAL, self::MAX_USER_VAL,
             ),
         ),
         'email'=> array(
@@ -70,14 +70,19 @@ class User extends AppModel
         if (!$this->validate()) {
             throw new ValidationException(notify('Error Found!', "error"));
         }
-
-        $db = DB::conn();
-        $search_results = $db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', 
-            array($this->username,$this->email));
-        if ($search_results) {
-            throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
+        try {
+            $db = DB::conn();
+            $search_results = $db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', 
+                array($this->username,$this->email));
+            if ($search_results) {
+                throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
+            }
+            $db->insert('userinfo',$params);
+            $db->commit();
+        } catch (ValidationException $e) {
+            $db->rollback();
+            throw $e;
         }
-        $db->insert('userinfo',$params);    
     }  
 
     /** 

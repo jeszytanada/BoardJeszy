@@ -44,7 +44,7 @@ class ThreadController extends AppController
                 }
                 break;
             default:
-            throw new PageNotFoundException("{$page} is not found");
+                throw new PageNotFoundException("{$page} is not found");
                 break;
         }
         $this->set(get_defined_vars());
@@ -75,7 +75,7 @@ class ThreadController extends AppController
                 }
                 break;
             default:
-            throw new PageNotFoundException("{$page} is not found");
+                throw new PageNotFoundException("{$page} is not found");
                 break;
         }
         $this->set(get_defined_vars());
@@ -105,7 +105,7 @@ class ThreadController extends AppController
                 try {
                     if ($reply == 'yes') {
                         $thread->deleteThread($user_id, $reply);
-                    } elseif ($reply == 'no') {
+                    } else {
                         redirect(url('thread/index'));
                     }
                 } catch (ValidationException $e) {
@@ -113,7 +113,7 @@ class ThreadController extends AppController
                 }
                 break;
             default:
-            throw new PageNotFoundException("{$page} is not found");
+                throw new PageNotFoundException("{$page} is not found");
                 break;
         }
         $this->set(get_defined_vars());

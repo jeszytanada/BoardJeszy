@@ -26,7 +26,7 @@ class CommentController extends AppController
 
             case 'write_end':
                 $comment->username = $_SESSION['username'];
-                $comment->body = Param::get('body');
+                $comment->body     = Param::get('body');
                 try {
                     $comment->write($thread->id);
                     } catch (ValidationException $a) {
@@ -34,7 +34,7 @@ class CommentController extends AppController
                     }
                     break;            
             default:
-            throw new PageNotFoundException("{$page} is not found");
+                throw new PageNotFoundException("{$page} is not found");
                 break;
         }
         $this->set(get_defined_vars());
@@ -49,7 +49,6 @@ class CommentController extends AppController
         if (!is_logged()) {
             redirect(url('login/index'));
         }
-        $comment  = new Comment;
         $comment  = Comment::get(Param::get('comment_id'));
         $username = $_SESSION['username'];
         $page     = Param::get('page_next','delete');
@@ -66,7 +65,7 @@ class CommentController extends AppController
                 try {
                     if ($reply == 'yes') {
                         $comment->deleteComment($username, $reply);
-                    } elseif ($reply == 'no') {
+                    } else {
                         redirect(url('thread/index'));
                     }
                 } catch (ValidationException $e) {
@@ -74,7 +73,7 @@ class CommentController extends AppController
                 }
                 break;
             default:
-            throw new PageNotFoundException("{$page} is not found");
+                throw new PageNotFoundException("{$page} is not found");
                 break;
         }
         $this->set(get_defined_vars());

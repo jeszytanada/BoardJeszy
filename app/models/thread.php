@@ -1,10 +1,13 @@
 <?php
 class Thread extends AppModel 
 {  
+    const MIN_TITLE = 1;
+    const MAX_TITLE = 30;
+    
     public $validation = array(
         'title' => array(
             'length'=> array(
-                'validate_between',1,30,
+                'validate_between', self::MIN_TITLE, self::MAX_TITLE,
             ),
         ),
     );
@@ -83,9 +86,16 @@ class Thread extends AppModel
      */
     public function getRate($star_count)
     {   
-            $this->rating += $star_count;
+        $this->rating += $star_count;
+        try {
             $db = DB::conn();
+            $db->begin();
             $db->update('thread', array('rating' => $this->rating), array('id' => $this->id));
+            $db_commit();
+        } catch (ValidationException $e) {
+            $db->rollback();
+            throw $e;
+        }
     }
 
     /**
@@ -119,6 +129,7 @@ class Thread extends AppModel
                 throw new AppException('Restrict Deletion');
             }
         } catch (ValidationException $e) {
+            $db->rollback();
             throw $e;
         }
     }   

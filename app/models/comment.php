@@ -3,12 +3,12 @@ class Comment extends Appmodel
 {
     
     const MIN_COMMENT = 1;
-    const MAX_COMMENT =200;
+    const MAX_COMMENT = 200;
 
     public $validation = array(
         'body' => array(
             'length'=>array(
-                'validate_between',self::MIN_COMMENT,self::MAX_COMMENT,
+                'validate_between', self::MIN_COMMENT, self::MAX_COMMENT,
             ),
         ),
     );
@@ -52,13 +52,20 @@ class Comment extends Appmodel
         if (!$this->validate()) {
             throw new ValidationException('invalid comment');
         }
-        $db = DB::conn();
-        $params = array(
-            'thread_id' => $thread_id,
-            'username'  => $this->username,
-            'body'      => $this->body,
-        );
-        $db->insert('comment', $params);
+        try {
+            $db = DB::conn();
+            $db->begin();
+            $params = array(
+                'thread_id' => $thread_id,
+                'username'  => $this->username,
+                'body'      => $this->body,
+            );
+            $db->insert('comment', $params);
+            $db->commit();
+        } catch (ValidationException $e) {
+            throw $e;
+            $db->rollback();
+        }
         
     }
 
@@ -80,6 +87,7 @@ class Comment extends Appmodel
                 throw new AppException('Restrict Deletion');
             }
         } catch (ValidationException $e) {
+            $db->rollback();
             throw $e;
         }
     }      
