@@ -37,34 +37,34 @@
     </div>
 <?php endif ?>
 
-<!-- Registration Form-->
+<!-- Edit / Update Form-->
 <div id = "box" class = "register-form">
-  <h1> Registration
-      <form class = "body" method = "post" action = "<?php entities(url('')) ?>" onSubmit = "register()">
-          <a name = "login" href = "<?php entities(url('login/index'));?>">
-              <font size = "2"> Already Registered? Log in </font>
-          </a>
+  <h1> Edit / Update Profile
+      <form class = "body" method = "post" action = "<?php entities(url('')) ?>">
 
           <label> Username </label>
-          <input type = "text" class = "span3" id = "username" name = "username" placeholder = "Username" required>
+          <input type = "text" class = "span3" id = "username" name = "username" placeholder = "New username" required>
           <span class="icon-asterisk"></span>                 
 
           <label> Password </label>
-          <input type ="Password" class = "span3" name = "password" id = "password" placeholder = "Password (6-15 length)" required>
+          <input type ="Password" class = "span3" name = "password" id = "password" placeholder = "New Password (6-15 length)" required>
           <span class="icon-asterisk"></span>
 
           <label> First Name</label>
-          <input type = "text" class = "span3" name = "fname" id = "fname" placeholder = "First Name" required>
+          <input type = "text" class = "span3" name = "fname" id = "fname" placeholder = "New First Name" required>
           <span class = "icon-asterisk"></span>
 
           <label> Last Name</label>
-          <input type = "text" class = "span3" name = "lname" id = "lname" placeholder = "Last Name" required>
+          <input type = "text" class = "span3" name = "lname" id = "lname" placeholder = "New Last Name" required>
           <span class = "icon-asterisk"></span>
 
           <label> Email </label>
-          <input type = "email" class = "span3" id = "email" name = "email" placeholder = "Email" required>
+          <input type = "email" class = "span3" id = "email" name = "email" placeholder = "New Email" required>
           <span class = "icon-asterisk"></span><br />  
           <input type = "submit" name = "submit" id = "submit" value = "Submit" class = "btn-large btn-primary">
+          <br />
+          <a size = "5px" href = "<?php entities(url('thread/index')) ?>">
+          &larr; Back to Threads</a>   
       </form>
   </h1>    
   <?php echo $position; ?>

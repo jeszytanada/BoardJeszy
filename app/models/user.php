@@ -96,5 +96,48 @@ class User extends AppModel
         $user_id = $db->value('SELECT id FROM userinfo where username = ?', array($username));
         return $user_id;
     }
+
+    public static function get($user_id) 
+    {
+        $db = DB::conn();
+        $row = $db->row('SELECT * FROM userinfo WHERE id = ?',array($user_id));
+        if (!$row) {
+            throw new RecordNotFoundException('no record found');
+        }
+        return new self($row);
+    }
+    
+    public function updateProfile($user_id, $prev_username) 
+    {
+        $params = array(
+            'username' => $this->username,
+            'password' => $this->password,
+            'fname'    => $this->fname,
+            'lname'    => $this->lname,
+            'email'    => $this->email
+        );
+        if (!$this->validate()) {
+            throw new ValidationException(notify('Error Found!', "error"));
+        }
+        try {
+            $db = DB::conn();
+            $db->begin();
+            $search_results = $db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', 
+                array($this->username,$this->email));
+            if ($search_results) {
+                throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
+            }
+            $update = $db->update('userinfo', $params, array('id' => $user_id));
+            $db->update('comment', array('username' => $this->username), array('username' => $prev_username));
+            $db->commit();
+        } catch (ValidationException $e) {
+            $db->rollback();
+            throw $e;
+        }
+        if (!$update) {
+            return 1;
+        }
+    }
+
 }
  

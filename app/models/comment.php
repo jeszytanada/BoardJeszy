@@ -90,11 +90,11 @@ class Comment extends Appmodel
                 $db->commit();
             }
             elseif ($this->username != $username) {
-                throw new AppException('Restrict Deletion');
+                throw new ValidationException(notify("Restrict Deletion: User do not own this Comment", "error"));
             }
         } catch (ValidationException $e) {
-            $db->rollback();
             throw $e;
+            $db->rollback();
         }
     }      
 }

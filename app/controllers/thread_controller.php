@@ -84,6 +84,7 @@ class ThreadController extends AppController
         if (!is_logged()) {
             redirect(url('login/index'));
         }
+        $position = null;
         $thread  = Thread::get(Param::get('thread_id'));
         $user_id = User::getUserId($_SESSION['username']);
         $page    = Param::get('page_next','delete');
@@ -104,6 +105,7 @@ class ThreadController extends AppController
                         redirect(url('thread/index'));
                     }
                 } catch (ValidationException $e) {
+                    $position = notify($e->getMessage(), "error");
                     $page = 'delete';
                 }
                 break;
