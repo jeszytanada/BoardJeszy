@@ -1,16 +1,16 @@
 <?php
 class Pagination
 {
-    /** 
-     * Pagination (Page Manipulation) 
-     */
+/** 
+ * Pagination (Page Manipulation) 
+ */
     const MAX_ROWS = 5;
     public function getPage($rows) 
     {
-        /**
-         * Establish page number
-         * Only number can be the value of $pagenum
-         */
+    /**
+     * Establish page number
+     * Only number can be the value of $pagenum
+     */
         if(!isset($pagenum)) {
             $pagenum = 1;
         } 
@@ -45,8 +45,7 @@ class Pagination
             'last_page'       => $last_page
         );
         return $page;
-    }
-
+    }    
     /**
      * Sets the range of rows (ex. Prev 1 2 Next) Only
      */
@@ -56,9 +55,9 @@ class Pagination
         $max = 'limit ' .($pagenum - 1) * self::MAX_ROWS.',' .self::MAX_ROWS;
         $link_page =& $current_page['pn'];
     
-    /**
-     * Sets the range of rows
-     */
+        /**
+         * Sets the range of rows
+         */
         $paginationCtrls = "";
         if ($last_page != 1) {
             if ($pagenum > 1) {

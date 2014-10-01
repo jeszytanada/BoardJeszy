@@ -9,7 +9,7 @@ class ThreadController extends AppController
     {   
         if (!is_logged()) {
             redirect(url('login/index'));
-        }   
+        }
         $thread_count = Thread::count();
         $paginate = new Pagination;
         $page = $paginate->getPage($thread_count);

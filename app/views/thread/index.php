@@ -29,7 +29,7 @@
         </li>
     <?php endforeach ?>
 </ul>
-
+<input type = "hidden" name = "thread_id" value = "<?php entities($thread->id) ?>">
 <div style = "text-align: center">
     <a class = "btn btn-large btn-primary" href = "<?php entities(url('thread/create'))?>"> Create </a><br />
 </div>

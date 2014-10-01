@@ -45,10 +45,9 @@ class LoginController extends AppController
         if($user->username) {
             try {
                 $user->register();
-                $position = notify("Registration Successful");
-                } catch (AppException $e) {
+            } catch (AppException $e) {
                     $position = notify($e->getMessage(), "error");
-                }      
+            }      
         }
         $this->set(get_defined_vars());
     }
@@ -62,6 +61,9 @@ class LoginController extends AppController
         $prev_user = $_SESSION['username'];
         $user_id = User::getId($_SESSION['username']);
         $user = User::get($user_id);
+        $_SESSION['fname'] = $user->fname;
+        $_SESSION['lname'] = $user->lname;
+        $_SESSION['email'] = $user->email;
 
         if ($user_id) {
             $user->username = Param::get('username');

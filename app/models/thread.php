@@ -17,15 +17,15 @@ class Thread extends AppModel
      * Sort by Rating then if 0 = rating,
      * by latest date created  
      */
-    public static function getAll($all_threads) 
+    public static function getAll($page) 
     {   
         $threads = array();
         $db = DB::conn();
-        $rows = $db->rows("SELECT * FROM thread ORDER BY rating DESC, created DESC $all_threads");
+        $rows = $db->rows("SELECT * FROM thread ORDER BY rating DESC, created DESC $page");
         foreach ($rows as $row) { 
             $threads[] = new self ($row);
         }
-        return $threads;    
+        return $threads;
     }
 
     /** 
@@ -109,16 +109,14 @@ class Thread extends AppModel
     public function delete($user_id, $reply)
     {   
         try {
-            if ($this->user_id == $user_id) {
-                $db = DB::conn();
-                $db->query("DELETE FROM thread WHERE id = ? AND user_id = ?", 
-                    array($this->id, $this->user_id));
-                $db->query("DELETE FROM comment WHERE thread_id = ?", 
-                    array($this->id));
-            }
             if ($this->user_id != $user_id) {
                 throw new ValidationException(notify('Restrict Deletion:User do not own this Thread',"error"));
             }
+            $db = DB::conn();
+            $db->query("DELETE FROM thread WHERE id = ? AND user_id = ?", 
+                array($this->id, $this->user_id));
+            $db->query("DELETE FROM comment WHERE thread_id = ?", 
+                array($this->id));
         } catch (ValidationException $e) {
             throw $e;
         }

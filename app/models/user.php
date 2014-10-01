@@ -78,9 +78,7 @@ class User extends AppModel
                 throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
             }
             $db->insert('userinfo',$params);
-            $db->commit();
         } catch (ValidationException $e) {
-            $db->rollback();
             throw $e;
         }
     }  
@@ -122,9 +120,9 @@ class User extends AppModel
         try {
             $db = DB::conn();
             $db->begin();
-            $search_results = $db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', 
-                array($this->username,$this->email));
-            if ($search_results) {
+            $search_results = $db->row('SELECT id, username, email FROM userinfo WHERE id = ? OR username = ? OR email = ? ', 
+                array($user_id, $this->username,$this->email));
+            if (!$search_results) {
                 throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
             }
             $update = $db->update('userinfo', $params, array('id' => $user_id));
@@ -134,10 +132,5 @@ class User extends AppModel
             $db->rollback();
             throw $e;
         }
-        if (!$update) {
-            return 1;
-        }
     }
-
 }
- 

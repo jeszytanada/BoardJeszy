@@ -82,14 +82,12 @@ class Comment extends Appmodel
     public function delete($username, $reply)
     {   
         try {
-            if ($this->username == $username) {
-                $db = DB::conn();
-                $db->query("DELETE FROM comment WHERE id = ? AND username = ?", 
-                    array($this->id, $this->username));
-            }
             if ($this->username != $username) {
-                throw new ValidationException(notify('Restrict Deletion:User do not own this Comment',"error"));
+                throw new ValidationException(notify("Restrict Deletion:User {$username} do not own this Comment","error"));
             }
+            $db = DB::conn();
+            $db->query("DELETE FROM comment WHERE id = ? AND username = ?", 
+                array($this->id, $this->username));
         } catch (ValidationException $e) {
             throw $e;
         }
