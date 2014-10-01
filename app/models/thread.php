@@ -117,11 +117,10 @@ class Thread extends AppModel
                     array($this->id));
             }
             if ($this->user_id != $user_id) {
-                throw new AppException('Restrict Deletion');
+                throw new ValidationException(notify('Restrict Deletion:User do not own this Thread',"error"));
             }
         } catch (ValidationException $e) {
             throw $e;
-            $db->rollback();
         }
     }   
 }
