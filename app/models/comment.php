@@ -39,7 +39,7 @@ class Comment extends Appmodel
     public static function get($comment_id) 
     {
         $db = DB::conn();
-        $row = $db->row('SELECT * FROM comment WHERE id = ?',array($comment_id));
+        $row = $db->row('SELECT * FROM comment WHERE id = ?', array($comment_id));
         if (!$row) {
             throw new RecordNotFoundException('no record found');
         }
@@ -68,8 +68,8 @@ class Comment extends Appmodel
             $db->insert('comment', $params);
             $db->commit();
         } catch (ValidationException $e) {
-            throw $e;
             $db->rollback();
+            throw $e;
         }
         
     }
@@ -79,21 +79,18 @@ class Comment extends Appmodel
      * and owner (username).
      * @param username from Session and Confirm deletion
      */
-    public function deleteComment($username, $reply)
+    public function delete($username, $reply)
     {   
         try {
             if ($this->username == $username) {
                 $db = DB::conn();
-                $db->begin();
                 $db->query("DELETE FROM comment WHERE id = ? AND username = ?", 
                     array($this->id, $this->username));
-                $db->commit();
             }
-            elseif ($this->username != $username) {
+            if ($this->username != $username) {
                 throw new AppException('Restrict Deletion');
             }
         } catch (ValidationException $e) {
-            $db->rollback();
             throw $e;
         }
     }      

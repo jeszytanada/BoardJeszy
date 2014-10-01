@@ -106,23 +106,20 @@ class Thread extends AppModel
      * Compares the user_id used to create a thread
      * (from thread table) to the user_id from session
      */
-    public function deleteThread($user_id, $reply)
+    public function delete($user_id, $reply)
     {   
         try {
             if ($this->user_id == $user_id) {
                 $db = DB::conn();
-                $db->begin();
                 $db->query("DELETE FROM thread WHERE id = ? AND user_id = ?", 
                     array($this->id, $this->user_id));
                 $db->query("DELETE FROM comment WHERE thread_id = ?", 
                     array($this->id));
-                $db->commit();
             }
-            elseif ($this->user_id != $user_id) {
+            if ($this->user_id != $user_id) {
                 throw new AppException('Restrict Deletion');
             }
         } catch (ValidationException $e) {
-            $db->rollback();
             throw $e;
         }
     }   

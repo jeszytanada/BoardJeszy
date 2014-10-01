@@ -33,7 +33,7 @@ class ThreadController extends AppController
                 
             case 'create_end':
                 $thread->id        = Param::get('thread_id');
-                $thread->user_id   = User::getUserId($_SESSION['username']);
+                $thread->user_id   = User::getId($_SESSION['username']);
                 $thread->title     = Param::get('title');
                 $comment->username = $username;
                 $comment->body     = Param::get('body');
@@ -85,7 +85,7 @@ class ThreadController extends AppController
             redirect(url('login/index'));
         }
         $thread  = Thread::get(Param::get('thread_id'));
-        $user_id = User::getUserId($_SESSION['username']);
+        $user_id = User::getId($_SESSION['username']);
         $page    = Param::get('page_next','delete');
 
         switch($page) {
@@ -93,13 +93,10 @@ class ThreadController extends AppController
                 break;
 
             case 'delete_end':
-                $thread->id      = Param::get('thread_id');
-                $thread->user_id = Param::get('user_id');
-                $thread->title   = Param::get('title');
-                $reply           = Param::get('reply');
+                $reply = Param::get('reply');
                 try {
                     if ($reply == 'yes') {
-                        $thread->deleteThread($user_id, $reply);
+                        $thread->delete($user_id, $reply);
                     } else {
                         redirect(url('thread/index'));
                     }

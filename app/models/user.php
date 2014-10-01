@@ -90,7 +90,7 @@ class User extends AppModel
      * @param username
      * @return user id
      */
-    public static function getUserId($username)
+    public static function getId($username)
     {
         $db = DB::conn();
         $user_id = $db->value('SELECT id FROM userinfo where username = ?', array($username));

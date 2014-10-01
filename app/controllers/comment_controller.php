@@ -58,13 +58,10 @@ class CommentController extends AppController
                 break;
 
             case 'delete_end':
-                $comment->id       = Param::get('comment_id');
-                $comment->username = Param::get('username');
-                $comment->body     = Param::get('body');
-                $reply             = Param::get('reply');
+                $reply = Param::get('reply');
                 try {
                     if ($reply == 'yes') {
-                        $comment->deleteComment($username, $reply);
+                        $comment->delete($username, $reply);
                     } else {
                         redirect(url('thread/index'));
                     }
