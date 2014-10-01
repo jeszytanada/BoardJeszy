@@ -15,7 +15,7 @@ function readable_text($s)
 function notify($text, $notify_type = NULL) 
 {
     if ($notify_type === 'error') {   
-        return $reply = "<center><font size=4 face=Arial color=green>" . $text . "</font></center>";
+        return $reply = "<center><font size=4 face=Arial color=red>" . $text . "</font></center>";
     }
     return $reply = "<center> <font size=4 face=Arial color=blue>" . $text . "</font></center>";
 }

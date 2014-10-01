@@ -92,6 +92,7 @@ class Comment extends Appmodel
             }
         } catch (ValidationException $e) {
             throw $e;
+            $db->rollback();
         }
     }      
 }

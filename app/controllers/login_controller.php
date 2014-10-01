@@ -53,6 +53,36 @@ class LoginController extends AppController
         $this->set(get_defined_vars());
     }
 
+    public function update() 
+    {
+        if (!is_logged()) {
+            redirect(url('login/index'));
+        }   
+        $position = null;
+        $prev_user = $_SESSION['username'];
+        $user_id = User::getUserId($_SESSION['username']);
+        $user = User::get($user_id);
+
+        if ($user_id) {
+            $user->username = Param::get('username');
+            $user->password = Param::get('password');
+            $user->fname    = Param::get('fname');
+            $user->lname    = Param::get('lname');
+            $user->email    = Param::get('email');
+            $position = "";
+            if($user->username) {
+                try {
+                    $user->updateProfile($user_id, $prev_user);
+                    $position = notify("Edit / Update Success");
+                    $_SESSION['username'] = $user->username;
+                } catch (AppException $e) {
+                    $position = notify($e->getMessage(), 'error');
+                }
+              
+            }
+        } $this->set(get_defined_vars()); 
+    }
+    
     /**
      * Destroying session and logging out.
      */

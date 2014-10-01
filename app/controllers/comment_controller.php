@@ -49,6 +49,7 @@ class CommentController extends AppController
         if (!is_logged()) {
             redirect(url('login/index'));
         }
+        $position = null;
         $comment  = Comment::get(Param::get('comment_id'));
         $username = $_SESSION['username'];
         $page     = Param::get('page_next','delete');
@@ -66,6 +67,7 @@ class CommentController extends AppController
                         redirect(url('thread/index'));
                     }
                 } catch (ValidationException $e) {
+                    $position = notify($e->getMessage(), "error");
                     $page = 'delete';
                 }
                 break;

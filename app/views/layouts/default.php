@@ -18,7 +18,8 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="#">DietCake Board Exercise M.Tanada</a>
+          <a class="brand" >DietCake Board Exercise M.Tanada</a>
+          <a class="brand pull-right" href="<?php entities(url('login/update'))?>">Profile</a>
         </div>
       </div>
     </div>

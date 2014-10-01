@@ -121,6 +121,7 @@ class Thread extends AppModel
             }
         } catch (ValidationException $e) {
             throw $e;
+            $db->rollback();
         }
     }   
 }
