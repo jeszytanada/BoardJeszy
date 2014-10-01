@@ -60,7 +60,7 @@ class LoginController extends AppController
         }   
         $position = null;
         $prev_user = $_SESSION['username'];
-        $user_id = User::getUserId($_SESSION['username']);
+        $user_id = User::getId($_SESSION['username']);
         $user = User::get($user_id);
 
         if ($user_id) {
