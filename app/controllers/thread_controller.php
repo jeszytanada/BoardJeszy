@@ -1,15 +1,20 @@
 <?php 
 class ThreadController extends AppController
 {
+    public function __construct($name) 
+    { 
+        parent::__construct($name);   
+        if(is_logged() === false) { 
+             redirect($controller = 'index'); 
+        } 
+    }
+
     /** 
      * Call class Pagination to show number of pages
      * Count all existing threads
      */
     public function index() 
     {   
-        if (!is_logged()) {
-            redirect(url('login/index'));
-        }
         $thread_count = Thread::count();
         $paginate = new Pagination;
         $page = $paginate->getPage($thread_count);
@@ -24,9 +29,6 @@ class ThreadController extends AppController
      */
     public function create() 
     {  
-        if (!is_logged()) {
-            redirect(url('login/index'));
-        }
         $thread   = new Thread;
         $comment  = new Comment;
         $username = Param::get('username');
@@ -61,9 +63,6 @@ class ThreadController extends AppController
      */    
     public function rate()
     {
-        if (!is_logged()) {
-            redirect(url('login/index'));
-        }
         $thread = Thread::get(Param::get('thread_id'));
         $page = Param::get('page_next','rate');
         switch($page) {
@@ -88,9 +87,6 @@ class ThreadController extends AppController
 
     public function delete()
     {
-        if (!is_logged()) {
-            redirect(url('login/index'));
-        }
         $position = null;
         $thread  = Thread::get(Param::get('thread_id'));
         $user_id = User::getId($_SESSION['username']);

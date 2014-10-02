@@ -24,10 +24,16 @@ class User extends AppModel
             'length' => array(
                 'validate_between', self::MIN_USER_VAL, self::MAX_USER_VAL,
             ),
+            'format' => array(
+                'check_name_format', "Invalid First Name"
+            ),
         ),
         'lname' => array(
             'length' => array(
                 'validate_between', self::MIN_USER_VAL, self::MAX_USER_VAL,
+            ),
+            'format' => array(
+                'check_name_format', "Invalid Last Name"
             ),
         ),
         'email'=> array(

@@ -18,5 +18,13 @@ function check_valid_email($email)
 
 function check_username_format($username) 
 {
-     return !((preg_match('/[^a-zA-Z0-9_]\-/', $username)) || (preg_match('/_{2}/', $username)));
+    return !((preg_match('/[^a-zA-Z0-9_]/', $username)) || (preg_match('/_{2}/', $username)));
+}
+
+function check_name_format($name)
+{
+    if (ctype_alpha($name)) {
+        return true;
+    }
+    return false;
 }

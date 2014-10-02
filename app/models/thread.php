@@ -108,11 +108,12 @@ class Thread extends AppModel
      */
     public function delete($user_id, $reply)
     {   
+        
+        if ($this->user_id != $user_id) {
+            throw new ValidationException(notify('Restrict Deletion:User do not own this Thread',"error"));
+        }
         try {
-            if ($this->user_id != $user_id) {
-                throw new ValidationException(notify('Restrict Deletion:User do not own this Thread',"error"));
-            }
-            $db = DB::conn();
+             $db = DB::conn();
             $db->begin();
             $db->query("DELETE FROM thread WHERE id = ? AND user_id = ?", 
                 array($this->id, $this->user_id));

@@ -1,12 +1,14 @@
 <?php
 class LoginController extends AppController 
 { 
+
     /** 
      * Username and password are
      * taken from View and is passed to
      * authenticate and to validate the username & password.
      * $position = holds the position of the page.
      */
+
     public function index() 
     {    
         $position = NULL;
@@ -34,7 +36,7 @@ class LoginController extends AppController
      * $position = holds the position of the page.
      */
     public function register() 
-    {   
+    {  
         $position = null;
         $user = new User();
         $user->username = Param::get('username');
@@ -45,6 +47,7 @@ class LoginController extends AppController
         if($user->username) {
             try {
                 $user->register();
+                $position = notify("Registered Successfully");
             } catch (AppException $e) {
                     $position = notify($e->getMessage(), "error");
             }      
@@ -53,10 +56,10 @@ class LoginController extends AppController
     }
 
     public function update() 
-    {
-        if (!is_logged()) {
+    {    
+        if(!is_logged()) {
             redirect(url('login/index'));
-        }   
+        }
         $position = null;
         $user_id = User::getId($_SESSION['username']);
         $user = User::get($user_id);
@@ -95,3 +98,4 @@ class LoginController extends AppController
         redirect(url('login/index'));
     }
 }
+

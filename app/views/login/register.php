@@ -5,11 +5,16 @@
 
 <!-- Validation for USERNAME-->
         <?php if ($user->validation_errors['username']['length']): ?>
-            <div><em>Your name</em> must be between
+            <div><em>User name</em> must be between
               <?php entities($user->validation['username']['length'][1]) ?> and
               <?php entities($user->validation['username']['length'][2]) ?> characters in length.
             </div>
         <?php endif ?>
+            <div><em>Username Validation Error (alphabetic characters, numbers and underscore only)</em>
+              <?php if ($user->validation_errors['username']['format']): ?>
+              <?php endif ?>
+            </div>
+    
     
 <!-- Validation for PASSWORD-->
         <?php if ($user->validation_errors['password']['length']): ?>
@@ -19,6 +24,7 @@
             </div>
         <?php endif ?>
 
+
         <!-- Validation for First Name-->
         <?php if ($user->validation_errors['fname']['length']): ?>
              <div><em>First Name</em> must be between
@@ -26,6 +32,10 @@
                  <?php entities($user->validation['fname']['length'][2]) ?> characters in length.
              </div>
         <?php endif ?>
+        <div><em>First Name Validation Error (alphabetic characters only)</em>
+              <?php if ($user->validation_errors['fname']['format']): ?>
+              <?php endif ?>
+        </div>
 
         <!-- Validation for Last Name-->
         <?php if ($user->validation_errors['lname']['length']): ?>
@@ -34,6 +44,10 @@
                  <?php entities($user->validation['lname']['length'][2]) ?> characters in length.
              </div>
         <?php endif ?>
+        <div><em>Last Name Validation Error (alphabetic characters only)</em>
+              <?php if ($user->validation_errors['lname']['format']): ?>
+              <?php endif ?>
+        </div>
     </div>
 <?php endif ?>
 
@@ -46,19 +60,19 @@
           </a>
 
           <label> Username </label>
-          <input type = "text" class = "span3" id = "username" name = "username" placeholder = "Username" required>
+          <input type = "text" class = "span3" name = "username" placeholder = "Username" required>
           <span class="icon-asterisk"></span>                 
 
           <label> Password </label>
-          <input type ="Password" class = "span3" name = "password" id = "password" placeholder = "Password (6-15 length)" required>
+          <input type ="Password" class = "span3" name = "password" placeholder = "Password (6-15 length)" required>
           <span class="icon-asterisk"></span>
 
           <label> First Name</label>
-          <input type = "text" class = "span3" name = "fname" id = "fname" placeholder = "First Name" required>
+          <input type = "text" class = "span3" name = "fname" placeholder = "First Name" required>
           <span class = "icon-asterisk"></span>
 
           <label> Last Name</label>
-          <input type = "text" class = "span3" name = "lname" id = "lname" placeholder = "Last Name" required>
+          <input type = "text" class = "span3" name = "lname" placeholder = "Last Name" required>
           <span class = "icon-asterisk"></span>
 
           <label> Email </label>

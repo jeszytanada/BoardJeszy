@@ -1,6 +1,14 @@
 <?php
 class CommentController extends AppController
 {
+    public function __construct($name) 
+    { 
+        parent::__construct($name);   
+        if(is_logged() === false) { 
+             redirect($controller = 'index'); 
+        } 
+    }
+
     /** 
      * Displays specific Thread and its containing Comments
      */
@@ -46,10 +54,8 @@ class CommentController extends AppController
      */
     public function delete()
     {
-        if (!is_logged()) {
-            redirect(url('login/index'));
-        }
         $position = null;
+        $comment_id = Param::get('comment_id');
         $comment  = Comment::get(Param::get('comment_id'));
         $username = $_SESSION['username'];
         $page     = Param::get('page_next','delete');

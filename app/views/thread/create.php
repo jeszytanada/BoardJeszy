@@ -41,7 +41,7 @@
                 <input type = "radio" name = "username" value = "<?php entities($_SESSION['username']) ?>" required> Yes
                 <input type = "radio" name = "username" value = "Anonymous" required> No 
             </font>
-        <label> Comment </label>
+        <label> Open Up: </label>
         <textarea name = "body" class = "span10" style = "height: 300px"><?php entities(Param::get('body')) ?></textarea><br />
         <input type = "hidden" name = "page_next" value = "create_end">
         <button type = "submit" class = "btn btn-primary"> Submit </button>
