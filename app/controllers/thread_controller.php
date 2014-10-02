@@ -15,6 +15,7 @@ class ThreadController extends AppController
         $page = $paginate->getPage($thread_count);
         $pagination_links = $paginate->rangeRows($page['pagenum'], $page['last_page']);
         $threads = Thread::getAll($pagination_links['max']);
+        
         $this->set(get_defined_vars());
     }
 
@@ -23,6 +24,9 @@ class ThreadController extends AppController
      */
     public function create() 
     {  
+        if (!is_logged()) {
+            redirect(url('login/index'));
+        }
         $thread   = new Thread;
         $comment  = new Comment;
         $username = Param::get('username');
@@ -57,6 +61,9 @@ class ThreadController extends AppController
      */    
     public function rate()
     {
+        if (!is_logged()) {
+            redirect(url('login/index'));
+        }
         $thread = Thread::get(Param::get('thread_id'));
         $page = Param::get('page_next','rate');
         switch($page) {

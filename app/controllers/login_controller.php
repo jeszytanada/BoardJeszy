@@ -58,12 +58,13 @@ class LoginController extends AppController
             redirect(url('login/index'));
         }   
         $position = null;
-        $prev_user = $_SESSION['username'];
         $user_id = User::getId($_SESSION['username']);
         $user = User::get($user_id);
         $_SESSION['fname'] = $user->fname;
         $_SESSION['lname'] = $user->lname;
         $_SESSION['email'] = $user->email;
+        $prev_user  = $_SESSION['username'];
+        $prev_email = $_SESSION['email'];
 
         if ($user_id) {
             $user->username = Param::get('username');
@@ -74,7 +75,7 @@ class LoginController extends AppController
             $position = "";
             if($user->username) {
                 try {
-                    $user->updateProfile($user_id, $prev_user);
+                    $user->updateProfile($user_id, $prev_user, $prev_email);
                     $position = notify("Edit / Update Success");
                     $_SESSION['username'] = $user->username;
                 } catch (AppException $e) {

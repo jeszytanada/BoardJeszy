@@ -60,17 +60,17 @@ class User extends AppModel
      */
     public function register()
     {   
-        $params = array(
-            'username' => $this->username,
-            'password' => $this->password,
-            'fname'    => $this->fname,
-            'lname'    => $this->lname,
-            'email'    => $this->email
-        );
         if (!$this->validate()) {
             throw new ValidationException(notify('Error Found!', "error"));
         }
         try {
+            $params = array(
+                'username' => $this->username,
+                'password' => $this->password,
+                'fname'    => $this->fname,
+                'lname'    => $this->lname,
+                'email'    => $this->email
+            );
             $db = DB::conn();
             $search_results = $db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', 
                 array($this->username,$this->email));
@@ -105,26 +105,36 @@ class User extends AppModel
         return new self($row);
     }
     
-    public function updateProfile($user_id, $prev_username) 
+    public function updateProfile($user_id, $prev_username, $prev_email) 
     {
-        $params = array(
-            'username' => $this->username,
-            'password' => $this->password,
-            'fname'    => $this->fname,
-            'lname'    => $this->lname,
-            'email'    => $this->email
-        );
+        
         if (!$this->validate()) {
             throw new ValidationException(notify('Error Found!', "error"));
         }
         try {
+            $params = array(
+                'username' => $this->username,
+                'password' => $this->password,
+                'fname'    => $this->fname,
+                'lname'    => $this->lname,
+                'email'    => $this->email
+            );
             $db = DB::conn();
-            $db->begin();
-            $search_results = $db->row('SELECT id, username, email FROM userinfo WHERE id = ? OR username = ? OR email = ? ', 
-                array($user_id, $this->username,$this->email));
-            if (!$search_results) {
-                throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
+            if ($prev_username != $this->username) {
+                $results = $db->row('SELECT username FROM userinfo WHERE username = ?', 
+                    array($this->username));
+                if ($results) {
+                    throw new UserAlreadyExistsException(notify('Username Already Exists',"error"));
+                }
             }
+            if ($prev_email != $this->email) {
+                $results = $db->row('SELECT email FROM userinfo WHERE email = ?', 
+                    array($this->email));
+                if ($results) {
+                    throw new UserAlreadyExistsException(notify('Email Already Exists',"error"));
+                }
+            }
+            $db->begin();
             $update = $db->update('userinfo', $params, array('id' => $user_id));
             $db->update('comment', array('username' => $this->username), array('username' => $prev_username));
             $db->commit();

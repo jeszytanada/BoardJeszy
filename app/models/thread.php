@@ -113,11 +113,14 @@ class Thread extends AppModel
                 throw new ValidationException(notify('Restrict Deletion:User do not own this Thread',"error"));
             }
             $db = DB::conn();
+            $db->begin();
             $db->query("DELETE FROM thread WHERE id = ? AND user_id = ?", 
                 array($this->id, $this->user_id));
             $db->query("DELETE FROM comment WHERE thread_id = ?", 
                 array($this->id));
+            $db->commit();
         } catch (ValidationException $e) {
+            $db->rollback();
             throw $e;
         }
     }   
