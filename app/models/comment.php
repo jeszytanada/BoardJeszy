@@ -78,7 +78,7 @@ class Comment extends Appmodel
     }
 
     /** 
-     * Deletion of Comment according to ID
+     * Deletion of Comment
      * and owner (username).
      * @param username from Session and Confirm deletion
      */

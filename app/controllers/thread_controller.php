@@ -123,4 +123,22 @@ class ThreadController extends AppController
         $this->set(get_defined_vars());
         $this->render($page);
     }
+
+    public function update() 
+    {    
+        $position = null;
+        $thread  = Thread::get(Param::get('thread_id'));
+        $user_id = User::getId($_SESSION['username']);
+        $thread->title = Param::get('title');
+        $position = "";
+        if($thread->title) {
+            try {
+                $thread->update($user_id);
+                $position = notify("Update Success");
+            } catch (AppException $e) {
+                $position = notify($e->getMessage(), 'error');
+            }
+        }
+        $this->set(get_defined_vars()); 
+    }
 }

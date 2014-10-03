@@ -11,6 +11,7 @@ id                      INT UNSIGNED NOT NULL AUTO_INCREMENT,
 user_id                 INT UNSIGNED NOT NULL,
 title                   VARCHAR(30) NOT NULL,
 created                 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+updated                 TIMESTAMP NOT NULL,
 rating                  SMALLINT NOT NULL,
 PRIMARY KEY (id),
 INDEX (user_id)

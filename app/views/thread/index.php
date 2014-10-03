@@ -23,7 +23,10 @@
                     <a href = "<?php entities(url('thread/rate', array('thread_id'=> $v->id)))?>" class = "btn-primary"> Rate this!</a>
                     <a href="<?php entities(url('thread/delete', array('thread_id'=> $v->id)))?>">
                         <i class = "icon-trash"></i>
-                    </a>    
+                    </a>
+                    <a href="<?php entities(url('thread/update', array('thread_id'=> $v->id)))?>">
+                        <i class = "icon-pencil"></i>
+                    </a>     
                 </div>
             </div>
         </li>

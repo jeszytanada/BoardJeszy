@@ -134,5 +134,25 @@ class Thread extends AppModel
             $db->rollback();
             throw $e;
         }
+    }
+
+    public function update($user_id) 
+    {
+        if ($this->user_id != $user_id) {
+            throw new ValidationException(notify('Restrict Update: Not owner of the Thread',"error"));
+        }
+        if (!$this->validate()) {
+            throw new ValidationException(notify('Thread Title Error',"error"));
+        }
+        try {
+            $params = array(
+                'title'   => $this->title,
+                'updated' => date('Y-m-d h:i:s')
+            );
+            $db = DB::conn();
+            $db->update('thread', $params, array('id' => $this->id));
+        } catch (ValidationException $e) {
+            throw $e;
+        }
     }   
 }

@@ -49,6 +49,10 @@ function check_name_format($name)
     return false;
 }
 
+/**
+ * Whitespace format 
+ * @param $text = for body & title 
+ */
 function check_space_format($text)
 {
     if ((preg_match('/[^\s]/', $text)) && (preg_match('/[\w]*/', $text))) {

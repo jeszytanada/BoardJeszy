@@ -54,10 +54,7 @@
 <div id = "box" class = "register-form">
   <h1> Registration
       <form class = "body" method = "post" action = "<?php entities(url('')) ?>" onSubmit = "register()">
-          <a name = "login" href = "<?php entities(url('login/index'));?>">
-              <font size = "2"> Already Registered? Log in </font>
-          </a>
-
+          <br />
           <label> Username </label>
           <input type = "text" class = "span3" name = "username" placeholder = "Username" required>
           <span class="icon-asterisk"></span>                 
@@ -77,7 +74,10 @@
           <label> Email </label>
           <input type = "email" class = "span3" id = "email" name = "email" placeholder = "Email" required>
           <span class = "icon-asterisk"></span><br />  
-          <input type = "submit" name = "submit" id = "submit" value = "Submit" class = "btn-large btn-primary">
+          <input type = "submit" name = "submit" id = "submit" value = "Submit" class = "btn-large btn-primary"><br />
+          <a name = "login" href = "<?php entities(url('login/index'));?>">
+              <font size = "2"> Already Registered? Log in </font>
+          </a>
       </form>
   </h1>    
   <?php echo $position; ?>
