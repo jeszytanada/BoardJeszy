@@ -5,24 +5,24 @@ class LoginController extends AppController
     /** 
      * Username and password are
      * taken from View and is passed to
-     * authenticate and to validate the username & password.
+     * authenticate username & password.
      * $position = holds the position of the page.
      */
 
     public function index() 
     {    
-        $position = NULL;
+        $position = null;
         $username = Param::get('username');
         $password = Param::get('password');
         $user = new User();
-        if ($username && $password) {
+        if ($username) {
             try {
                 $user->username = $username;
                 $user->password = $password;
                 $user_info = $user->authenticate();
                 $_SESSION['username'] = $user_info->username;
                 $_SESSION['password'] = $user_info->password;
-                $_SESSION['id'] = $user_info->id;
+                $_SESSION['id']       = $user_info->id;
                 redirect(url('thread/index'));
             } catch (AppException $e) {
                 $position = notify($e->getMessage(),"error");
@@ -49,25 +49,30 @@ class LoginController extends AppController
                 $user->register();
                 $position = notify("Registered Successfully");
             } catch (AppException $e) {
-                    $position = notify($e->getMessage(), "error");
+                $position = notify($e->getMessage(), "error");
             }      
         }
         $this->set(get_defined_vars());
     }
-
+    
+    /**
+     * Updating profile, all info details can be retain
+     * Sessions are initial value in view (previous details)
+     * $position = holds the position of the page.
+     */
     public function update() 
     {    
         if(!is_logged()) {
             redirect(url('login/index'));
         }
         $position = null;
-        $user_id = User::getId($_SESSION['username']);
-        $user = User::get($user_id);
+        $user_id  = User::getId($_SESSION['username']);
+        $user     = User::get($user_id);
         $_SESSION['fname'] = $user->fname;
         $_SESSION['lname'] = $user->lname;
         $_SESSION['email'] = $user->email;
-        $prev_user  = $_SESSION['username'];
-        $prev_email = $_SESSION['email'];
+        $prev_user         = $_SESSION['username'];
+        $prev_email        = $_SESSION['email'];
 
         if ($user_id) {
             $user->username = Param::get('username');

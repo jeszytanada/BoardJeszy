@@ -64,14 +64,14 @@ class ThreadController extends AppController
     public function rate()
     {
         $thread = Thread::get(Param::get('thread_id'));
-        $page = Param::get('page_next','rate');
+        $page   = Param::get('page_next','rate');
         switch($page) {
             case 'rate':
                 break;
 
             case 'rate_end':
-                $star_count = Param::get('rating');
                 try {
+                    $star_count = Param::get('rating');
                     $thread->increaseRate($star_count);
                 } catch (ValidationException $e) {
                     $page = 'rate';
@@ -88,22 +88,21 @@ class ThreadController extends AppController
     public function delete()
     {
         $position = null;
-        $thread  = Thread::get(Param::get('thread_id'));
-        $user_id = User::getId($_SESSION['username']);
-        $page    = Param::get('page_next','delete');
+        $thread   = Thread::get(Param::get('thread_id'));
+        $user_id  = User::getId($_SESSION['username']);
+        $page     = Param::get('page_next','delete');
 
         switch($page) {
             case 'delete':
                 break;
 
             case 'delete_end':
-                $reply = Param::get('reply');
                 try {
-                    if ($reply == 'yes') {
-                        $thread->delete($user_id, $reply);
-                    } else {
-                        redirect(url('thread/index'));
-                    }
+                    $reply = Param::get('reply');
+                    if ($reply == 'no') {
+                        redirect(url('thread/index'));  
+                    } 
+                    $thread->delete($user_id);
                 } catch (ValidationException $e) {
                     $position = notify($e->getMessage(), "error");
                     $page = 'delete';
@@ -116,5 +115,4 @@ class ThreadController extends AppController
         $this->set(get_defined_vars());
         $this->render($page);
     }
-
 }

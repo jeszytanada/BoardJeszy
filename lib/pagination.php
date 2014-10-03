@@ -41,8 +41,8 @@ class Pagination
             $pagenum = $last_page;
         }
         $page = array(
-            'pagenum'         => $pagenum,
-            'last_page'       => $last_page
+            'pagenum'    => $pagenum,
+            'last_page'  => $last_page
         );
         return $page;
     }    

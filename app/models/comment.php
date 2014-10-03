@@ -55,7 +55,7 @@ class Comment extends Appmodel
     public function write($thread_id) 
     {   
         if (!$this->validate()) {
-            throw new ValidationException('invalid comment');
+            throw new ValidationException('Invalid comment');
         }
         try {
             $db = DB::conn();
@@ -79,7 +79,7 @@ class Comment extends Appmodel
      * and owner (username).
      * @param username from Session and Confirm deletion
      */
-    public function delete($username, $reply)
+    public function delete($username)
     {   
         try {
             if ($this->username != $username) {

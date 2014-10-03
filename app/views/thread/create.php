@@ -45,6 +45,9 @@
         <textarea name = "body" class = "span10" style = "height: 300px"><?php entities(Param::get('body')) ?></textarea><br />
         <input type = "hidden" name = "page_next" value = "create_end">
         <button type = "submit" class = "btn btn-primary"> Submit </button>
+        <div style = "text-align: left">
+            <a class = "btn btn-primary" href = "<?php entities(url('thread/index'))?>"> Cancel</a>
+        </div> 
     </div>
 </form>
 

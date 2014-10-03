@@ -14,14 +14,16 @@ class Thread extends AppModel
     
     /** 
      * Get all the Threads from Database
-     * Sort by Rating then if 0 = rating,
-     * by latest date created  
+     * Sort by Rating then if rating = 0,
+     * Sort by date created
+     * @param $all_threads
+     * @return $threads
      */
-    public static function getAll($page) 
+    public static function getAll($all_threads) 
     {   
         $threads = array();
         $db = DB::conn();
-        $rows = $db->rows("SELECT * FROM thread ORDER BY rating DESC, created DESC $page");
+        $rows = $db->rows("SELECT * FROM thread ORDER BY rating DESC, created DESC $all_threads");
         foreach ($rows as $row) { 
             $threads[] = new self ($row);
         }
@@ -30,7 +32,9 @@ class Thread extends AppModel
 
     /** 
      * After selecting thread,checks the ID in the Database then return.
-     * If ID is not found -> @throw exception 
+     * If ID is not found -> @throw exception
+     * @param $thread_id
+     * @return thread row
      */
     public static function get($thread_id) 
     {
@@ -55,6 +59,7 @@ class Thread extends AppModel
      * If both hasError() -> throw Exception
      * Get title of Thread, Get Comment
      * Insert to the Database.
+     * @param $comment
      */
     public function create(Comment $comment) 
     {   
@@ -83,6 +88,7 @@ class Thread extends AppModel
     /** 
      * Will increase the current rating
      * by adding the number of stars.
+     * @param $star_count (user rate)
      */
     public function increaseRate($star_count)
     {   
@@ -93,7 +99,7 @@ class Thread extends AppModel
 
     /**
      * Function used for Pagination
-     * Returns the total count of thread ID 
+     * Returns the total count of thread ID
      */
     public static function count() 
     {
@@ -105,15 +111,16 @@ class Thread extends AppModel
      * Deletion of Thread by the Owner.
      * Compares the user_id used to create a thread
      * (from thread table) to the user_id from session
+     * @param $user_id (session) , $reply (yes/no)
      */
-    public function delete($user_id, $reply)
+    public function delete($user_id)
     {   
         
         if ($this->user_id != $user_id) {
-            throw new ValidationException(notify('Restrict Deletion:User do not own this Thread',"error"));
+            throw new ValidationException(notify('Restrict Deletion: User do not own this Thread',"error"));
         }
         try {
-             $db = DB::conn();
+            $db = DB::conn();
             $db->begin();
             $db->query("DELETE FROM thread WHERE id = ? AND user_id = ?", 
                 array($this->id, $this->user_id));

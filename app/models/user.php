@@ -45,6 +45,7 @@ class User extends AppModel
 
     /** 
      * Check if username and password is registered or matched in the database.
+     * @return $user_info row
      */
     public function authenticate()
     {   
@@ -97,13 +98,17 @@ class User extends AppModel
     public static function getId($username)
     {
         $db = DB::conn();
-        $user_id = $db->value('SELECT id FROM userinfo where username = ?', array($username));
-        return $user_id;
+        return $db->value('SELECT id FROM userinfo where username = ?', array($username));
     }
-
+    
+    /** 
+     * Get User Info 
+     * @param $user_id
+     * @return userinfo row
+     */
     public static function get($user_id) 
     {
-        $db = DB::conn();
+        $db  = DB::conn();
         $row = $db->row('SELECT * FROM userinfo WHERE id = ?',array($user_id));
         if (!$row) {
             throw new RecordNotFoundException('no record found');
@@ -111,9 +116,12 @@ class User extends AppModel
         return new self($row);
     }
     
+    /** 
+     * Profile edit / update
+     * @param $user_id, $prev_username & $prev_email
+     */
     public function updateProfile($user_id, $prev_username, $prev_email) 
     {
-        
         if (!$this->validate()) {
             throw new ValidationException(notify('Error Found!', "error"));
         }
@@ -141,7 +149,7 @@ class User extends AppModel
                 }
             }
             $db->begin();
-            $update = $db->update('userinfo', $params, array('id' => $user_id));
+            $db->update('userinfo', $params, array('id' => $user_id));
             $db->update('comment', array('username' => $this->username), array('username' => $prev_username));
             $db->commit();
         } catch (ValidationException $e) {

@@ -26,16 +26,16 @@ class CommentController extends AppController
     public function write() 
     {
         $comment = new Comment;
-        $thread = Thread::get(Param::get('thread_id'));
-        $page = Param::get('page_next','write');
+        $thread  = Thread::get(Param::get('thread_id'));
+        $page    = Param::get('page_next','write');
         switch($page) {
             case 'write':
                 break;
 
             case 'write_end':
-                $comment->username = $_SESSION['username'];
-                $comment->body     = Param::get('body');
                 try {
+                    $comment->username = $_SESSION['username'];
+                    $comment->body     = Param::get('body');
                     $comment->write($thread->id);
                     } catch (ValidationException $a) {
                         $page = 'write';
@@ -54,24 +54,23 @@ class CommentController extends AppController
      */
     public function delete()
     {
-        $position = null;
+        $position   = null;
         $comment_id = Param::get('comment_id');
-        $comment  = Comment::get(Param::get('comment_id'));
-        $username = $_SESSION['username'];
-        $page     = Param::get('page_next','delete');
+        $comment    = Comment::get(Param::get('comment_id'));
+        $username   = $_SESSION['username'];
+        $page       = Param::get('page_next','delete');
 
         switch($page) {
             case 'delete':
                 break;
 
             case 'delete_end':
-                $reply = Param::get('reply');
                 try {
-                    if ($reply == 'yes') {
-                        $comment->delete($username, $reply);
-                    } else {
+                    $reply = Param::get('reply');
+                    if ($reply == 'no') {
                         redirect(url('thread/index'));
                     }
+                    $comment->delete($username);
                 } catch (ValidationException $e) {
                     $position = notify($e->getMessage(), "error");
                     $page = 'delete';
