@@ -84,7 +84,7 @@ class LoginController extends AppController
             if($user->username) {
                 try {
                     $user->update($user_id, $prev_user, $prev_email);
-                    $position = notify("Edit / Update Success");
+                    $position = notify("Edit Success");
                     $_SESSION['username'] = $user->username;
                 } catch (AppException $e) {
                     $position = notify($e->getMessage(), 'error');

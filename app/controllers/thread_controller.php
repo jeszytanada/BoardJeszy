@@ -91,7 +91,7 @@ class ThreadController extends AppController
     }
     
     /**
-     * Deletion of thread
+     * Deletion of thread by owner
      */
     public function delete()
     {
@@ -123,7 +123,10 @@ class ThreadController extends AppController
         $this->set(get_defined_vars());
         $this->render($page);
     }
-
+    
+    /**
+     * Edit title of thread by owner
+     */
     public function update() 
     {    
         $position = null;

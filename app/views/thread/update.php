@@ -29,7 +29,6 @@
             </div><br />
             <br />  
         <input type = "submit" name = "submit" value = "Submit" class = "btn-large btn-primary"><br />
-        <input type = "hidden" class = "span4" name = "user_id" value = "<?php entities($_SESSION['id']) ?>">
         <a href = "<?php entities(url('thread/index')) ?>">
           &larr; Back to Threads</a>
     </div>
