@@ -19,6 +19,7 @@ function notify($text, $notify_type = NULL)
     }
     return $reply = "<center> <font size=4 face=Arial color=blue>" . $text . "</font></center>";
 }
+
 function is_logged() 
 {
     if ($_SESSION['id']) {

@@ -44,7 +44,7 @@ class User extends AppModel
     );
 
     /** 
-     * Check if username and password is registered or matched in the database.
+     * Check if username and password is registered
      * @return $user_info row
      */
     public function authenticate()
@@ -52,7 +52,7 @@ class User extends AppModel
         if (!$this->validate()) {
             throw new ValidationException("Invalid Username/Password");
         }
-        $db = DB::conn();
+        $db  = DB::conn();
         $row = $db->row('SELECT * FROM userinfo WHERE username = ? AND password = ?', array($this->username, $this->password));
         if (!$row){
             throw new UserNotFoundException("User not found");
@@ -61,8 +61,8 @@ class User extends AppModel
     }
 
     /**
-     * Extract all values from array $user_info.
-     * Upon registering,checks if Username and Email is not yet used.
+     * Validation filter_input(type, variable_name)
+     * Checks if Username and Email exist
      * Else will be inserted to the database.
      */
     public function register()
@@ -117,10 +117,11 @@ class User extends AppModel
     }
     
     /** 
-     * Profile edit / update
+     * Profile edit / update, validate input
+     * Separate checking for username & email existence
      * @param $user_id, $prev_username & $prev_email
      */
-    public function updateProfile($user_id, $prev_username, $prev_email) 
+    public function update($user_id, $prev_username, $prev_email) 
     {
         if (!$this->validate()) {
             throw new ValidationException(notify('Error Found!', "error"));
