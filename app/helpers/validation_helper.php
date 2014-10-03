@@ -48,3 +48,11 @@ function check_name_format($name)
     }
     return false;
 }
+
+function check_space_format($text)
+{
+    if ((preg_match('/[^\s]/', $text)) && (preg_match('/[\w]*/', $text))) {
+        return true;
+    }
+    return false;
+}

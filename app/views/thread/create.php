@@ -13,6 +13,11 @@
             <?php entities($thread->validation['title']['length'][2]) ?> characters in length.
         </div>
     <?php endif ?>
+    <div>
+        <em>Title: Does not accept whitespace only</em>
+            <?php if ($thread->validation_errors['title']['format']): ?>
+            <?php endif ?>
+    </div>
 
 
     <!--VALIDATION ERROR ON COMMENT-->
@@ -21,7 +26,12 @@
             <?php entities($comment->validation['body']['length'][1]) ?> and
             <?php entities($comment->validation['body']['length'][2]) ?> characters in length.
         </div>
-    <?php endif ?>  
+    <?php endif ?>
+    <div>
+        <em>Open up: Does not accept whitespace only</em>
+            <?php if ($comment->validation_errors['body']['format']): ?>
+            <?php endif ?>
+    </div>
 
 </div>
 <?php endif ?>

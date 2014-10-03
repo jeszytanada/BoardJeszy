@@ -7,8 +7,11 @@ class Comment extends Appmodel
 
     public $validation = array(
         'body' => array(
-            'length'=>array(
+            'length'=> array(
                 'validate_between', self::MIN_COMMENT, self::MAX_COMMENT,
+            ),
+            'format' => array(
+                'check_space_format', "Invalid Comment"
             ),
         ),
     );

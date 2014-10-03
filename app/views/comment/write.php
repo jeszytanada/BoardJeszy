@@ -13,6 +13,11 @@
                 <?php entities($comment->validation['body']['length'][2]) ?> characters in length.
             </div>
         <?php endif ?>
+        <div>
+        <em>Comment: Does not accept whitespace only</em>
+            <?php if ($comment->validation_errors['body']['format']): ?>
+            <?php endif ?>
+    </div>
     </div>
 <?php endif ?>
 
