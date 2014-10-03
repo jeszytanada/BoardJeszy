@@ -3,7 +3,7 @@ class Comment extends Appmodel
 {
     
     const MIN_COMMENT = 1;
-    const MAX_COMMENT = 200;
+    const MAX_COMMENT = 500;
 
     public $validation = array(
         'body' => array(
@@ -83,7 +83,7 @@ class Comment extends Appmodel
     {   
         try {
             if ($this->username != $username) {
-                throw new ValidationException(notify("Restrict Deletion:User {$username} do not own this Comment","error"));
+                throw new ValidationException(notify("Restrict Deletion: User {$username} do not own this Comment","error"));
             }
             $db = DB::conn();
             $db->query("DELETE FROM comment WHERE id = ? AND username = ?", 

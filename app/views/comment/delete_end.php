@@ -1,5 +1,7 @@
 <h2>
-    <?php entities($comment->body) ?>
+    <div class = meta>
+        <font size = "4px">"<?php entities($comment->body) ?>"</font>
+    </div>
 </h2>
 
 <p class = "alert alert-success"> Delete Successfully!

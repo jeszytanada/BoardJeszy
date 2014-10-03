@@ -1,6 +1,9 @@
 <h2>
     Delete: by <?php entities($comment->username) ?> 
-    <br />"<?php entities($comment->body) ?>"
+    <br />
+    <div class = meta>
+        <font size = "4px">"<?php entities($comment->body) ?>"</font>
+    </div>
 </h2>
 
 <!--FORM to Delete-->
