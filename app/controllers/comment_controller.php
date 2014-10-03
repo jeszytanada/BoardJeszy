@@ -1,6 +1,10 @@
 <?php
 class CommentController extends AppController
 {
+    /**
+     * Constructor to always check user
+     * logged in status
+     */
     public function __construct($name) 
     { 
         parent::__construct($name);   
@@ -10,7 +14,7 @@ class CommentController extends AppController
     }
 
     /** 
-     * Displays specific Thread and its containing Comments
+     * Displays specific Thread and its containing Comment/s
      */
     public function view() 
     {    
@@ -50,7 +54,7 @@ class CommentController extends AppController
     }
 
     /**
-     * Delete Comment via Username
+     * Delete Comment using Username
      */
     public function delete()
     {

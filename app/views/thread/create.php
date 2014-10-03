@@ -1,5 +1,5 @@
 <div id="container">
-    <h2> Speak: </h2>
+    <h2> Thread: </h2>
 </div>
     
 <?php if($thread->hasError() || $comment->hasError()): ?>
@@ -30,18 +30,17 @@
 <form class = "body" method = "post" action = "<?php entities(url(''))?>">
     <div id ="leftcolumn" style="min-height: 50px;"><br />
         <label> Title </label>
-        <input type = "text" class = "span8" name = "title" value = "<?php entities(Param::get('title')) ?>">
-            <br /><br />
+        <input type = "text" class = "span8" name = "title" value = "<?php entities(Param::get('title')) ?>"><br /><br />
             <div style = "color: #0080FF">
-                <font size="5"><?php echo entities($_SESSION['username']) ?></font>
-            </div><br />
+                <font size="5"><?php echo entities($_SESSION['username']) ?></font><br />
+            </div>
         <input type = "hidden" class = "span4" name = "user_id" value = "<?php entities($_SESSION['user_id']) ?>">
             <img src = "/bootstrap/img/flag.png" height="30" width="30">
             <font size="3">Flag: <br />
                 <input type = "radio" name = "username" value = "<?php entities($_SESSION['username']) ?>" required> Username
                 <input type = "radio" name = "username" value = "Anonymous" required> Anonymous user 
             </font>
-        <label><br />  Open Up: </label>
+        <label><br /> Open Up: </label>
         <textarea name = "body" class = "span10" style = "height: 300px"><?php entities(Param::get('body')) ?></textarea><br />
         <input type = "hidden" name = "page_next" value = "create_end">
         <button type = "submit" class = "btn btn-primary"> Submit </button>

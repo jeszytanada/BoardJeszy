@@ -41,7 +41,6 @@
 <div id = "box" class = "register-form">
   <h1> Edit / Update Profile
       <form class = "body" method = "post" action = "<?php entities(url('')) ?>">
-
           <label> Username </label>
           <input type = "text" class = "span3" name = "username" value = "<?php echo entities($_SESSION['username']) ?>" >
           </span>                 

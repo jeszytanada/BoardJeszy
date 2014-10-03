@@ -1,6 +1,10 @@
 <?php 
 class ThreadController extends AppController
 {
+    /**
+     * Constructor to always check user
+     * logged in status
+     */
     public function __construct($name) 
     { 
         parent::__construct($name);   
@@ -26,6 +30,7 @@ class ThreadController extends AppController
 
     /** 
      * Create new Thread and should be with Comment/s
+     * $username is not same with session username
      */
     public function create() 
     {  
@@ -38,12 +43,12 @@ class ThreadController extends AppController
                 break;
                 
             case 'create_end':
-                $thread->id        = Param::get('thread_id');
-                $thread->user_id   = User::getId($_SESSION['username']);
-                $thread->title     = Param::get('title');
-                $comment->username = $username;
-                $comment->body     = Param::get('body');
                 try {
+                    $thread->id        = Param::get('thread_id');
+                    $thread->user_id   = User::getId($_SESSION['username']);
+                    $thread->title     = Param::get('title');
+                    $comment->username = $username;
+                    $comment->body     = Param::get('body');
                     $thread->create($comment);
                 } catch (ValidationException $e) {
                     $page = 'create';
@@ -84,7 +89,10 @@ class ThreadController extends AppController
         $this->set(get_defined_vars());
         $this->render($page);
     }
-
+    
+    /**
+     * Deletion of thread
+     */
     public function delete()
     {
         $position = null;

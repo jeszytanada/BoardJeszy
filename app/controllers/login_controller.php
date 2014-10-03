@@ -96,6 +96,7 @@ class LoginController extends AppController
     
     /**
      * Destroying session and logging out.
+     * Redirect to login index
      */
     function logout() 
     { 

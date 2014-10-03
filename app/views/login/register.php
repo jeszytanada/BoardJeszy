@@ -3,7 +3,7 @@
         <h4 class = "alert-heading"> Validation error! Please Try again..
         </h4>
 
-<!-- Validation for USERNAME-->
+        <!-- Validation for USERNAME-->
         <?php if ($user->validation_errors['username']['length']): ?>
             <div><em>User name</em> must be between
               <?php entities($user->validation['username']['length'][1]) ?> and
@@ -16,14 +16,13 @@
             </div>
     
     
-<!-- Validation for PASSWORD-->
+        <!-- Validation for PASSWORD-->
         <?php if ($user->validation_errors['password']['length']): ?>
             <div><em>Your password</em> must be between
                 <?php entities($user->validation['password']['length'][1]) ?> and
                 <?php entities($user->validation['password']['length'][2]) ?> characters in length.
             </div>
         <?php endif ?>
-
 
         <!-- Validation for First Name-->
         <?php if ($user->validation_errors['fname']['length']): ?>
