@@ -17,9 +17,8 @@ class Comment extends Appmodel
     );
 
     /** 
-     * Get all Comments of a Thread in Ascending order
-     * Then extract the contents of the comment table
-     * And return the comments.
+     * Get all Comments of a Thread
+     * Ascending order
      * @param thread id
      * @return array comment (contains all comments) 
      */
@@ -35,7 +34,7 @@ class Comment extends Appmodel
     }
 
     /** 
-     * Function to get the Comment Id.
+     * Function to get Comment.
      * @param comment id
      * @return comment matched to id
      */

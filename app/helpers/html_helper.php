@@ -5,6 +5,7 @@ function entities($string)
     if (!$string) return;
     echo htmlspecialchars($string, ENT_QUOTES);
 }
+
 function readable_text($s) 
 {
     $s = htmlspecialchars($s, ENT_QUOTES);

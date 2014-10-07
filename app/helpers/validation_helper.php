@@ -1,6 +1,7 @@
 <?php
 /**
  * Validate the minimum & max length
+ * @param value to check, minimum & max length
  */
 function validate_between($check, $min, $max) 
 {

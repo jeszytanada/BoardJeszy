@@ -44,7 +44,7 @@ class User extends AppModel
     );
 
     /** 
-     * Check if username and password is registered
+     * Check if username and password is matched
      * @return $user_info row
      */
     public function authenticate()
@@ -55,7 +55,7 @@ class User extends AppModel
         $db  = DB::conn();
         $row = $db->row('SELECT * FROM userinfo WHERE username = ? AND password = ?', array($this->username, $this->password));
         if (!$row){
-            throw new UserNotFoundException("User not found");
+            throw new UserNotFoundException("Username/Password is Incorrect");
         }  
         return new self($row);
     }

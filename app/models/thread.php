@@ -103,6 +103,7 @@ class Thread extends AppModel
     /**
      * Function used for Pagination
      * Returns the total count of thread ID
+     * @return count of all id
      */
     public static function count() 
     {
@@ -114,7 +115,7 @@ class Thread extends AppModel
      * Deletion of Thread by the Owner.
      * Compares the user_id used to create a thread
      * (from thread table) to the user_id from session
-     * @param $user_id (session) , $reply (yes/no)
+     * @param $user_id
      */
     public function delete($user_id)
     {   
@@ -135,7 +136,13 @@ class Thread extends AppModel
             throw $e;
         }
     }
-
+    
+     /**
+     * Edit title of Thread by the Owner.
+     * Compares the user_id (from thread table) 
+     * to the user_id from session
+     * @param $user_id
+     */
     public function update($user_id) 
     {
         if ($this->user_id != $user_id) {

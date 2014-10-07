@@ -25,7 +25,7 @@
         <input type = "text" class = "span8" name = "title" value = "<?php entities(Param::get('title')) ?>" placeholder = "New Title">
             <br /><br />
             <div style = "color: #0080FF">
-                <font size="5"><?php echo entities($_SESSION['username']) ?></font>
+                <font size = "5"><?php echo entities($_SESSION['username']) ?></font>
             </div><br />
             <br />  
         <input type = "submit" name = "submit" value = "Submit" class = "btn-large btn-primary"><br />

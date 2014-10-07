@@ -6,7 +6,7 @@ class LoginController extends AppController
      * Username and password are
      * taken from View and is passed to
      * authenticate username & password.
-     * $position = holds the position of the page.
+     * @var $position = holds the position of the page.
      */
 
     public function index() 
