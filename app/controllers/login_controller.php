@@ -33,7 +33,7 @@ class LoginController extends AppController
 
     /**
      * Gets the user information and use to register
-     * $position = holds the position of the page.
+     * @var $position = holds the position of the page.
      */
     public function register() 
     {  
@@ -58,7 +58,7 @@ class LoginController extends AppController
     /**
      * Updating profile, all info details can be retain
      * Sessions are initial value in view (previous details)
-     * $position = holds the position of the page.
+     * @var $position = holds the position of the page.
      */
     public function update() 
     {    

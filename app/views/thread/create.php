@@ -41,12 +41,9 @@
     <div id ="leftcolumn" style="min-height: 50px;"><br />
         <label> Title </label>
         <input type = "text" class = "span8" name = "title" value = "<?php entities(Param::get('title')) ?>"><br /><br />
-            <div style = "color: #0080FF">
-                <font size="5"><?php echo entities($_SESSION['username']) ?></font><br />
-            </div>
-        <input type = "hidden" class = "span4" name = "user_id" value = "<?php entities($_SESSION['user_id']) ?>">
             <img src = "/bootstrap/img/flag.png" height="30" width="30">
-            <font size="3">Flag: <br />
+            <font size="3">Flag:
+                <font size = "5" color = "#0080FF"><?php echo entities($_SESSION['username']) ?></font><br />
                 <input type = "radio" name = "username" value = "<?php entities($_SESSION['username']) ?>" required> Username
                 <input type = "radio" name = "username" value = "Anonymous" required> Anonymous user 
             </font>

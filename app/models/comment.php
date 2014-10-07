@@ -78,8 +78,7 @@ class Comment extends Appmodel
     }
 
     /** 
-     * Deletion of Comment
-     * and owner (username).
+     * Deletion of Comment by owner
      * @param username from Session and Confirm deletion
      */
     public function delete($username)

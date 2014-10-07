@@ -120,7 +120,7 @@ class Thread extends AppModel
     {   
         
         if ($this->user_id != $user_id) {
-            throw new ValidationException(notify('Restrict Deletion: User do not own this Thread',"error"));
+            throw new ValidationException(notify('Restrict Deletion: You do not own this Thread',"error"));
         }
         try {
             $db = DB::conn();

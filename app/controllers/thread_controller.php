@@ -130,8 +130,8 @@ class ThreadController extends AppController
     public function update() 
     {    
         $position = null;
-        $thread  = Thread::get(Param::get('thread_id'));
-        $user_id = User::getId($_SESSION['username']);
+        $thread   = Thread::get(Param::get('thread_id'));
+        $user_id  = User::getId($_SESSION['username']);
         $thread->title = Param::get('title');
         $position = "";
         if($thread->title) {
