@@ -79,6 +79,6 @@
               <font size = "2"> Already Registered? Log in </font>
           </a>
       </form>
-  </h1>    
+  </h1>
   <?php echo $position; ?>
 </div>

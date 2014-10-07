@@ -1,6 +1,6 @@
 <div id = "box" class = "body">
 <!--Form Log In-->
-<br /><br /> 
+<br /><br />
     <h1>  Login  <?php echo $position;?> 
         <form class = "form-signin" action = "<?php entities(url(''));?>" method = "POST"><br />
             <h4>

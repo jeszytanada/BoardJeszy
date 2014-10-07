@@ -53,7 +53,6 @@
         <button type = "submit" class = "btn btn-primary"> Submit </button>
         <div style = "text-align: left">
             <a class = "btn btn-primary" href = "<?php entities(url('thread/index'))?>"> Cancel</a>
-        </div> 
+        </div>
     </div>
 </form>
-

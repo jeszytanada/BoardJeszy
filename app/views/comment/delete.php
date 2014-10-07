@@ -1,6 +1,5 @@
 <h2>
-    Delete: by <?php entities($comment->username) ?> 
-    <br />
+    Delete: by <?php entities($comment->username) ?><br />
     <div class = meta>
         <font size = "4px">"<?php entities($comment->body) ?>"</font>
     </div>

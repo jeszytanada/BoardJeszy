@@ -6,7 +6,7 @@
     <h1>
         <div style = "color:#0080FF"> Hello <?php entities($_SESSION['username']);?> !
         </div><br /> 
-        Freedom Board <br />      
+        Freedom Board <br />
     </h1>
 </div>
 
@@ -26,7 +26,7 @@
                     </a>
                     <a href="<?php entities(url('thread/update', array('thread_id'=> $v->id)))?>">
                         <i class = "icon-pencil"></i>
-                    </a>     
+                    </a>
                 </div>
             </div>
         </li>

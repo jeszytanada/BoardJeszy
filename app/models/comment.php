@@ -55,7 +55,7 @@ class Comment extends Appmodel
      * @param thread id
      */
     public function write($thread_id) 
-    {   
+    {
         if (!$this->validate()) {
             throw new ValidationException('Invalid comment');
         }
@@ -73,7 +73,7 @@ class Comment extends Appmodel
             $db->rollback();
             throw $e;
         }
-        
+
     }
 
     /** 
@@ -92,5 +92,5 @@ class Comment extends Appmodel
         } catch (ValidationException $e) {
             throw $e;
         }
-    }      
+    }
 }

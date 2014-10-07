@@ -8,8 +8,8 @@
         <br />
         <input type = "hidden" name = "page_next" value = "delete_end"><br />
         <button type = "submit" class = "btn btn-success" name = "reply" value = "yes"> Yes </button>
-        <button type = "submit" class = "btn btn-danger" name = "reply" value = "no"> No </button>  
+        <button type = "submit" class = "btn btn-danger" name = "reply" value = "no"> No </button>
         <br /><br /><br /><br /><br /> 
-        </div> 
+        </div>
     <?php echo $position ?>
 </form>

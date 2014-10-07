@@ -9,8 +9,8 @@ class CommentController extends AppController
     { 
         parent::__construct($name);   
         if(is_logged() === false) { 
-             redirect($controller = 'index'); 
-        } 
+             redirect($controller = 'index');
+        }
     }
 
     /** 

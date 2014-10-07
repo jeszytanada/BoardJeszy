@@ -14,7 +14,7 @@
                 2<img src = "/bootstrap/img/star.jpg" height="30" width="30">
             <input type = "hidden" name = "page_next" value = "rate_end">
                 <br /><br /><br />
-            <button type = "submit" class = "btn btn-primary"> OK </button> 
+            <button type = "submit" class = "btn btn-primary"> OK </button>
         </font>
     </div>
 </form>

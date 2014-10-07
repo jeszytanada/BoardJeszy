@@ -66,7 +66,7 @@ class User extends AppModel
      * Else will be inserted to the database.
      */
     public function register()
-    {   
+    {
         if (!$this->validate()) {
             throw new ValidationException(notify('Error Found!', "error"));
         }
@@ -88,7 +88,7 @@ class User extends AppModel
         } catch (ValidationException $e) {
             throw $e;
         }
-    }  
+    }
 
     /** 
      * Get User Id 
@@ -115,7 +115,7 @@ class User extends AppModel
         }
         return new self($row);
     }
-    
+
     /** 
      * Profile edit / update, validate input
      * Separate checking for username & email existence

@@ -14,7 +14,7 @@ class Thread extends AppModel
             ),
         ),
     );
-    
+
     /** 
      * Get all the Threads from Database
      * Sort by Rating then if rating = 0,
@@ -161,5 +161,5 @@ class Thread extends AppModel
         } catch (ValidationException $e) {
             throw $e;
         }
-    }   
+    }
 }

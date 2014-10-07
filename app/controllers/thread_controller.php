@@ -33,7 +33,7 @@ class ThreadController extends AppController
      * $username is not same with session username
      */
     public function create() 
-    {  
+    {
         $thread   = new Thread;
         $comment  = new Comment;
         $username = Param::get('username');
@@ -89,7 +89,7 @@ class ThreadController extends AppController
         $this->set(get_defined_vars());
         $this->render($page);
     }
-    
+
     /**
      * Deletion of thread by owner
      */
@@ -123,7 +123,7 @@ class ThreadController extends AppController
         $this->set(get_defined_vars());
         $this->render($page);
     }
-    
+
     /**
      * Edit title of thread by owner
      */

@@ -59,12 +59,12 @@
 
           <label> Email </label>
           <input type = "email" class = "span3" id = "email" name = "email" value = "<?php echo entities($_SESSION['email']) ?>" >
-          <br />  
+          <br />
           <input type = "submit" name = "submit" value = "Submit" class = "btn-large btn-primary">
           <br />
           <a size = "5px" href = "<?php entities(url('thread/index')) ?>">
-          &larr; Back to Threads</a>   
+          &larr; Back to Threads</a>
       </form>
-  </h1>    
+  </h1>
   <?php echo $position; ?>
 </div>

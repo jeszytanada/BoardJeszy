@@ -1,7 +1,7 @@
 <h2>
     <?php entities($thread->title) ?>
-</h2>    
-    
+</h2>
+
 <?php if($comment->hasError()): ?>
     <div class = "alert alert-block">
         <h4 class = "alert-heading"> Validation error! Please Try Again..</h4>

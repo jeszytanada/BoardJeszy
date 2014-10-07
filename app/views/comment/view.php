@@ -1,6 +1,8 @@
-<h1> <div class = "well">
-    <?php entities($thread->title) ?>
-</h1>   </div>
+<div class = "well">
+    <h1>
+        <?php entities($thread->title) ?>
+    </h1>
+</div>
 
 <?php foreach ($comments as $k => $v): ?>
     <div id = "pad">
@@ -12,7 +14,7 @@
                         <i class = "icon-trash"></i>
                     </a>
                 </div>
-            </h4> 
+            </h4>
         </div>
         <div class = "well" style = "width: 900px"><?php echo entities($v->body) ?></div>
     </div>
@@ -35,6 +37,6 @@
 </hr><br />
 
 <div style = "text-align: center">
-    <a class = "btn btn-primary" href = "<?php entities(url('thread/index'))?>"> Back to Threads 
+    <a class = "btn btn-primary" href = "<?php entities(url('thread/index'))?>"> Back to Threads
     </a>
-</div> 
+</div>

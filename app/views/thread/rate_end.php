@@ -6,4 +6,4 @@
 </p>
 
 <a href = "<?php entities(url('thread/index')) ?>">
-&larr; Back</a>    
+&larr; Back</a>

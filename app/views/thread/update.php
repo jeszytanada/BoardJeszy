@@ -27,11 +27,10 @@
             <div style = "color: #0080FF">
                 <font size = "5"><?php echo entities($_SESSION['username']) ?></font>
             </div><br />
-            <br />  
+            <br />
         <input type = "submit" name = "submit" value = "Submit" class = "btn-large btn-primary"><br />
         <a href = "<?php entities(url('thread/index')) ?>">
           &larr; Back to Threads</a>
     </div>
     <?php echo $position; ?>
 </form>
-

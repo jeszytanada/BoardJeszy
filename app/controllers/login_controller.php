@@ -10,7 +10,7 @@ class LoginController extends AppController
      */
 
     public function index() 
-    {    
+    {
         $position = null;
         $username = Param::get('username');
         $password = Param::get('password');
@@ -50,11 +50,11 @@ class LoginController extends AppController
                 $position = notify("Registered Successfully");
             } catch (AppException $e) {
                 $position = notify($e->getMessage(), "error");
-            }      
+            }
         }
         $this->set(get_defined_vars());
     }
-    
+
     /**
      * Updating profile, all info details can be retain
      * Sessions are initial value in view (previous details)
@@ -65,7 +65,7 @@ class LoginController extends AppController
         if(!is_logged()) {
             redirect(url('login/index'));
         }
-        $position = null;
+        $position = null; 
         $user_id  = User::getId($_SESSION['username']);
         $user     = User::get($user_id);
         $_SESSION['fname'] = $user->fname;
@@ -89,11 +89,11 @@ class LoginController extends AppController
                 } catch (AppException $e) {
                     $position = notify($e->getMessage(), 'error');
                 }
-              
+
             }
         } $this->set(get_defined_vars()); 
     }
-    
+
     /**
      * Destroying session and logging out.
      * Redirect to login index
@@ -104,4 +104,3 @@ class LoginController extends AppController
         redirect(url('login/index'));
     }
 }
-
