@@ -8,7 +8,7 @@ class CommentController extends AppController
     public function __construct($name) 
     { 
         parent::__construct($name);   
-        if(is_logged() === false) { 
+        if(is_logged_in() === false) { 
              redirect($controller = 'index');
         }
     }
@@ -32,6 +32,7 @@ class CommentController extends AppController
         $comment = new Comment;
         $thread  = Thread::get(Param::get('thread_id'));
         $page    = Param::get('page_next','write');
+        
         switch($page) {
             case 'write':
                 break;
@@ -58,12 +59,12 @@ class CommentController extends AppController
      */
     public function delete()
     {
-        $position   = null;
         $comment_id = Param::get('comment_id');
         $comment    = Comment::get(Param::get('comment_id'));
         $username   = $_SESSION['username'];
         $page       = Param::get('page_next','delete');
-
+        $position = "";
+        
         switch($page) {
             case 'delete':
                 break;

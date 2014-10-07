@@ -32,5 +32,5 @@
         <a href = "<?php entities(url('thread/index')) ?>">
           &larr; Back to Threads</a>
     </div>
-    <?php echo $position; ?>
+    <?php echo $position ?>
 </form>

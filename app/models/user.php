@@ -12,7 +12,7 @@ class User extends AppModel
                 'validate_between', self::MIN_USER_VAL, self::MAX_USER_VAL,
             ),
             'format' => array(
-                'check_username_format', "Invalid Username"
+                'is_valid_username', "Invalid Username"
             ),
         ),
         'password'=> array(
@@ -25,7 +25,7 @@ class User extends AppModel
                 'validate_between', self::MIN_USER_VAL, self::MAX_USER_VAL,
             ),
             'format' => array(
-                'check_name_format', "Invalid First Name"
+                'is_valid_name', "Invalid First Name"
             ),
         ),
         'lname' => array(
@@ -33,12 +33,12 @@ class User extends AppModel
                 'validate_between', self::MIN_USER_VAL, self::MAX_USER_VAL,
             ),
             'format' => array(
-                'check_name_format', "Invalid Last Name"
+                'is_valid_name', "Invalid Last Name"
             ),
         ),
         'email'=> array(
             'format' => array(
-                'check_valid_email', "Invalid Email"
+                'is_valid_email', "Invalid Email"
             ),
         ),
     );

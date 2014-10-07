@@ -66,5 +66,5 @@
           &larr; Back to Threads</a>
       </form>
   </h1>
-  <?php echo $position; ?>
+  <?php echo $position ?>
 </div>

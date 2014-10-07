@@ -10,7 +10,7 @@ class Thread extends AppModel
                 'validate_between', self::MIN_TITLE, self::MAX_TITLE,
             ),
             'format' => array(
-                'check_space_format', "Invalid Title"
+                'is_valid_space', "Invalid Title"
             ),
         ),
     );

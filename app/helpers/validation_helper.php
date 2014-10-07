@@ -22,7 +22,7 @@ function redirect($url)
  * validation for email, match regex
  * @param $email input 
  */
-function check_valid_email($email) 
+function is_valid_email($email) 
 {
     return preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", $email);
 }
@@ -32,7 +32,7 @@ function check_valid_email($email)
  * alphanumeric chars and underscore
  * @param $username 
  */
-function check_username_format($username) 
+function is_valid_username($username) 
 {
     return !((preg_match('/[^a-zA-Z0-9_]/', $username)) || (preg_match('/_{2}/', $username)));
 }
@@ -42,7 +42,7 @@ function check_username_format($username)
  * alphabetic characters only
  * @param $name input 
  */
-function check_name_format($name)
+function is_valid_name($name)
 {
     if (ctype_alpha($name)) {
         return true;
@@ -54,7 +54,7 @@ function check_name_format($name)
  * Whitespace format 
  * @param $text = for body & title 
  */
-function check_space_format($text)
+function is_valid_space($text)
 {
     if ((preg_match('/[^\s]/', $text)) && (preg_match('/[\w]*/', $text))) {
         return true;

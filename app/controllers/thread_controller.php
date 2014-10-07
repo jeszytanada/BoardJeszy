@@ -8,7 +8,7 @@ class ThreadController extends AppController
     public function __construct($name) 
     { 
         parent::__construct($name);   
-        if(is_logged() === false) { 
+        if(is_logged_in() === false) { 
              redirect($controller = 'index'); 
         } 
     }
@@ -95,7 +95,7 @@ class ThreadController extends AppController
      */
     public function delete()
     {
-        $position = null;
+        $position = "";
         $thread   = Thread::get(Param::get('thread_id'));
         $user_id  = User::getId($_SESSION['username']);
         $page     = Param::get('page_next','delete');
@@ -129,7 +129,7 @@ class ThreadController extends AppController
      */
     public function update() 
     {    
-        $position = null;
+        
         $thread   = Thread::get(Param::get('thread_id'));
         $user_id  = User::getId($_SESSION['username']);
         $thread->title = Param::get('title');

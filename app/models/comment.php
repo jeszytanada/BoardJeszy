@@ -11,7 +11,7 @@ class Comment extends Appmodel
                 'validate_between', self::MIN_COMMENT, self::MAX_COMMENT,
             ),
             'format' => array(
-                'check_space_format', "Invalid Comment"
+                'is_valid_space', "Invalid Comment"
             ),
         ),
     );
@@ -61,16 +61,13 @@ class Comment extends Appmodel
         }
         try {
             $db = DB::conn();
-            $db->begin();
             $params = array(
                 'thread_id' => $thread_id,
                 'username'  => $this->username,
                 'body'      => $this->body,
             );
             $db->insert('comment', $params);
-            $db->commit();
         } catch (ValidationException $e) {
-            $db->rollback();
             throw $e;
         }
 
@@ -82,10 +79,10 @@ class Comment extends Appmodel
      */
     public function delete($username)
     {   
-        try {
-            if ($this->username != $username) {
+        if ($this->username != $username) {
                 throw new ValidationException(notify("Restrict Deletion: User {$username} do not own this Comment","error"));
             }
+        try {
             $db = DB::conn();
             $db->query("DELETE FROM comment WHERE id = ? AND username = ?", 
                 array($this->id, $this->username));

@@ -6,15 +6,15 @@ class LoginController extends AppController
      * Username and password are
      * taken from View and is passed to
      * authenticate username & password.
-     * @var $position = holds the position of the page.
      */
 
     public function index() 
     {
-        $position = null;
         $username = Param::get('username');
         $password = Param::get('password');
         $user = new User();
+        $position = "";
+        
         if ($username) {
             try {
                 $user->username = $username;
@@ -33,17 +33,17 @@ class LoginController extends AppController
 
     /**
      * Gets the user information and use to register
-     * @var $position = holds the position of the page.
      */
     public function register() 
     {  
-        $position = null;
+        $position = "";
         $user = new User();
         $user->username = Param::get('username');
         $user->password = Param::get('password');
         $user->fname    = Param::get('fname');
         $user->lname    = Param::get('lname');
         $user->email    = Param::get('email');
+        
         if($user->username) {
             try {
                 $user->register();
@@ -58,14 +58,12 @@ class LoginController extends AppController
     /**
      * Updating profile, all info details can be retain
      * Sessions are initial value in view (previous details)
-     * @var $position = holds the position of the page.
      */
     public function update() 
     {    
-        if(!is_logged()) {
+        if(!is_logged_in()) {
             redirect(url('login/index'));
         }
-        $position = null; 
         $user_id  = User::getId($_SESSION['username']);
         $user     = User::get($user_id);
         $_SESSION['fname'] = $user->fname;
@@ -73,7 +71,8 @@ class LoginController extends AppController
         $_SESSION['email'] = $user->email;
         $prev_user         = $_SESSION['username'];
         $prev_email        = $_SESSION['email'];
-
+        $position = "";
+        
         if ($user_id) {
             $user->username = Param::get('username');
             $user->password = Param::get('password');

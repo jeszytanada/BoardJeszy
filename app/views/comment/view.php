@@ -1,8 +1,6 @@
-<div class = "well">
-    <h1>
-        <?php entities($thread->title) ?>
-    </h1>
-</div>
+<h1><div class = "well">
+    <?php entities($thread->title) ?>
+</h1></div>
 
 <?php foreach ($comments as $k => $v): ?>
     <div id = "pad">
