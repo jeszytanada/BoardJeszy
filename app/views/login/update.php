@@ -5,16 +5,11 @@
 
         <!-- Validation for USERNAME-->
         <?php if ($user->validation_errors['username']['length']): ?>
-            <div><em>User name</em> must be between
+            <div><em>Your name</em> must be between
               <?php entities($user->validation['username']['length'][1]) ?> and
               <?php entities($user->validation['username']['length'][2]) ?> characters in length.
             </div>
         <?php endif ?>
-            <div><em>Username Validation Error (alphabetic characters, numbers and underscore only)</em>
-              <?php if ($user->validation_errors['username']['format']): ?>
-              <?php endif ?>
-            </div>
-    
     
         <!-- Validation for PASSWORD-->
         <?php if ($user->validation_errors['password']['length']): ?>
@@ -31,10 +26,6 @@
                  <?php entities($user->validation['fname']['length'][2]) ?> characters in length.
              </div>
         <?php endif ?>
-        <div><em>First Name Validation Error (alphabetic characters only)</em>
-              <?php if ($user->validation_errors['fname']['format']): ?>
-              <?php endif ?>
-        </div>
 
         <!-- Validation for Last Name-->
         <?php if ($user->validation_errors['lname']['length']): ?>
@@ -43,41 +34,36 @@
                  <?php entities($user->validation['lname']['length'][2]) ?> characters in length.
              </div>
         <?php endif ?>
-        <div><em>Last Name Validation Error (alphabetic characters only)</em>
-              <?php if ($user->validation_errors['lname']['format']): ?>
-              <?php endif ?>
-        </div>
     </div>
 <?php endif ?>
 
-<!-- Registration Form-->
+<!-- Edit / Update Form-->
 <div id = "box" class = "register-form">
-  <h1> Registration
-      <form class = "body" method = "post" action = "<?php entities(url('')) ?>" onSubmit = "register()">
-          <br />
+  <h1> Edit / Update Profile
+      <form class = "body" method = "post" action = "<?php entities(url('')) ?>">
           <label> Username </label>
-          <input type = "text" class = "span3" name = "username" placeholder = "Username" required>
-          <span class="icon-asterisk"></span>                 
+          <input type = "text" class = "span3" name = "username" value = "<?php echo entities($_SESSION['username']) ?>" >
+          </span>                 
 
           <label> Password </label>
-          <input type ="Password" class = "span3" name = "password" placeholder = "Password (6-15 length)" required>
-          <span class="icon-asterisk"></span>
+          <input type ="Password" class = "span3" name = "password" value = "<?php echo entities($_SESSION['password']) ?>" >
+          </span><font size = "3px" color = "gray" >Password (6-15 characters)</font>
 
           <label> First Name</label>
-          <input type = "text" class = "span3" name = "fname" placeholder = "First Name" required>
-          <span class = "icon-asterisk"></span>
+          <input type = "text" class = "span3" id = "fname" name = "fname" value = "<?php echo entities($_SESSION['fname']) ?>" >
+          </span>
 
           <label> Last Name</label>
-          <input type = "text" class = "span3" name = "lname" placeholder = "Last Name" required>
-          <span class = "icon-asterisk"></span>
+          <input type = "text" class = "span3" id = "lname" name = "lname" value = "<?php echo entities($_SESSION['lname']) ?>" >
+          </span>
 
           <label> Email </label>
-          <input type = "email" class = "span3" id = "email" name = "email" placeholder = "Email" required>
-          <span class = "icon-asterisk"></span><br />  
-          <input type = "submit" name = "submit" id = "submit" value = "Submit" class = "btn-large btn-primary"><br />
-          <a name = "login" href = "<?php entities(url('login/index'));?>">
-              <font size = "2"> Already Registered? Log in </font>
-          </a>
+          <input type = "email" class = "span3" id = "email" name = "email" value = "<?php echo entities($_SESSION['email']) ?>" >
+          <br />
+          <input type = "submit" name = "submit" value = "Submit" class = "btn-large btn-primary">
+          <br />
+          <a size = "5px" href = "<?php entities(url('thread/index')) ?>">
+          &larr; Back to Threads</a>
       </form>
   </h1>
   <?php echo $status ?>

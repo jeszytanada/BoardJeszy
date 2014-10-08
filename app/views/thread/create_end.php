@@ -6,4 +6,4 @@
 </p>
 
 <a href = "<?php entities(url('comment/view', array('thread_id' => $thread->id))) ?>">
-&larr; Go to Thread </a>    
+&larr; Back to Threads </a>

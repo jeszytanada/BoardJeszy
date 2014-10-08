@@ -1,7 +1,7 @@
 <div id = "box" class = "body">
 <!--Form Log In-->
-<br /><br /> 
-    <h1>  Login  <?php echo $position;?> 
+<br /><br />
+    <h1>  Login  <?php echo $status ?>
         <form class = "form-signin" action = "<?php entities(url(''));?>" method = "POST"><br />
             <h4>
                 <p class = "sansserif"> Username <br /> 

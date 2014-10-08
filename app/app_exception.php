@@ -18,10 +18,12 @@ class UserAlreadyExistsException extends AppException
 {
 
 }
+
 class PageNotFoundException extends AppException
 {
 
 }
+
 class RecordNotFoundException extends AppException
 {
 
