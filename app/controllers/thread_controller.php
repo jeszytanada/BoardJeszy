@@ -38,6 +38,7 @@ class ThreadController extends AppController
         $comment  = new Comment;
         $username = Param::get('username');
         $page     = Param::get('page_next','create');
+        
         switch($page) {
             case 'create':
                 break;
@@ -70,6 +71,7 @@ class ThreadController extends AppController
     {
         $thread = Thread::get(Param::get('thread_id'));
         $page   = Param::get('page_next','rate');
+        
         switch($page) {
             case 'rate':
                 break;
@@ -134,6 +136,7 @@ class ThreadController extends AppController
         $user_id  = User::getId($_SESSION['username']);
         $thread->title = Param::get('title');
         $position = "";
+        
         if($thread->title) {
             try {
                 $thread->update($user_id);
