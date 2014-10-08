@@ -70,24 +70,20 @@ class User extends AppModel
         if (!$this->validate()) {
             throw new ValidationException(notify('Error Found!', "error"));
         }
-        try {
-            $params = array(
-                'username' => $this->username,
-                'password' => $this->password,
-                'fname'    => $this->fname,
-                'lname'    => $this->lname,
-                'email'    => $this->email
-            );
-            $db = DB::conn();
-            $search_results = $db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', 
-                array($this->username,$this->email));
-            if ($search_results) {
-                throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
-            }
-            $db->insert('userinfo',$params);
-        } catch (ValidationException $e) {
-            throw $e;
+        $params = array(
+            'username' => $this->username,
+            'password' => $this->password,
+            'fname'    => $this->fname,
+            'lname'    => $this->lname,
+            'email'    => $this->email
+        );
+        $db = DB::conn();
+        $search_results = $db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', 
+            array($this->username,$this->email));
+        if ($search_results) {
+            throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
         }
+        $db->insert('userinfo',$params);
     }
 
     /** 

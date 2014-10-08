@@ -59,18 +59,13 @@ class Comment extends Appmodel
         if (!$this->validate()) {
             throw new ValidationException('Invalid comment');
         }
-        try {
-            $db = DB::conn();
-            $params = array(
-                'thread_id' => $thread_id,
-                'username'  => $this->username,
-                'body'      => $this->body,
-            );
-            $db->insert('comment', $params);
-        } catch (ValidationException $e) {
-            throw $e;
-        }
-
+        $db = DB::conn();
+        $params = array(
+            'thread_id' => $thread_id,
+            'username'  => $this->username,
+            'body'      => $this->body,
+        );
+        $db->insert('comment', $params);
     }
 
     /** 
@@ -81,13 +76,9 @@ class Comment extends Appmodel
     {   
         if ($this->username != $username) {
                 throw new ValidationException(notify("Restrict Deletion: User {$username} do not own this Comment","error"));
-            }
-        try {
-            $db = DB::conn();
-            $db->query("DELETE FROM comment WHERE id = ? AND username = ?", 
-                array($this->id, $this->username));
-        } catch (ValidationException $e) {
-            throw $e;
         }
+        $db = DB::conn();
+        $db->query("DELETE FROM comment WHERE id = ? AND username = ?", 
+            array($this->id, $this->username));
     }
 }

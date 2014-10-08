@@ -121,7 +121,7 @@ class Thread extends AppModel
     {   
         
         if ($this->user_id != $user_id) {
-            throw new ValidationException(notify('Restrict Deletion: You do not own this Thread',"error"));
+            throw new ValidationException(notify('Restrict Deletion: Only owner can delete this Thread',"error"));
         }
         try {
             $db = DB::conn();
@@ -146,20 +146,16 @@ class Thread extends AppModel
     public function update($user_id) 
     {
         if ($this->user_id != $user_id) {
-            throw new ValidationException(notify('Restrict Update: Not owner of the Thread',"error"));
+            throw new ValidationException(notify('Restrict Update: Only owner can update this Thread',"error"));
         }
         if (!$this->validate()) {
             throw new ValidationException(notify('Thread Title Error',"error"));
         }
-        try {
-            $params = array(
-                'title'   => $this->title,
-                'updated' => date('Y-m-d h:i:s')
-            );
-            $db = DB::conn();
-            $db->update('thread', $params, array('id' => $this->id));
-        } catch (ValidationException $e) {
-            throw $e;
-        }
+        $params = array(
+            'title'   => $this->title,
+            'updated' => date('Y-m-d h:i:s')
+        );
+        $db = DB::conn();
+        $db->update('thread', $params, array('id' => $this->id));
     }
 }
