@@ -61,7 +61,6 @@ class CommentController extends AppController
     {
         $comment_id = Param::get('comment_id');
         $comment    = Comment::get(Param::get('comment_id'));
-        $username   = $_SESSION['username'];
         $page       = Param::get('page_next','delete');
         $status = "";
         
@@ -75,7 +74,7 @@ class CommentController extends AppController
                     if ($reply == 'no') {
                         redirect(url('thread/index'));
                     } else {
-                        $comment->delete($username);
+                        $comment->delete($_SESSION['username']);
                     }
                 } catch (ValidationException $e) {
                     $status = notify($e->getMessage(), "error");
