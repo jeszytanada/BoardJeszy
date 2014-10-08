@@ -36,14 +36,14 @@ class LoginController extends AppController
      */
     public function register() 
     {  
-        $position = "";
         $user = new User();
         $user->username = Param::get('username');
         $user->password = Param::get('password');
         $user->fname    = Param::get('fname');
         $user->lname    = Param::get('lname');
         $user->email    = Param::get('email');
-        
+        $position = "";
+
         if($user->username) {
             try {
                 $user->register();
@@ -79,7 +79,7 @@ class LoginController extends AppController
             $user->fname    = Param::get('fname');
             $user->lname    = Param::get('lname');
             $user->email    = Param::get('email');
-            $position = "";
+
             if($user->username) {
                 try {
                     $user->update($user_id, $prev_user, $prev_email);

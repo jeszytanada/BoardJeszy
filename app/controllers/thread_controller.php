@@ -97,11 +97,11 @@ class ThreadController extends AppController
      */
     public function delete()
     {
-        $position = "";
         $thread   = Thread::get(Param::get('thread_id'));
         $user_id  = User::getId($_SESSION['username']);
         $page     = Param::get('page_next','delete');
-
+        $position = "";
+         
         switch($page) {
             case 'delete':
                 break;
@@ -131,7 +131,6 @@ class ThreadController extends AppController
      */
     public function update() 
     {    
-        
         $thread   = Thread::get(Param::get('thread_id'));
         $user_id  = User::getId($_SESSION['username']);
         $thread->title = Param::get('title');
