@@ -11,14 +11,13 @@ class LoginController extends AppController
     public function index() 
     {
         $username = Param::get('username');
-        $password = Param::get('password');
         $user = new User();
         $status = "";
         
         if ($username) {
             try {
                 $user->username = $username;
-                $user->password = $password;
+                $user->password = Param::get('password');
                 $user_info = $user->authenticate();
                 $_SESSION['username'] = $user_info->username;
                 $_SESSION['password'] = $user_info->password;
@@ -38,14 +37,14 @@ class LoginController extends AppController
     {  
         $user = new User();
         $user->username = Param::get('username');
-        $user->password = Param::get('password');
-        $user->fname    = Param::get('fname');
-        $user->lname    = Param::get('lname');
-        $user->email    = Param::get('email');
         $status = "";
 
         if ($user->username) {
             try {
+                $user->password = Param::get('password');
+                $user->fname    = Param::get('fname');
+                $user->lname    = Param::get('lname');
+                $user->email    = Param::get('email');
                 $user->register();
                 $status = notify("Registered Successfully");
             } catch (AppException $e) {

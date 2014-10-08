@@ -8,7 +8,7 @@ class CommentController extends AppController
     public function __construct($name) 
     { 
         parent::__construct($name);   
-        if(is_logged_in() === false) { 
+        if (is_logged_in() === false) { 
              redirect($controller = 'index');
         }
     }
@@ -62,7 +62,7 @@ class CommentController extends AppController
         $comment_id = Param::get('comment_id');
         $comment    = Comment::get(Param::get('comment_id'));
         $page       = Param::get('page_next','delete');
-        $status = "";
+        $status     = "";
         
         switch($page) {
             case 'delete':

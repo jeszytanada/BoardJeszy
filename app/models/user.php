@@ -54,6 +54,7 @@ class User extends AppModel
         }
         $db  = DB::conn();
         $row = $db->row('SELECT * FROM userinfo WHERE username = ? AND password = ?', array($this->username, $this->password));
+        
         if (!$row){
             throw new UserNotFoundException("Username/Password is Incorrect");
         }  
@@ -78,8 +79,8 @@ class User extends AppModel
             'email'    => $this->email
         );
         $db = DB::conn();
-        $search_results = $db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', 
-            array($this->username,$this->email));
+        $search_results = $db->row('SELECT username, email FROM userinfo WHERE username=? OR email=?', array($this->username,$this->email));
+        
         if ($search_results) {
             throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
         }
@@ -106,6 +107,7 @@ class User extends AppModel
     {
         $db  = DB::conn();
         $row = $db->row('SELECT * FROM userinfo WHERE id = ?',array($user_id));
+        
         if (!$row) {
             throw new RecordNotFoundException('no record found');
         }
@@ -122,6 +124,7 @@ class User extends AppModel
         if (!$this->validate()) {
             throw new ValidationException(notify('Error Found!', "error"));
         }
+        
         try {
             $params = array(
                 'username' => $this->username,
@@ -131,6 +134,7 @@ class User extends AppModel
                 'email'    => $this->email
             );
             $db = DB::conn();
+            
             if ($prev_username != $this->username) {
                 $results = $db->row('SELECT username FROM userinfo WHERE username = ?', 
                     array($this->username));
@@ -138,6 +142,7 @@ class User extends AppModel
                     throw new UserAlreadyExistsException(notify('Username Already Exists',"error"));
                 }
             }
+            
             if ($prev_email != $this->email) {
                 $results = $db->row('SELECT email FROM userinfo WHERE email = ?', 
                     array($this->email));

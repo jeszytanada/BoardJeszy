@@ -6,6 +6,7 @@ class Pagination
  */
     const MAX_ROWS = 5;
     const LINK_LIMIT = 3;
+    
     public function getPage($rows) 
     {
     /**

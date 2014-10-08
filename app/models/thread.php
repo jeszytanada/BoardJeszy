@@ -27,6 +27,7 @@ class Thread extends AppModel
         $threads = array();
         $db = DB::conn();
         $rows = $db->rows("SELECT * FROM thread ORDER BY rating DESC, created DESC $all_threads");
+        
         foreach ($rows as $row) { 
             $threads[] = new self ($row);
         }
@@ -43,6 +44,7 @@ class Thread extends AppModel
     {
         $db = DB::conn();
         $row = $db->row('SELECT * FROM thread WHERE id = ?',array($thread_id));
+        
         if (!$row) {
             throw new RecordNotFoundException('no record found');
         }
@@ -73,6 +75,7 @@ class Thread extends AppModel
             throw new ValidationException('Invalid thread or comment');
         }
         $db = DB::conn();
+
         try{    
             $db->begin();
             $params = array(
@@ -120,17 +123,15 @@ class Thread extends AppModel
      */
     public function delete($user_id)
     {   
-        
         if ($this->user_id != $user_id) {
             throw new ValidationException(notify('Restrict Deletion: Only owner can delete this Thread',"error"));
         }
+
         try {
             $db = DB::conn();
             $db->begin();
-            $db->query("DELETE FROM thread WHERE id = ? AND user_id = ?", 
-                array($this->id, $this->user_id));
-            $db->query("DELETE FROM comment WHERE thread_id = ?", 
-                array($this->id));
+            $db->query("DELETE FROM thread WHERE id = ? AND user_id = ?", array($this->id, $this->user_id));
+            $db->query("DELETE FROM comment WHERE thread_id = ?", array($this->id));
             $db->commit();
         } catch (ValidationException $e) {
             $db->rollback();
@@ -149,6 +150,7 @@ class Thread extends AppModel
         if ($this->user_id != $user_id) {
             throw new ValidationException(notify('Restrict Update: Only owner can update this Thread',"error"));
         }
+
         if (!$this->validate()) {
             throw new ValidationException(notify('Thread Title Error',"error"));
         }

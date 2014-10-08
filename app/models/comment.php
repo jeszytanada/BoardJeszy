@@ -27,6 +27,11 @@ class Comment extends Appmodel
         $comments = array();
         $db = DB::conn();
         $rows = $db->rows('SELECT * FROM comment WHERE thread_id = ? ORDER BY created ASC', array($thread_id));
+        
+        if (!$row) {
+            throw new RecordNotFoundException('no record found');
+        }
+        
         foreach ($rows as $row) {
             $comments[] = new self($row);
         }
@@ -42,6 +47,7 @@ class Comment extends Appmodel
     {
         $db = DB::conn();
         $row = $db->row('SELECT * FROM comment WHERE id = ?', array($comment_id));
+        
         if (!$row) {
             throw new RecordNotFoundException('no record found');
         }
@@ -78,7 +84,6 @@ class Comment extends Appmodel
                 throw new ValidationException(notify("Restrict Deletion: User {$username} do not own this Comment","error"));
         }
         $db = DB::conn();
-        $db->query("DELETE FROM comment WHERE id = ? AND username = ?", 
-            array($this->id, $this->username));
+        $db->query("DELETE FROM comment WHERE id = ? AND username = ?", array($this->id, $this->username));
     }
 }
