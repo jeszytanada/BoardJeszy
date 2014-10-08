@@ -74,8 +74,9 @@ class CommentController extends AppController
                     $reply = Param::get('reply');
                     if ($reply == 'no') {
                         redirect(url('thread/index'));
+                    } else {
+                        $comment->delete($username);
                     }
-                    $comment->delete($username);
                 } catch (ValidationException $e) {
                     $position = notify($e->getMessage(), "error");
                     $page = 'delete';

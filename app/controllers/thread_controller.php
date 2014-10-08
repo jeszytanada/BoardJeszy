@@ -111,8 +111,9 @@ class ThreadController extends AppController
                     $reply = Param::get('reply');
                     if ($reply == 'no') {
                         redirect(url('thread/index'));  
-                    } 
-                    $thread->delete($user_id);
+                    } else {
+                        $thread->delete($user_id);
+                    }
                 } catch (ValidationException $e) {
                     $position = notify($e->getMessage(), "error");
                     $page = 'delete';
