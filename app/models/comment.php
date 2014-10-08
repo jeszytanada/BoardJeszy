@@ -28,10 +28,6 @@ class Comment extends Appmodel
         $db = DB::conn();
         $rows = $db->rows('SELECT * FROM comment WHERE thread_id = ? ORDER BY created ASC', array($thread_id));
         
-        if (!$row) {
-            throw new RecordNotFoundException('no record found');
-        }
-        
         foreach ($rows as $row) {
             $comments[] = new self($row);
         }
