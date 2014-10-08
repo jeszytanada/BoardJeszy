@@ -11,5 +11,5 @@
         <button type = "submit" class = "btn btn-danger" name = "reply" value = "no"> No </button>
         <br /><br /><br /><br /><br /> 
         </div>
-    <?php echo $position ?>
+    <?php echo $status ?>
 </form>

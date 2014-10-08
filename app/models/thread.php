@@ -68,6 +68,7 @@ class Thread extends AppModel
     {   
         $this->validate();
         $comment->validate();
+        
         if ($this->hasError() || $comment->hasError()) {
             throw new ValidationException('Invalid thread or comment');
         }

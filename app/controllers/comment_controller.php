@@ -63,7 +63,7 @@ class CommentController extends AppController
         $comment    = Comment::get(Param::get('comment_id'));
         $username   = $_SESSION['username'];
         $page       = Param::get('page_next','delete');
-        $position = "";
+        $status = "";
         
         switch($page) {
             case 'delete':
@@ -78,7 +78,7 @@ class CommentController extends AppController
                         $comment->delete($username);
                     }
                 } catch (ValidationException $e) {
-                    $position = notify($e->getMessage(), "error");
+                    $status = notify($e->getMessage(), "error");
                     $page = 'delete';
                 }
                 break;

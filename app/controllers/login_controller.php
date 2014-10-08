@@ -13,7 +13,7 @@ class LoginController extends AppController
         $username = Param::get('username');
         $password = Param::get('password');
         $user = new User();
-        $position = "";
+        $status = "";
         
         if ($username) {
             try {
@@ -25,7 +25,7 @@ class LoginController extends AppController
                 $_SESSION['id']       = $user_info->id;
                 redirect(url('thread/index'));
             } catch (AppException $e) {
-                $position = notify($e->getMessage(),"error");
+                $status = notify($e->getMessage(),"error");
             }
         } 
         $this->set(get_defined_vars());
@@ -42,14 +42,14 @@ class LoginController extends AppController
         $user->fname    = Param::get('fname');
         $user->lname    = Param::get('lname');
         $user->email    = Param::get('email');
-        $position = "";
+        $status = "";
 
-        if($user->username) {
+        if ($user->username) {
             try {
                 $user->register();
-                $position = notify("Registered Successfully");
+                $status = notify("Registered Successfully");
             } catch (AppException $e) {
-                $position = notify($e->getMessage(), "error");
+                $status = notify($e->getMessage(), "error");
             }
         }
         $this->set(get_defined_vars());
@@ -61,7 +61,7 @@ class LoginController extends AppController
      */
     public function update() 
     {    
-        if(!is_logged_in()) {
+        if (!is_logged_in()) {
             redirect(url('login/index'));
         }
         $user_id  = User::getId($_SESSION['username']);
@@ -71,7 +71,7 @@ class LoginController extends AppController
         $_SESSION['email'] = $user->email;
         $prev_user         = $_SESSION['username'];
         $prev_email        = $_SESSION['email'];
-        $position = "";
+        $status = "";
         
         if ($user_id) {
             $user->username = Param::get('username');
@@ -80,13 +80,13 @@ class LoginController extends AppController
             $user->lname    = Param::get('lname');
             $user->email    = Param::get('email');
 
-            if($user->username) {
+            if ($user->username) {
                 try {
                     $user->update($user_id, $prev_user, $prev_email);
-                    $position = notify("Edit Success");
+                    $status = notify("Edit Success");
                     $_SESSION['username'] = $user->username;
                 } catch (AppException $e) {
-                    $position = notify($e->getMessage(), 'error');
+                    $status = notify($e->getMessage(), 'error');
                 }
 
             }

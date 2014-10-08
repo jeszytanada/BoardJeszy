@@ -5,13 +5,14 @@ class Pagination
  * Pagination (Page Manipulation) 
  */
     const MAX_ROWS = 5;
+    const LINK_LIMIT = 3;
     public function getPage($rows) 
     {
     /**
      * Establish page number
      * Only number can be the value of $pagenum
      */
-        if(!isset($pagenum)) {
+        if (!isset($pagenum)) {
             $pagenum = 1;
         } 
         if (isset($_GET['pn'])) {
@@ -66,7 +67,7 @@ class Pagination
             /**
              * Clickable number links
              */
-                for ($i = $pagenum - 4; $i < $pagenum; $i++) {
+                for ($i = $pagenum - self::LINK_LIMIT; $i < $pagenum; $i++) {
                     $link_page = $i;
                     if ($i > 0) {
                         $paginationCtrls .= "<a href='".url('', $current_page)."'> $i </a> &nbsp; ";
@@ -84,7 +85,7 @@ class Pagination
         for ($i = $pagenum + 1; $i <= $last_page; $i++) {
             $link_page = $i;
             $paginationCtrls .= "<a href='".url('', $current_page)."'> $i </a> &nbsp; ";
-            if ($i >= $pagenum + 3) {
+            if ($i >= $pagenum + self::LINK_LIMIT) {
                 break;
             }
         }

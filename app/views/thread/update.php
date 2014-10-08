@@ -1,4 +1,4 @@
-<?php if($thread->hasError()): ?>
+<?php if ($thread->hasError()): ?>
 <div class = "alert alert-block">
     <h4 class = "alert-heading"> Validation error! Please Try Again.. </h4>
 
@@ -32,5 +32,5 @@
         <a href = "<?php entities(url('thread/index')) ?>">
           &larr; Back to Threads</a>
     </div>
-    <?php echo $position ?>
+    <?php echo $status ?>
 </form>

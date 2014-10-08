@@ -19,9 +19,8 @@ class ThreadController extends AppController
      */
     public function index() 
     {   
-        $thread_count = Thread::count();
         $paginate = new Pagination;
-        $page = $paginate->getPage($thread_count);
+        $page = $paginate->getPage(Thread::count());
         $pagination_links = $paginate->rangeRows($page['pagenum'], $page['last_page']);
         $threads = Thread::getAll($pagination_links['max']);
         
@@ -100,7 +99,7 @@ class ThreadController extends AppController
         $thread   = Thread::get(Param::get('thread_id'));
         $user_id  = User::getId($_SESSION['username']);
         $page     = Param::get('page_next','delete');
-        $position = "";
+        $status = "";
          
         switch($page) {
             case 'delete':
@@ -115,7 +114,7 @@ class ThreadController extends AppController
                         $thread->delete($user_id);
                     }
                 } catch (ValidationException $e) {
-                    $position = notify($e->getMessage(), "error");
+                    $status = notify($e->getMessage(), "error");
                     $page = 'delete';
                 }
                 break;
@@ -135,14 +134,14 @@ class ThreadController extends AppController
         $thread   = Thread::get(Param::get('thread_id'));
         $user_id  = User::getId($_SESSION['username']);
         $thread->title = Param::get('title');
-        $position = "";
+        $status = "";
         
-        if($thread->title) {
+        if ($thread->title) {
             try {
                 $thread->update($user_id);
-                $position = notify("Update Success");
+                $status = notify("Update Success");
             } catch (AppException $e) {
-                $position = notify($e->getMessage(), 'error');
+                $status = notify($e->getMessage(), 'error');
             }
         }
         $this->set(get_defined_vars()); 

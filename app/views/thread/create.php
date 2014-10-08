@@ -2,7 +2,7 @@
     <h2> Thread: </h2>
 </div>
     
-<?php if($thread->hasError() || $comment->hasError()): ?>
+<?php if ($thread->hasError() || $comment->hasError()): ?>
 <div class = "alert alert-block">
     <h4 class = "alert-heading"> Validation error! Please Try Again.. </h4>
 
@@ -21,7 +21,7 @@
 
 
     <!--VALIDATION ERROR ON COMMENT-->
-    <?php if(!empty($comment->validation_errors['body']['length'])): ?>
+    <?php if (!empty($comment->validation_errors['body']['length'])): ?>
         <div><em> Open Up: </em> must be between
             <?php entities($comment->validation['body']['length'][1]) ?> and
             <?php entities($comment->validation['body']['length'][2]) ?> characters in length.
