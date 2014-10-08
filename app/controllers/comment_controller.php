@@ -70,8 +70,7 @@ class CommentController extends AppController
 
             case 'delete_end':
                 try {
-                    $reply = Param::get('reply');
-                    if ($reply == 'no') {
+                    if (Param::get('reply') == 'no') {
                         redirect(url('thread/index'));
                     } else {
                         $comment->delete($_SESSION['username']);
