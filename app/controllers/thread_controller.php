@@ -34,8 +34,7 @@ class ThreadController extends AppController
     public function create() 
     {
         $thread   = new Thread;
-        $comment  = new Comment;
-        $username = Param::get('username');
+        $comment  = new Comment; 
         $page     = Param::get('page_next','create');
         
         switch($page) {
@@ -47,7 +46,7 @@ class ThreadController extends AppController
                     $thread->id        = Param::get('thread_id');
                     $thread->user_id   = User::getId($_SESSION['username']);
                     $thread->title     = Param::get('title');
-                    $comment->username = $username;
+                    $comment->username = Param::get('username');
                     $comment->body     = Param::get('body');
                     $thread->create($comment);
                 } catch (ValidationException $e) {
@@ -77,8 +76,7 @@ class ThreadController extends AppController
 
             case 'rate_end':
                 try {
-                    $star_count = Param::get('rating');
-                    $thread->increaseRate($star_count);
+                    $thread->increaseRate(Param::get('rating'));
                 } catch (ValidationException $e) {
                     $page = 'rate';
                 }
@@ -97,7 +95,6 @@ class ThreadController extends AppController
     public function delete()
     {
         $thread   = Thread::get(Param::get('thread_id'));
-        $user_id  = User::getId($_SESSION['username']);
         $page     = Param::get('page_next','delete');
         $status = "";
          
@@ -111,7 +108,7 @@ class ThreadController extends AppController
                     if ($reply == 'no') {
                         redirect(url('thread/index'));  
                     } else {
-                        $thread->delete($user_id);
+                        $thread->delete(User::getId($_SESSION['username']));
                     }
                 } catch (ValidationException $e) {
                     $status = notify($e->getMessage(), "error");
@@ -132,13 +129,12 @@ class ThreadController extends AppController
     public function update() 
     {    
         $thread   = Thread::get(Param::get('thread_id'));
-        $user_id  = User::getId($_SESSION['username']);
         $thread->title = Param::get('title');
         $status = "";
         
         if ($thread->title) {
             try {
-                $thread->update($user_id);
+                $thread->update(User::getId($_SESSION['username']));
                 $status = notify("Update Success");
             } catch (AppException $e) {
                 $status = notify($e->getMessage(), 'error');

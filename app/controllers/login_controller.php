@@ -69,8 +69,6 @@ class LoginController extends AppController
         $_SESSION['fname'] = $user->fname;
         $_SESSION['lname'] = $user->lname;
         $_SESSION['email'] = $user->email;
-        $prev_user         = $_SESSION['username'];
-        $prev_email        = $_SESSION['email'];
         $status = "";
         
         if ($user_id) {
@@ -82,7 +80,7 @@ class LoginController extends AppController
 
             if ($user->username) {
                 try {
-                    $user->update($user_id, $prev_user, $prev_email);
+                    $user->update($user_id, $_SESSION['username'], $_SESSION['email']);
                     $status = notify("Edit Success");
                     $_SESSION['username'] = $user->username;
                 } catch (AppException $e) {
