@@ -114,6 +114,12 @@ class User extends AppModel
         return new self($row);
     }
 
+    /** 
+     * Before updating profile:
+     * a separate function for checking username & email
+     * @param $previous_info (username/email), $new_info (username/email),
+     * @param $user_column (username/email)
+     */
     public function checkUser($previous_info, $new_info, $user_column)
     {
         $db = DB::conn();
@@ -127,7 +133,6 @@ class User extends AppModel
 
     /** 
      * Profile edit / update, validate input
-     * Separate checking for username & email existence
      * @param $user_id, $prev_username & $prev_email
      */
     public function update($user_id, $prev_username, $prev_email) 
@@ -137,7 +142,7 @@ class User extends AppModel
         }
         self::checkUser($prev_username, $this->username, 'username');
         self::checkUser($prev_email, $this->email, 'email');
-        
+
         try {
             $params = array(
                 'username' => $this->username,
