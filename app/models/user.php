@@ -114,6 +114,17 @@ class User extends AppModel
         return new self($row);
     }
 
+    public function checkUser($previous_info, $new_info, $user_column)
+    {
+        $db = DB::conn();
+        if ($previous_info !=  $new_info) {
+            $result = $db->row("SELECT $user_column FROM userinfo WHERE $user_column = ?", array($new_info));
+            if ($result) {
+                throw new UserAlreadyExistsException(notify('Username / Email Already Exists',"error"));
+            }
+        }
+    }
+
     /** 
      * Profile edit / update, validate input
      * Separate checking for username & email existence
@@ -124,6 +135,8 @@ class User extends AppModel
         if (!$this->validate()) {
             throw new ValidationException(notify('Error Found!', "error"));
         }
+        self::checkUser($prev_username, $this->username, 'username');
+        self::checkUser($prev_email, $this->email, 'email');
         
         try {
             $params = array(
@@ -134,22 +147,6 @@ class User extends AppModel
                 'email'    => $this->email
             );
             $db = DB::conn();
-            
-            if ($prev_username != $this->username) {
-                $results = $db->row('SELECT username FROM userinfo WHERE username = ?', 
-                    array($this->username));
-                if ($results) {
-                    throw new UserAlreadyExistsException(notify('Username Already Exists',"error"));
-                }
-            }
-            
-            if ($prev_email != $this->email) {
-                $results = $db->row('SELECT email FROM userinfo WHERE email = ?', 
-                    array($this->email));
-                if ($results) {
-                    throw new UserAlreadyExistsException(notify('Email Already Exists',"error"));
-                }
-            }
             $db->begin();
             $db->update('userinfo', $params, array('id' => $user_id));
             $db->update('comment', array('username' => $this->username), array('username' => $prev_username));
